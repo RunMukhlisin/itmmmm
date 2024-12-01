@@ -29,8 +29,6 @@ public class Status extends javax.swing.JDialog {
 
         gradient1 = new pallete.gradient();
         jLabel1 = new javax.swing.JLabel();
-        jPanel17 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
         bBayar = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -45,23 +43,6 @@ public class Status extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Poppins SemiBold", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Bayar Tagihan");
-
-        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTextField2.setFont(new java.awt.Font("Poppins SemiBold", 1, 20)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("Nominal");
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-        );
 
         bBayar.setBackground(new java.awt.Color(0, 255, 0));
         bBayar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -107,10 +88,6 @@ public class Status extends javax.swing.JDialog {
                         .addComponent(RCicil))
                     .addComponent(jPanel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(187, 187, 187))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gradient1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150))
             .addGroup(gradient1Layout.createSequentialGroup()
                 .addGap(289, 289, 289)
                 .addComponent(bBayar)
@@ -126,9 +103,7 @@ public class Status extends javax.swing.JDialog {
                 .addGroup(gradient1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RLunas)
                     .addComponent(RCicil))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(122, 122, 122)
                 .addComponent(bBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(48, Short.MAX_VALUE))
         );
@@ -200,8 +175,6 @@ public class Status extends javax.swing.JDialog {
     private pallete.gradient gradient1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
