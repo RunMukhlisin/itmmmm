@@ -54,11 +54,11 @@ public class Frame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        jPanel1.setBackground(new java.awt.Color(33, 168, 233));
+        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
-        panelDashboard.setBackground(new java.awt.Color(204, 204, 204));
+        panelDashboard.setBackground(new java.awt.Color(153, 153, 153));
 
         jLabel2.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 255));
@@ -228,7 +228,7 @@ public class Frame extends javax.swing.JFrame {
 
         Konten.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(33, 168, 233));
+        jPanel3.setBackground(new java.awt.Color(0, 51, 153));
 
         jLabel1.setFont(new java.awt.Font("Poppins SemiBold", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));

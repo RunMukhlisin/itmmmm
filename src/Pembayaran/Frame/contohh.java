@@ -31,27 +31,34 @@ public class contohh extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        KPGBLU = new javax.swing.JLabel();
+        KPGGRAY = new javax.swing.JLabel();
+        BUKUBLU = new javax.swing.JLabel();
+        BUKUGRAY = new javax.swing.JLabel();
+        PEMBABLU = new javax.swing.JLabel();
+        PEMBAGRAY1 = new javax.swing.JLabel();
+        IVEBLU = new javax.swing.JLabel();
+        IVEGRAY = new javax.swing.JLabel();
+        MANABLU = new javax.swing.JLabel();
+        MANAGRAY = new javax.swing.JLabel();
+        PERPUSBLU = new javax.swing.JLabel();
+        PERPUSGRAY = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        LOGOUTBLU = new javax.swing.JLabel();
+        LOGOUTGRAY = new javax.swing.JLabel();
+        LOGOUT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 620));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(33, 168, 233));
+        jPanel2.setBackground(new java.awt.Color(0, 0, 102));
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Ikon");
-        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/User New.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("DM Sans SemiBold", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,7 +78,7 @@ public class contohh extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(37, 37, 37))
         );
@@ -80,100 +87,81 @@ public class contohh extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK.png"))); // NOI18N
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, -1));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/IVENTARIS.png"))); // NOI18N
+        KPGBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        KPGBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN BLU.png"))); // NOI18N
+        jPanel1.add(KPGBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 128, 99, -1));
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/IVENTARIS.png"))); // NOI18N
+        KPGGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        KPGGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN GRAY.png"))); // NOI18N
+        jPanel1.add(KPGGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 128, 99, -1));
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK.png"))); // NOI18N
+        BUKUBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BUKUBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK BLUEpng.png"))); // NOI18N
+        jPanel1.add(BUKUBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(377, 128, 98, -1));
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK.png"))); // NOI18N
+        BUKUGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BUKUGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK GRAY.png"))); // NOI18N
+        jPanel1.add(BUKUGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(377, 128, 98, -1));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK.png"))); // NOI18N
+        PEMBABLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PEMBABLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PEMBAYARAN BLUE.png"))); // NOI18N
+        jPanel1.add(PEMBABLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 128, 98, -1));
+
+        PEMBAGRAY1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PEMBAGRAY1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PEMBAYARAN GRAYpng.png"))); // NOI18N
+        jPanel1.add(PEMBAGRAY1, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 128, 98, -1));
+
+        IVEBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        IVEBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/IVENTARISBLU.png"))); // NOI18N
+        jPanel1.add(IVEBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 364, 99, -1));
+
+        IVEGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        IVEGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/IVENTARISGRAY.png"))); // NOI18N
+        jPanel1.add(IVEGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 364, 99, -1));
+
+        MANABLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MANABLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/MANAJEMEN BLU.png"))); // NOI18N
+        jPanel1.add(MANABLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 150, -1));
+
+        MANAGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MANAGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/MANAJEMEN GRAY.png"))); // NOI18N
+        jPanel1.add(MANAGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 150, -1));
+
+        PERPUSBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PERPUSBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PERPUSTAKAAN BLU.png"))); // NOI18N
+        jPanel1.add(PERPUSBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 364, 110, -1));
+
+        PERPUSGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PERPUSGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PERPUSTAKAAN GRAY.png"))); // NOI18N
+        jPanel1.add(PERPUSGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 364, 110, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("DM Sans", 1, 18)); // NOI18N
-        jLabel7.setText("Log Out");
+        LOGOUTBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LOGOUTBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/LOGOUT BLU.png"))); // NOI18N
+        jPanel3.add(LOGOUTBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Ikon");
+        LOGOUTGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LOGOUTGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/LOGOUT GRAY.png"))); // NOI18N
+        jPanel3.add(LOGOUTGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)))
-        );
+        LOGOUT.setFont(new java.awt.Font("DM Sans", 1, 18)); // NOI18N
+        LOGOUT.setText("Log Out");
+        jPanel3.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(141, 141, 141)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(135, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(86, 86, 86)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-        );
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 530, 110, 30));
 
         getContentPane().add(jPanel1, "card2");
 
@@ -216,15 +204,22 @@ public class contohh extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel BUKUBLU;
+    private javax.swing.JLabel BUKUGRAY;
+    private javax.swing.JLabel IVEBLU;
+    private javax.swing.JLabel IVEGRAY;
+    private javax.swing.JLabel KPGBLU;
+    private javax.swing.JLabel KPGGRAY;
+    private javax.swing.JLabel LOGOUT;
+    private javax.swing.JLabel LOGOUTBLU;
+    private javax.swing.JLabel LOGOUTGRAY;
+    private javax.swing.JLabel MANABLU;
+    private javax.swing.JLabel MANAGRAY;
+    private javax.swing.JLabel PEMBABLU;
+    private javax.swing.JLabel PEMBAGRAY1;
+    private javax.swing.JLabel PERPUSBLU;
+    private javax.swing.JLabel PERPUSGRAY;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
