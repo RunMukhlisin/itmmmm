@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
 
         icon = new javax.swing.JLabel();
         bLogin = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        tClose = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -57,10 +57,15 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(bLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 180, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("x");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, -1, -1));
+        tClose.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tClose.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tClose.setText("x");
+        tClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tCloseMouseClicked(evt);
+            }
+        });
+        getContentPane().add(tClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/logo kmptrpngg.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 270, 280));
@@ -153,8 +158,14 @@ public class Login extends javax.swing.JFrame {
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
         // TODO add your handling code here
-        new Dasbor().setVisible(true);
+        new menu().setVisible(true);
+        dispose();
     }//GEN-LAST:event_bLoginActionPerformed
+
+    private void tCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tCloseMouseClicked
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_tCloseMouseClicked
 
     /**
      * @param args the command line arguments
@@ -199,10 +210,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel tClose;
     // End of variables declaration//GEN-END:variables
 }

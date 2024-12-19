@@ -1,3 +1,5 @@
+package FrameUtama;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,12 +10,12 @@
  *
  * @author SayMukhlisin
  */
-public class contohh extends javax.swing.JFrame {
+public class menu extends javax.swing.JFrame {
 
     /**
      * Creates new form contohh
      */
-    public contohh() {
+    public menu() {
         initComponents();
     }
 
@@ -30,9 +32,11 @@ public class contohh extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        KPGBLU = new javax.swing.JLabel();
+        tTanggal = new javax.swing.JLabel();
+        tJam = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         KPGGRAY = new javax.swing.JLabel();
+        KPGBLU = new javax.swing.JLabel();
         BUKUBLU = new javax.swing.JLabel();
         BUKUGRAY = new javax.swing.JLabel();
         PEMBABLU = new javax.swing.JLabel();
@@ -43,10 +47,10 @@ public class contohh extends javax.swing.JFrame {
         MANAGRAY = new javax.swing.JLabel();
         PERPUSBLU = new javax.swing.JLabel();
         PERPUSGRAY = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        LOGOUTBLU = new javax.swing.JLabel();
-        LOGOUTGRAY = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         LOGOUT = new javax.swing.JLabel();
+        LOGOUTGRAY = new javax.swing.JLabel();
+        LOGOUTBLU = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -63,10 +67,15 @@ public class contohh extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Admin");
 
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("DM Sans SemiBold", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("24 November 2024");
+        tTanggal.setBackground(new java.awt.Color(255, 255, 255));
+        tTanggal.setFont(new java.awt.Font("DM Sans SemiBold", 0, 18)); // NOI18N
+        tTanggal.setForeground(new java.awt.Color(255, 255, 255));
+        tTanggal.setText("24 November 2024");
+
+        tJam.setBackground(new java.awt.Color(255, 255, 255));
+        tJam.setFont(new java.awt.Font("DM Sans SemiBold", 0, 12)); // NOI18N
+        tJam.setForeground(new java.awt.Color(255, 255, 255));
+        tJam.setText("00.00");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -77,33 +86,52 @@ public class contohh extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
-                .addComponent(jLabel11)
-                .addGap(37, 37, 37))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 535, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tTanggal, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tJam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11)))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel9))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tJam)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tTanggal)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, -1));
 
-        KPGBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        KPGBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN BLU.png"))); // NOI18N
-        jPanel1.add(KPGBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 128, 99, -1));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 110, 30));
 
         KPGGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         KPGGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN GRAY.png"))); // NOI18N
         jPanel1.add(KPGGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 128, 99, -1));
+
+        KPGBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        KPGBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN BLU.png"))); // NOI18N
+        KPGBLU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                KPGBLUMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                KPGBLUMouseExited(evt);
+            }
+        });
+        jPanel1.add(KPGBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 128, 99, -1));
 
         BUKUBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         BUKUBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK BLUEpng.png"))); // NOI18N
@@ -145,27 +173,36 @@ public class contohh extends javax.swing.JFrame {
         PERPUSGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PERPUSTAKAAN GRAY.png"))); // NOI18N
         jPanel1.add(PERPUSGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 364, 110, -1));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        LOGOUTBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LOGOUTBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/LOGOUT BLU.png"))); // NOI18N
-        jPanel3.add(LOGOUTBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        LOGOUTGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LOGOUTGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/LOGOUT GRAY.png"))); // NOI18N
-        jPanel3.add(LOGOUTGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LOGOUT.setFont(new java.awt.Font("DM Sans", 1, 18)); // NOI18N
         LOGOUT.setText("Log Out");
-        jPanel3.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
+        jPanel4.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, 30));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 530, 110, 30));
+        LOGOUTGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LOGOUTGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/LOGOUT GRAY.png"))); // NOI18N
+        jPanel4.add(LOGOUTGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        LOGOUTBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LOGOUTBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/LOGOUT BLU.png"))); // NOI18N
+        jPanel4.add(LOGOUTBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 510, -1, 30));
 
         getContentPane().add(jPanel1, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void KPGBLUMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KPGBLUMouseEntered
+        // TODO add your handling code here:
+        KPGBLU.setVisible(true);
+    }//GEN-LAST:event_KPGBLUMouseEntered
+
+    private void KPGBLUMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KPGBLUMouseExited
+        // TODO add your handling code here:
+        KPGGRAY.setVisible(true);
+    }//GEN-LAST:event_KPGBLUMouseExited
 
     /**
      * @param args the command line arguments
@@ -184,20 +221,21 @@ public class contohh extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(contohh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(contohh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(contohh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(contohh.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new contohh().setVisible(true);
+                new menu().setVisible(true);
             }
         });
     }
@@ -218,11 +256,13 @@ public class contohh extends javax.swing.JFrame {
     private javax.swing.JLabel PEMBAGRAY1;
     private javax.swing.JLabel PERPUSBLU;
     private javax.swing.JLabel PERPUSGRAY;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel tJam;
+    private javax.swing.JLabel tTanggal;
     // End of variables declaration//GEN-END:variables
 }
