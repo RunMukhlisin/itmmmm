@@ -105,6 +105,18 @@ private static String id_pembayaran, nim, id_jenis, nama_jenis, keterangan;
         }
         return rs;
     }
+        
+                public ResultSet historyIni() {
+        query = "SELECT p.id_pembayaran AS 'ID Pembayaran', p.nim AS 'NIM', COALESCE(j.nama_jenis, p.nama_jenis) AS 'Nama Jenis', p.nominal_pembayaran AS 'Nominal Dibayar',p.tanggal AS 'Tanggal', CASE WHEN p.status = 1 THEN 'LUNAS' ELSE 'BELUM LUNAS' END AS 'Status' FROM pembayaran p LEFT JOIN jenis_pembayaran j ON p.id_jenis = j.id_jenis ORDER BY p.tanggal DESC LIMIT 10";
+        try {
+            ps = konek.prepareStatement(query);
+            rs = ps.executeQuery();
+//            System.out.println("data masuk");
+        } catch (SQLException sQLException) {
+            System.out.println("data tak masuk");
+        }
+        return rs;
+    }
 
     public ResultSet tampilUt() {
         query = "SELECT p.id_pembayaran AS 'ID Pembayaran', COALESCE(j.nama_jenis, p.nama_jenis) AS 'Nama Jenis', p.nominal_pembayaran AS 'Nominal Dibayar',COALESCE(j.nominal, p.nominal_jenis) AS 'Nominal',p.keterangan AS 'Keterangan',CASE WHEN p.status = 1 THEN 'LUNAS' ELSE 'BELUM LUNAS' END AS 'Status' FROM pembayaran p LEFT JOIN jenis_pembayaran j ON p.id_jenis = j.id_jenis WHERE p.nim = ? ";
@@ -182,6 +194,39 @@ private static String id_pembayaran, nim, id_jenis, nama_jenis, keterangan;
 
     public ResultSet autoID() {
         query = "SELECT id_pembayaran FROM pembayaran ORDER BY id_pembayaran DESC LIMIT 1";
+        try {
+            st = konek.createStatement();
+            rs = st.executeQuery(query);
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null, "Data Gagal Tampil");
+        }
+        return rs;
+    }
+    
+        public ResultSet TampilMhs() {
+        query = "SELECT COUNT(DISTINCT nim) AS 'NIM' FROM pembayaran";
+        try {
+            st = konek.createStatement();
+            rs = st.executeQuery(query);
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null, "Data Gagal Tampil");
+        }
+        return rs;
+    }
+        
+        public ResultSet TampilHariIni() {
+        query = "SELECT SUM(nominal_pembayaran) AS 'Hari Ini'  FROM pembayaran WHERE DATE(tanggal) = CURDATE(); ";
+        try {
+            st = konek.createStatement();
+            rs = st.executeQuery(query);
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null, "Data Gagal Tampil");
+        }
+        return rs;
+    }
+        
+        public ResultSet tampilTotal() {
+        query = "SELECT SUM(nominal_pembayaran) AS 'Total' FROM pembayaran";
         try {
             st = konek.createStatement();
             rs = st.executeQuery(query);
