@@ -98,7 +98,7 @@ public class pnDashboard extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 220, 110));
 
-        jPanel2.setBackground(new java.awt.Color(102, 153, 0));
+        jPanel2.setBackground(new java.awt.Color(0, 204, 102));
         jPanel2.setForeground(new java.awt.Color(51, 153, 0));
 
         jLabel8.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
