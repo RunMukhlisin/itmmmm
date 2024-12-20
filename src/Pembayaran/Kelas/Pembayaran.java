@@ -238,7 +238,7 @@ public class Pembayaran {
     }
 
     public ResultSet TampilHariIni() {
-        query = "SELECT SUM(nominal_pembayaran) AS 'Hari Ini'  FROM pembayaran WHERE DATE(tanggal) = CURDATE(); ";
+        query = "SELECT SUM(nominal_pembayaran) AS 'Hari Ini'  FROM pembayaran WHERE DATE(tanggal) = CURDATE()";
         try {
             st = konek.createStatement();
             rs = st.executeQuery(query);

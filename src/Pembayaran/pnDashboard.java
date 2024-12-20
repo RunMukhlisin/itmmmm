@@ -56,7 +56,7 @@ public class pnDashboard extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tHariIni.setFont(new java.awt.Font("DM Sans ExtraBold", 0, 48)); // NOI18N
+        tHariIni.setFont(new java.awt.Font("DM Sans ExtraBold", 0, 24)); // NOI18N
         tHariIni.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         tHariIni.setText("999999");
 
@@ -98,7 +98,7 @@ public class pnDashboard extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         jLabel8.setText("Total Pembayaran");
 
-        tTotal.setFont(new java.awt.Font("DM Sans ExtraBold", 0, 48)); // NOI18N
+        tTotal.setFont(new java.awt.Font("DM Sans ExtraBold", 0, 24)); // NOI18N
         tTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         tTotal.setText("999999");
 
@@ -289,10 +289,10 @@ void getdata(){
             tmhs.setText(mhs.getString("NIM"));
         }
         if (hariIni.next()) {
-            tHariIni.setText(mhs.getString("Hari Ini"));
+            tHariIni.setText(hariIni.getString("Hari Ini"));
         }
         if (total.next()) {
-            tTotal.setText(mhs.getString("Total"));
+            tTotal.setText(total.getString("Total"));
         }
     } catch (SQLException sQLException) {
     }

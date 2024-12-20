@@ -133,7 +133,7 @@ public class pnTagihan extends javax.swing.JPanel {
         });
 
         bBalik.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        bBalik.setText("<---");
+        bBalik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEMBAL GRAY.png"))); // NOI18N
         bBalik.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bBalik.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -166,7 +166,7 @@ public class pnTagihan extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bBalik)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(tJudul)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tNIM)

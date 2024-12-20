@@ -27,21 +27,27 @@ public class Mahasiswa extends javax.swing.JPanel {
         loadTabel();
         loadAngkatan();
         loadProdi();
-        
-        
-    }    
+
+    }
+
     void loadTabel() {
 
         try {
             mahasiswa mhs = new mahasiswa();
             JSONObject obj = mhs.getMahasiswa();
 
-            DefaultTableModel model = new DefaultTableModel();
+            DefaultTableModel model = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+
+                    return false;
+                }
+            };
             model.addColumn("NIM");
             model.addColumn("NAMA");
             model.addColumn("JK");
             model.addColumn("PRODI");
-            model.addColumn("SEMESTER");
+            model.addColumn("ANGKATAN");
 
             int rows = obj.getInt("rows");
             JSONArray results = obj.getJSONArray("results");
@@ -69,8 +75,10 @@ public class Mahasiswa extends javax.swing.JPanel {
         int row = tbMahasiswa.getSelectedRow();
 
         Pembayaran.setNim(tbMahasiswa.getModel().getValueAt(row, 0).toString());
+        mahasiswa.setNim(tbMahasiswa.getModel().getValueAt(row, 0).toString());
         mahasiswa.setNama(tbMahasiswa.getModel().getValueAt(row, 1).toString());
         mahasiswa.setProdi(tbMahasiswa.getModel().getValueAt(row, 3).toString());
+        mahasiswa.setAngkatan(Integer.parseInt(tbMahasiswa.getModel().getValueAt(row, 4).toString()));
 
     }
 
@@ -87,7 +95,7 @@ public class Mahasiswa extends javax.swing.JPanel {
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject item = results.getJSONObject(i);
                     int angkatan = item.getInt("angkatan");
-                    cAngkatan.addItem(String.valueOf(angkatan    ));
+                    cAngkatan.addItem(String.valueOf(angkatan));
 
                 }
 
@@ -124,12 +132,18 @@ public class Mahasiswa extends javax.swing.JPanel {
             mahasiswa mhs = new mahasiswa();
             JSONObject obj = mhs.tampilAngkatan();
 
-            DefaultTableModel model = new DefaultTableModel();
+            DefaultTableModel model = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+
+                    return false;
+                }
+            };
             model.addColumn("NIM");
             model.addColumn("NAMA");
             model.addColumn("JK");
             model.addColumn("PRODI");
-            model.addColumn("SEMESTER");
+            model.addColumn("ANGKATAN");
 
             int rows = obj.getInt("rows");
             JSONArray results = obj.getJSONArray("results");
@@ -159,12 +173,18 @@ public class Mahasiswa extends javax.swing.JPanel {
             mahasiswa mhs = new mahasiswa();
             JSONObject obj = mhs.tampilJurusan();
 
-            DefaultTableModel model = new DefaultTableModel();
+            DefaultTableModel model = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+
+                    return false;
+                }
+            };
             model.addColumn("NIM");
             model.addColumn("NAMA");
             model.addColumn("JK");
             model.addColumn("PRODI");
-            model.addColumn("SEMESTER");
+            model.addColumn("ANGKATAN");
 
             int rows = obj.getInt("rows");
             JSONArray results = obj.getJSONArray("results");
@@ -189,18 +209,23 @@ public class Mahasiswa extends javax.swing.JPanel {
     }
 
     void tampilDua() {
-        
 
         try {
             mahasiswa mhs = new mahasiswa();
             JSONObject obj = mhs.tampilDua();
 
-            DefaultTableModel model = new DefaultTableModel();
+            DefaultTableModel model = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+
+                    return false;
+                }
+            };
             model.addColumn("NIM");
             model.addColumn("NAMA");
             model.addColumn("JK");
             model.addColumn("PRODI");
-            model.addColumn("SEMESTER");
+            model.addColumn("ANGKATAN");
 
             int rows = obj.getInt("rows");
             JSONArray results = obj.getJSONArray("results");
@@ -223,19 +248,25 @@ public class Mahasiswa extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-    
+
     void tampilSearch() {
 
         try {
             mahasiswa mhs = new mahasiswa();
             JSONObject obj = mhs.search();
 
-            DefaultTableModel model = new DefaultTableModel();
+            DefaultTableModel model = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+
+                    return false;
+                }
+            };
             model.addColumn("NIM");
             model.addColumn("NAMA");
             model.addColumn("JK");
             model.addColumn("PRODI");
-            model.addColumn("SEMESTER");
+            model.addColumn("ANGKATAN");
 
             int rows = obj.getInt("rows");
             JSONArray results = obj.getJSONArray("results");
@@ -258,7 +289,6 @@ public class Mahasiswa extends javax.swing.JPanel {
             System.out.println(e);
         }
     }
-        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -388,7 +418,7 @@ public class Mahasiswa extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cAngkatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAngkatanActionPerformed
-       if (cProdi.getSelectedItem().equals("Semua") && cAngkatan.getSelectedItem().equals("Semua")) {
+        if (cProdi.getSelectedItem().equals("Semua") && cAngkatan.getSelectedItem().equals("Semua")) {
             loadTabel();
         } else if (!cProdi.getSelectedItem().equals("Semua") && cAngkatan.getSelectedItem().equals("Semua")) {
             mahasiswa.setProdi(cProdi.getSelectedItem().toString());
@@ -431,22 +461,22 @@ public class Mahasiswa extends javax.swing.JPanel {
     }//GEN-LAST:event_tSearchKeyTyped
 
     private void tbMahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMahasiswaMouseClicked
-         try {
+        try {
             Koneksi kon = new Koneksi();
             kon.connectDb();
         } catch (SQLException sQLException) {
         }
         if (Koneksi.getStatus() == 1) {
-        dataTabel();
-        DashPem.Content.removeAll();
-        DashPem.Content.add(new pnTagihan());
-        DashPem.Content.repaint();
-        DashPem.Content.revalidate();
-        }else{
-        DashPem.Content.removeAll();
-        DashPem.Content.add(new pnNoSignal());
-        DashPem.Content.repaint();
-        DashPem.Content.revalidate();
+            dataTabel();
+            DashPem.Content.removeAll();
+            DashPem.Content.add(new pnTagihan());
+            DashPem.Content.repaint();
+            DashPem.Content.revalidate();
+        } else {
+            DashPem.Content.removeAll();
+            DashPem.Content.add(new pnNoSignal());
+            DashPem.Content.repaint();
+            DashPem.Content.revalidate();
         }
     }//GEN-LAST:event_tbMahasiswaMouseClicked
 

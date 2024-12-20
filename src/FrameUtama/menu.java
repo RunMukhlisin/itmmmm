@@ -1,5 +1,9 @@
 package FrameUtama;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import java.awt.Color;
+import javax.swing.UIManager;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -17,6 +21,12 @@ public class menu extends javax.swing.JFrame {
      */
     public menu() {
         initComponents();
+        KPGBLU.setVisible(false);
+        BUKUBLU.setVisible(false);
+        PEMBABLU.setVisible(false);
+        IVEBLU.setVisible(false);
+        MANABLU.setVisible(false);
+        PERPUSBLU.setVisible(false);
     }
 
     /**
@@ -35,8 +45,8 @@ public class menu extends javax.swing.JFrame {
         tTanggal = new javax.swing.JLabel();
         tJam = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        KPGGRAY = new javax.swing.JLabel();
         KPGBLU = new javax.swing.JLabel();
+        KPGGRAY = new javax.swing.JLabel();
         BUKUBLU = new javax.swing.JLabel();
         BUKUGRAY = new javax.swing.JLabel();
         PEMBABLU = new javax.swing.JLabel();
@@ -117,62 +127,135 @@ public class menu extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 110, 30));
 
-        KPGGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        KPGGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN GRAY.png"))); // NOI18N
-        jPanel1.add(KPGGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 128, 99, -1));
-
         KPGBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         KPGBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN BLU.png"))); // NOI18N
+        KPGBLU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         KPGBLU.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                KPGBLUMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 KPGBLUMouseExited(evt);
             }
         });
         jPanel1.add(KPGBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 128, 99, -1));
 
+        KPGGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        KPGGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN GRAY.png"))); // NOI18N
+        KPGGRAY.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        KPGGRAY.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                KPGGRAYMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                KPGGRAYMouseExited(evt);
+            }
+        });
+        jPanel1.add(KPGGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 128, 99, -1));
+
         BUKUBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         BUKUBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK BLUEpng.png"))); // NOI18N
+        BUKUBLU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BUKUBLU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BUKUBLUMouseExited(evt);
+            }
+        });
         jPanel1.add(BUKUBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(377, 128, 98, -1));
 
         BUKUGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         BUKUGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK GRAY.png"))); // NOI18N
+        BUKUGRAY.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BUKUGRAYMouseEntered(evt);
+            }
+        });
         jPanel1.add(BUKUGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(377, 128, 98, -1));
 
         PEMBABLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PEMBABLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PEMBAYARAN BLUE.png"))); // NOI18N
+        PEMBABLU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PEMBABLU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PEMBABLUMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PEMBABLUMouseExited(evt);
+            }
+        });
         jPanel1.add(PEMBABLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 128, 98, -1));
 
         PEMBAGRAY1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PEMBAGRAY1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PEMBAYARAN GRAYpng.png"))); // NOI18N
+        PEMBAGRAY1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PEMBAGRAY1MouseEntered(evt);
+            }
+        });
         jPanel1.add(PEMBAGRAY1, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 128, 98, -1));
 
         IVEBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         IVEBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/IVENTARISBLU.png"))); // NOI18N
+        IVEBLU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        IVEBLU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                IVEBLUMouseExited(evt);
+            }
+        });
         jPanel1.add(IVEBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 364, 99, -1));
 
         IVEGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         IVEGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/IVENTARISGRAY.png"))); // NOI18N
+        IVEGRAY.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                IVEGRAYMouseEntered(evt);
+            }
+        });
         jPanel1.add(IVEGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 364, 99, -1));
 
         MANABLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MANABLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/MANAJEMEN BLU.png"))); // NOI18N
+        MANABLU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MANABLU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                MANABLUMouseExited(evt);
+            }
+        });
         jPanel1.add(MANABLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 150, -1));
 
         MANAGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MANAGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/MANAJEMEN GRAY.png"))); // NOI18N
+        MANAGRAY.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                MANAGRAYMouseEntered(evt);
+            }
+        });
         jPanel1.add(MANAGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 150, -1));
 
         PERPUSBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PERPUSBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PERPUSTAKAAN BLU.png"))); // NOI18N
+        PERPUSBLU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PERPUSBLU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PERPUSBLUMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PERPUSBLUMouseExited(evt);
+            }
+        });
         jPanel1.add(PERPUSBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 364, 110, -1));
 
         PERPUSGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PERPUSGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PERPUSTAKAAN GRAY.png"))); // NOI18N
+        PERPUSGRAY.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PERPUSGRAYMouseEntered(evt);
+            }
+        });
         jPanel1.add(PERPUSGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 364, 110, -1));
 
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+        });
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LOGOUT.setFont(new java.awt.Font("DM Sans", 1, 18)); // NOI18N
@@ -192,42 +275,89 @@ public class menu extends javax.swing.JFrame {
         getContentPane().add(jPanel1, "card2");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void KPGBLUMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KPGBLUMouseEntered
-        // TODO add your handling code here:
-        KPGBLU.setVisible(true);
-    }//GEN-LAST:event_KPGBLUMouseEntered
 
     private void KPGBLUMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KPGBLUMouseExited
         // TODO add your handling code here:
-        KPGGRAY.setVisible(true);
+        KPGBLU.setVisible(false);
     }//GEN-LAST:event_KPGBLUMouseExited
+
+    private void KPGGRAYMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KPGGRAYMouseEntered
+                KPGBLU.setVisible(true);
+    }//GEN-LAST:event_KPGGRAYMouseEntered
+
+    private void KPGGRAYMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KPGGRAYMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KPGGRAYMouseExited
+
+    private void BUKUGRAYMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BUKUGRAYMouseEntered
+        BUKUBLU.setVisible(true);
+    }//GEN-LAST:event_BUKUGRAYMouseEntered
+
+    private void BUKUBLUMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BUKUBLUMouseExited
+        BUKUBLU.setVisible(false);
+    }//GEN-LAST:event_BUKUBLUMouseExited
+
+    private void PEMBAGRAY1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PEMBAGRAY1MouseEntered
+        PEMBABLU.setVisible(true);
+    }//GEN-LAST:event_PEMBAGRAY1MouseEntered
+
+    private void PEMBABLUMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PEMBABLUMouseExited
+        PEMBABLU.setVisible(false);
+    }//GEN-LAST:event_PEMBABLUMouseExited
+
+    private void IVEGRAYMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IVEGRAYMouseEntered
+        IVEBLU.setVisible(true);
+    }//GEN-LAST:event_IVEGRAYMouseEntered
+
+    private void IVEBLUMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IVEBLUMouseExited
+        IVEBLU.setVisible(false);
+    }//GEN-LAST:event_IVEBLUMouseExited
+
+    private void MANAGRAYMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MANAGRAYMouseEntered
+        MANABLU.setVisible(true);
+    }//GEN-LAST:event_MANAGRAYMouseEntered
+
+    private void MANABLUMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MANABLUMouseExited
+        MANABLU.setVisible(false);
+    }//GEN-LAST:event_MANABLUMouseExited
+
+    private void PERPUSGRAYMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PERPUSGRAYMouseEntered
+        PERPUSBLU.setVisible(true);
+    }//GEN-LAST:event_PERPUSGRAYMouseEntered
+
+    private void PERPUSBLUMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PERPUSBLUMouseEntered
+        
+    }//GEN-LAST:event_PERPUSBLUMouseEntered
+
+    private void PERPUSBLUMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PERPUSBLUMouseExited
+        PERPUSBLU.setVisible(false);
+    }//GEN-LAST:event_PERPUSBLUMouseExited
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+        dispose();
+    }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void PEMBABLUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PEMBABLUMouseClicked
+        new Pembayaran.DashPem().setVisible(true);
+    }//GEN-LAST:event_PEMBABLUMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        public static void main(String args[]) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+            UIManager.put("Button.arc", 10);
+            UIManager.put("TextComponent.arc", 10);
+            UIManager.put("TableHeader.background", new Color(0,51,153));
+            UIManager.put("TableHeader.foreground", Color.WHITE);
+            UIManager.put("Table.selectionBackground", new Color(102, 153, 255));
+            UIManager.put("Table.alternateRowColor", new Color(240, 240, 240));
+            UIManager.put("Component.focusedBorderColor", new Color(102, 153, 255));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         //</editor-fold>
         //</editor-fold>
