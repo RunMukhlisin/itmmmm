@@ -1,23 +1,20 @@
 package Pembayaran;
 
+//import static Pembayaran.DashPem.Content;
 import Pembayaran.Kelas.Pembayaran;
 import Pembayaran.Kelas.jenis_pembayaran;
 import Pembayaran.Kelas.mahasiswa;
-//import static UI.MenuMain.pnUtatma;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 
-
 public class pnHistory extends javax.swing.JPanel {
 
-   
     public pnHistory() {
         initComponents();
         getData2();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,23 +40,30 @@ public class pnHistory extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbHistory);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Poppins SemiBold", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText(" HISTORY");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(521, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(546, 546, 546))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,6 +80,9 @@ public class pnHistory extends javax.swing.JPanel {
             }
         });
 
+        ttambah.setBackground(new java.awt.Color(0, 184, 148));
+        ttambah.setFont(new java.awt.Font("DM Sans ExtraBold", 1, 14)); // NOI18N
+        ttambah.setForeground(new java.awt.Color(255, 255, 255));
         ttambah.setText("Tambah Pembayaran");
         ttambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,49 +91,44 @@ public class pnHistory extends javax.swing.JPanel {
         });
 
         jLabel3.setFont(new java.awt.Font("DM Sans", 0, 14)); // NOI18N
-        jLabel3.setText("Jenis");
+        jLabel3.setText("Jenis Pembayaran");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1132, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cJenis, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ttambah))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))))
-                .addContainerGap())
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cJenis, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ttambah)))
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cJenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ttambah))
+                    .addComponent(ttambah, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,22 +136,22 @@ public class pnHistory extends javax.swing.JPanel {
         mahasiswa mhs = new mahasiswa();
         mhs.getMahasiswa();
         if (mahasiswa.getKoneksi().equals("true")) {
-//            pnUtatma.removeAll();
-//            pnUtatma.add(new PnMahasiswa());
-//            pnUtatma.repaint();
-//            pnUtatma.revalidate();
-//        } else if (mahasiswa.getKoneksi().equals("false")) {
-//            pnUtatma.removeAll();
-//            pnUtatma.add(new pnNosignal());
-//            pnUtatma.repaint();
-//            pnUtatma.revalidate();
+            DashPem.Content.removeAll();
+            DashPem.Content.add(new Mahasiswa());
+            DashPem.Content.repaint();
+            DashPem.Content.revalidate();
+        } else if (mahasiswa.getKoneksi().equals("false")) {
+            DashPem.Content.removeAll();
+            DashPem.Content.add(new pnNoSignal());
+            DashPem.Content.repaint();
+            DashPem.Content.revalidate();
         }
     }//GEN-LAST:event_ttambahActionPerformed
 
     private void cJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cJenisActionPerformed
         if (cJenis.getSelectedItem().equals("Semua")) {
             getData2();
-        }else if (!cJenis.getSelectedItem().equals("Semua") & !cJenis.getSelectedItem().equals("Pembayaran Lain")) {
+        } else if (!cJenis.getSelectedItem().equals("Semua") & !cJenis.getSelectedItem().equals("Pembayaran Lain")) {
             jenis_pembayaran.setNama_jenis(cJenis.getSelectedItem().toString());
             try {
                 jenis_pembayaran jp = new jenis_pembayaran();
@@ -157,8 +159,8 @@ public class pnHistory extends javax.swing.JPanel {
                 getData();
             } catch (SQLException sQLException) {
             }
-        }else if (cJenis.getSelectedItem().equals("Pembayaran Lain")) {
-                    getDataKhusus();
+        } else if (cJenis.getSelectedItem().equals("Pembayaran Lain")) {
+            getDataKhusus();
         }
     }//GEN-LAST:event_cJenisActionPerformed
 
@@ -174,7 +176,7 @@ public class pnHistory extends javax.swing.JPanel {
     private javax.swing.JButton ttambah;
     // End of variables declaration//GEN-END:variables
 void getData2() {
-    DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID PEMBAYARAN");
         model.addColumn("NIM");
         model.addColumn("NAMA PEMBAYARAN");
@@ -183,23 +185,21 @@ void getData2() {
         try {
             Pembayaran pem = new Pembayaran();
             ResultSet data = pem.history();
-            
+
             while (data.next()) {
                 model.addRow(new Object[]{
                     data.getString("ID Pembayaran"),
                     data.getString("NIM"),
                     data.getString("Nama Jenis"),
                     data.getInt("Nominal Dibayar"),
-                    data.getString("Status"),
-                });
-        
-                
+                    data.getString("Status"),});
+
             }
         } catch (SQLException sQLException) {
         }
         tbHistory.setModel(model);
         try {
-        jenis_pembayaran jp = new jenis_pembayaran();
+            jenis_pembayaran jp = new jenis_pembayaran();
             ResultSet data = jp.tampilComBox();
 
             while (data.next()) {
@@ -207,11 +207,12 @@ void getData2() {
                 cJenis.addItem(isi);
             }
             cJenis.addItem("Pembayaran Lain");
-    } catch (SQLException sQLException) {
+        } catch (SQLException sQLException) {
+        }
     }
-    }
-void getData() {
-    DefaultTableModel model = new DefaultTableModel();
+
+    void getData() {
+        DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID PEMBAYARAN");
         model.addColumn("NIM");
         model.addColumn("NAMA PEMBAYARAN");
@@ -221,25 +222,24 @@ void getData() {
         try {
             Pembayaran pem = new Pembayaran();
             ResultSet data = pem.historyJenis();
-            
+
             while (data.next()) {
                 model.addRow(new Object[]{
                     data.getString("ID Pembayaran"),
                     data.getString("NIM"),
                     data.getString("Nama Jenis"),
                     data.getInt("Nominal Dibayar"),
-                    data.getString("Status"),
-                });
-        
-                
+                    data.getString("Status"),});
+
             }
         } catch (SQLException sQLException) {
         }
         tbHistory.setModel(model);
 
     }
-void getDataKhusus() {
-     DefaultTableModel model = new DefaultTableModel();
+
+    void getDataKhusus() {
+        DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID PEMBAYARAN");
         model.addColumn("NIM");
         model.addColumn("NAMA PEMBAYARAN");
@@ -249,17 +249,15 @@ void getDataKhusus() {
         try {
             Pembayaran pem = new Pembayaran();
             ResultSet data = pem.historyJeniskhu();
-            
+
             while (data.next()) {
                 model.addRow(new Object[]{
                     data.getString("ID Pembayaran"),
                     data.getString("NIM"),
                     data.getString("Nama Jenis"),
                     data.getInt("Nominal Dibayar"),
-                    data.getString("Status"),
-                });
-        
-                
+                    data.getString("Status"),});
+
             }
         } catch (SQLException sQLException) {
         }

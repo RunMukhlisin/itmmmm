@@ -4,13 +4,17 @@
  */
 package Pembayaran;
 
+import static Pembayaran.DashPem.Content;
 import Pembayaran.Kelas.jenis_pembayaran;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import java.awt.Color;
 //import static UI.MenuMain.pnUtatma;
 //import UI.pnJenisTampil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.Random;
+import javax.swing.UIManager;
 
 /**
  *
@@ -22,7 +26,7 @@ public class popUpdateJenis extends javax.swing.JDialog {
      * Creates new form popTambahJenis
      */
     public popUpdateJenis(java.awt.Frame parent, boolean modal) {
-         super(parent, modal);
+        super(parent, modal);
         initComponents();
         getData();
     }
@@ -49,7 +53,7 @@ public class popUpdateJenis extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
 
         jLabel1.setFont(new java.awt.Font("DM Sans SemiBold", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -77,6 +81,9 @@ public class popUpdateJenis extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         jLabel5.setText("Nominal");
 
+        bTambah.setBackground(new java.awt.Color(0, 0, 102));
+        bTambah.setFont(new java.awt.Font("DM Sans ExtraBold", 1, 14)); // NOI18N
+        bTambah.setForeground(new java.awt.Color(255, 255, 255));
         bTambah.setText("UBAH");
         bTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,12 +167,13 @@ public class popUpdateJenis extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTambahActionPerformed
-jenis_pembayaran.setId_jenis(tID.getText());
+        jenis_pembayaran.setId_jenis(tID.getText());
         jenis_pembayaran.setNama_jenis(tNama.getText());
-        String harga = tNominal.getText().replace(",", "");
+        String harga = tNominal.getText().replace(".", "");
         jenis_pembayaran.setNominal(Integer.parseInt(harga));
         try {
             jenis_pembayaran jk = new jenis_pembayaran();
@@ -173,43 +181,37 @@ jenis_pembayaran.setId_jenis(tID.getText());
         } catch (SQLException sQLException) {
         }
         dispose();
-//        pnUtatma.removeAll();
-//        pnUtatma.add(new pnJenisTampil());
-//        pnUtatma.repaint();
-//        pnUtatma.revalidate();    
+
+        Content.removeAll();
+        Content.add(new pnJenisTampil());
+        Content.repaint();
+        Content.revalidate();
     }//GEN-LAST:event_bTambahActionPerformed
 
     private void tNominalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tNominalKeyReleased
- String isi = tNominal.getText().replaceAll("[^\\d]", "");
-                double nom = Double.parseDouble(isi);
-                DecimalFormat df = new DecimalFormat("#,###,###");
-                tNominal.setText(df.format(nom));        // TODO add your handling code here:
+        String isi = tNominal.getText().replaceAll("[^\\d]", "");
+        double nom = Double.parseDouble(isi);
+        DecimalFormat df = new DecimalFormat("#,###,###");
+        tNominal.setText(df.format(nom));        // TODO add your handling code here:
     }//GEN-LAST:event_tNominalKeyReleased
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(popUpdateJenis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(popUpdateJenis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(popUpdateJenis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(popUpdateJenis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+            UIManager.put("Button.arc", 15);
+            UIManager.put("TextComponent.arc", 15);
+            UIManager.put("TableHeader.background", new Color(0, 51, 153));
+            UIManager.put("TableHeader.foreground", Color.WHITE);
+            UIManager.put("Table.selectionBackground", new Color(102, 153, 255));
+            UIManager.put("Table.alternateRowColor", new Color(240, 240, 240));
+            UIManager.put("Component.focusedBorderColor", new Color(102, 153, 255));
+            UIManager.put("Component.arc", 15);
+            UIManager.put("ProgressBar.arc", 15);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         //</editor-fold>
         //</editor-fold>
@@ -243,13 +245,12 @@ jenis_pembayaran.setId_jenis(tID.getText());
     private javax.swing.JTextField tNama;
     private javax.swing.JTextField tNominal;
     // End of variables declaration//GEN-END:variables
-void getData(){
-    tID.setText(jenis_pembayaran.getId_jenis());
-    tNama.setText(jenis_pembayaran.getNama_jenis());
-    String nominal = String.valueOf(jenis_pembayaran.getNominal()).replaceAll("[^\\d]", "");
-                double nom = Double.parseDouble(nominal);
-                DecimalFormat df = new DecimalFormat("#,###,###");
-                tNominal.setText(df.format(nom));
+void getData() {
+        tID.setText(jenis_pembayaran.getId_jenis());
+        tNama.setText(jenis_pembayaran.getNama_jenis());
+        String nominal = String.valueOf(jenis_pembayaran.getNominal()).replaceAll("[^\\d]", "");
+        double nom = Double.parseDouble(nominal);
+        DecimalFormat df = new DecimalFormat("#,###,###");
+        tNominal.setText(df.format(nom));
+    }
 }
-}
-

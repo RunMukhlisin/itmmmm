@@ -160,7 +160,7 @@ public class jenis_pembayaran {
 
             ps.executeUpdate();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Berhasil Dihapus");
+            JOptionPane.showMessageDialog(null, "Berhasil Diubah");
         } catch (SQLException sQLException) {
             JOptionPane.showMessageDialog(null, "tambah Gagal");
         }

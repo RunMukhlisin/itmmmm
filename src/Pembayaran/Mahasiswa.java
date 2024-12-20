@@ -4,8 +4,10 @@
  */
 package Pembayaran;
 
+import Pembayaran.Kelas.Koneksi;
 import Pembayaran.Kelas.Pembayaran;
 import Pembayaran.Kelas.mahasiswa;
+import java.sql.SQLException;
 //import static UI.MenuMain.pnUtatma;
 import javax.swing.table.DefaultTableModel;
 import org.json.JSONArray;
@@ -22,6 +24,10 @@ public class Mahasiswa extends javax.swing.JPanel {
      */
     public Mahasiswa() {
         initComponents();
+        loadTabel();
+        loadAngkatan();
+        loadProdi();
+        
         
     }    
     void loadTabel() {
@@ -263,8 +269,6 @@ public class Mahasiswa extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbMahasiswa = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         tSearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -272,32 +276,14 @@ public class Mahasiswa extends javax.swing.JPanel {
         cAngkatan = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbMahasiswa = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
-
-        tbMahasiswa.setBackground(new java.awt.Color(250, 232, 255));
-        tbMahasiswa.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tbMahasiswa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbMahasiswaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tbMahasiswa);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        tSearch.setText("Search...");
         tSearch.setBorder(null);
         tSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -343,16 +329,32 @@ public class Mahasiswa extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("DM Sans SemiBold", 0, 15)); // NOI18N
         jLabel3.setText("Angkatan");
 
+        tbMahasiswa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tbMahasiswa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbMahasiswaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbMahasiswa);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -361,40 +363,29 @@ public class Mahasiswa extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(cProdi, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 511, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
+                .addGap(132, 132, 132)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cAngkatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cProdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                            .addComponent(cProdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tbMahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMahasiswaMouseClicked
-        dataTabel();
-//        pnUtatma.removeAll();
-//        pnUtatma.add(new pnTagihan());
-//        pnUtatma.repaint();
-//        pnUtatma.revalidate();
-        
-    }//GEN-LAST:event_tbMahasiswaMouseClicked
 
     private void cAngkatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAngkatanActionPerformed
        if (cProdi.getSelectedItem().equals("Semua") && cAngkatan.getSelectedItem().equals("Semua")) {
@@ -439,6 +430,26 @@ public class Mahasiswa extends javax.swing.JPanel {
         tampilSearch();
     }//GEN-LAST:event_tSearchKeyTyped
 
+    private void tbMahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMahasiswaMouseClicked
+         try {
+            Koneksi kon = new Koneksi();
+            kon.connectDb();
+        } catch (SQLException sQLException) {
+        }
+        if (Koneksi.getStatus() == 1) {
+        dataTabel();
+        DashPem.Content.removeAll();
+        DashPem.Content.add(new pnTagihan());
+        DashPem.Content.repaint();
+        DashPem.Content.revalidate();
+        }else{
+        DashPem.Content.removeAll();
+        DashPem.Content.add(new pnNoSignal());
+        DashPem.Content.repaint();
+        DashPem.Content.revalidate();
+        }
+    }//GEN-LAST:event_tbMahasiswaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cAngkatan;
@@ -447,7 +458,7 @@ public class Mahasiswa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField tSearch;
     private javax.swing.JTable tbMahasiswa;
     // End of variables declaration//GEN-END:variables

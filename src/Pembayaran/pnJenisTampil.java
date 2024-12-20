@@ -4,9 +4,9 @@
  */
 package Pembayaran;
 
+import static Pembayaran.DashPem.Content;
 import Pembayaran.Kelas.Pembayaran;
 import Pembayaran.Kelas.jenis_pembayaran;
-//import static UI.MenuMain.pnUtatma;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
@@ -24,12 +24,19 @@ public class pnJenisTampil extends javax.swing.JPanel {
     public pnJenisTampil() {
         initComponents();
         getData();
-         bHapus.setVisible(false);
+        bHapus.setVisible(false);
     }
 
     void getData() {
 
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+        };
+
         model.addColumn("ID");
         model.addColumn("NAMA JENIS PEMBAYARAN");
         model.addColumn("NOMINAL");
@@ -71,6 +78,11 @@ public class pnJenisTampil extends javax.swing.JPanel {
         bTambah = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         tbJenis.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,7 +94,15 @@ public class pnJenisTampil extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbJenis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbJenisMouseClicked(evt);
@@ -93,6 +113,9 @@ public class pnJenisTampil extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("DM Sans SemiBold", 0, 18)); // NOI18N
         jLabel2.setText("Jenis Pembayaran");
 
+        bHapus.setBackground(new java.awt.Color(214, 48, 49));
+        bHapus.setFont(new java.awt.Font("DM Sans ExtraBold", 0, 14)); // NOI18N
+        bHapus.setForeground(new java.awt.Color(255, 255, 255));
         bHapus.setText("Hapus");
         bHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +123,9 @@ public class pnJenisTampil extends javax.swing.JPanel {
             }
         });
 
+        bTambah.setBackground(new java.awt.Color(0, 184, 148));
+        bTambah.setFont(new java.awt.Font("DM Sans ExtraBold", 1, 14)); // NOI18N
+        bTambah.setForeground(new java.awt.Color(255, 255, 255));
         bTambah.setText("Tambah");
         bTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,27 +137,29 @@ public class pnJenisTampil extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1161, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(bTambah)
-                .addGap(18, 18, 18)
-                .addComponent(bHapus)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(930, Short.MAX_VALUE)
+                        .addComponent(bTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bHapus)
-                    .addComponent(bTambah))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bHapus, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(bTambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
@@ -139,7 +167,7 @@ public class pnJenisTampil extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTambahActionPerformed
-     if (bTambah.getText().equals("Tambah")) {
+        if (bTambah.getText().equals("Tambah")) {
             boolean closable = true;
             popTambahJenis mhs = new popTambahJenis(null, closable);
             mhs.setVisible(true);
@@ -147,7 +175,7 @@ public class pnJenisTampil extends javax.swing.JPanel {
             int row = tbJenis.getSelectedRow();
             jenis_pembayaran.setId_jenis(tbJenis.getModel().getValueAt(row, 0).toString());
             jenis_pembayaran.setNama_jenis(tbJenis.getModel().getValueAt(row, 1).toString());
-            jenis_pembayaran.setNominal(Integer.parseInt(tbJenis.getModel().getValueAt(row, 2).toString().replace(",", "")));
+            jenis_pembayaran.setNominal(Integer.parseInt(tbJenis.getModel().getValueAt(row, 2).toString().replace(".", "")));
             boolean closable = true;
             popUpdateJenis mhs = new popUpdateJenis(null, closable);
             mhs.setVisible(true);
@@ -155,7 +183,7 @@ public class pnJenisTampil extends javax.swing.JPanel {
     }//GEN-LAST:event_bTambahActionPerformed
 
     private void bHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHapusActionPerformed
- int row = tbJenis.getSelectedRow();
+        int row = tbJenis.getSelectedRow();
         String id = tbJenis.getModel().getValueAt(row, 0).toString();
         jenis_pembayaran.setId_jenis(id);
         try {
@@ -163,16 +191,21 @@ public class pnJenisTampil extends javax.swing.JPanel {
             jp.hapusJenis();
         } catch (SQLException sQLException) {
         }
-//        pnUtatma.removeAll();
-//        pnUtatma.add(new pnJenisTampil());
-//        pnUtatma.repaint();
-//        pnUtatma.revalidate();        // TODO add your handling code here:
+        Content.removeAll();
+        Content.add(new pnJenisTampil());
+        Content.repaint();
+        Content.revalidate();
     }//GEN-LAST:event_bHapusActionPerformed
 
     private void tbJenisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbJenisMouseClicked
-       bHapus.setVisible(true);
-       bTambah.setText("Update");// TODO add your handling code here:
+        bHapus.setVisible(true);
+        bTambah.setText("Update");// TODO add your handling code here:
     }//GEN-LAST:event_tbJenisMouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        bTambah.setText("Tambah");
+        bHapus.setVisible(false);
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,7 +1,14 @@
-package Pembayaran.template;
+package Pembayaran;
 
 import FrameUtama.Login;
+import Pembayaran.Kelas.Koneksi;
+import Pembayaran.pnDashboard;
+import Pembayaran.pnHistory;
+import Pembayaran.pnJenisTampil;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
+import java.sql.SQLException;
 import javax.swing.UIManager;
 
 
@@ -13,12 +20,12 @@ import javax.swing.UIManager;
  *
  * @author Irawa
  */
-public class DashPem1 extends javax.swing.JFrame {
+public class DashPem extends javax.swing.JFrame {
 
     /**
      * Creates new form Frame
      */
-    public DashPem1() {
+    public DashPem() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
     }
@@ -237,15 +244,15 @@ public class DashPem1 extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103)
+                .addGap(37, 37, 37)
                 .addComponent(panelDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelJenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelPembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 387, Short.MAX_VALUE)
                 .addComponent(panelLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150))
+                .addGap(31, 31, 31))
         );
 
         Content.setBackground(new java.awt.Color(255, 255, 255));
@@ -270,9 +277,9 @@ public class DashPem1 extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 766, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 750, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,80 +362,93 @@ public class DashPem1 extends javax.swing.JFrame {
     }//GEN-LAST:event_panelLogOutMouseExited
 
     private void panelDashboardMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDashboardMousePressed
-        panelDashboard.setBackground(new Color(0, 51, 153));
-        panelPembayaran.setBackground(new Color(0, 0, 102));
-        panelJenis.setBackground(new Color(0, 0, 102));
-
+        try {
+            Koneksi kon = new Koneksi();
+            kon.connectDb();
+        } catch (SQLException sQLException) {
+        }
+        if (Koneksi.getStatus() == 1) {
         Content.removeAll();
         Content.add(new pnDashboard());
         Content.repaint();
         Content.revalidate();
+        }else{
+        Content.removeAll();
+        Content.add(new pnNoSignal());
+        Content.repaint();
+        Content.revalidate();
+        }
     }//GEN-LAST:event_panelDashboardMousePressed
 
     private void panelJenisMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelJenisMousePressed
-        panelJenis.setBackground(new Color(0, 51, 153));
-        panelDashboard.setBackground(new Color(0, 0, 102));
-        panelPembayaran.setBackground(new Color(0, 0, 102));
-
+        try {
+            Koneksi kon = new Koneksi();
+            kon.connectDb();
+        } catch (SQLException sQLException) {
+        }
+        if (Koneksi.getStatus() == 1) {
         Content.removeAll();
         Content.add(new pnJenisTampil());
         Content.repaint();
         Content.revalidate();
+        }else{
+        Content.removeAll();
+        Content.add(new pnNoSignal());
+        Content.repaint();
+        Content.revalidate();
+        }
+
     }//GEN-LAST:event_panelJenisMousePressed
 
     private void panelPembayaranMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelPembayaranMousePressed
-        panelPembayaran.setBackground(new Color(0, 51, 153));
-        panelDashboard.setBackground(new Color(0, 0, 102));
-        panelJenis.setBackground(new Color(0, 0, 102));
-
+        try {
+            Koneksi kon = new Koneksi();
+            kon.connectDb();
+        } catch (SQLException sQLException) {
+        }
+        if (Koneksi.getStatus() == 1) {
         Content.removeAll();
         Content.add(new pnHistory());
         Content.repaint();
         Content.revalidate();
+        }else{
+        Content.removeAll();
+        Content.add(new pnNoSignal());
+        Content.repaint();
+        Content.revalidate();
+        }
     }//GEN-LAST:event_panelPembayaranMousePressed
 
     private void panelLogOutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLogOutMousePressed
-        // TODO add your handling code here:
-        Content.removeAll();
-        Content.add(new Login());
-        Content.repaint();
-        Content.revalidate();
+//         TODO add your handling code here:
+//        Content.removeAll();
+//        Content.add(new Mahasiswa());
+//        Content.repaint();
+//        Content.revalidate();
     }//GEN-LAST:event_panelLogOutMousePressed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        public static void main(String args[]) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashPem1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashPem1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashPem1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashPem1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+            UIManager.put("Button.arc", 10);
+            UIManager.put("TextComponent.arc", 10);
+            UIManager.put("TableHeader.background", new Color(0,51,153));
+            UIManager.put("TableHeader.foreground", Color.WHITE);
+            UIManager.put("Table.selectionBackground", new Color(102, 153, 255));
+            UIManager.put("Table.alternateRowColor", new Color(240, 240, 240));
+            UIManager.put("Component.focusedBorderColor", new Color(102, 153, 255));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashPem1().setVisible(true);
+                new DashPem().setVisible(true);
             }
         });
     }

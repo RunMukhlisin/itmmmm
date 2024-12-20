@@ -4,11 +4,9 @@
  */
 package Pembayaran;
 
-import Pembayaran.template.*;
 import Pembayaran.Kelas.Pembayaran;
 import Pembayaran.Kelas.jenis_pembayaran;
 import Pembayaran.Kelas.mahasiswa;
-//import static UI.MenuMain.pnUtatma;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
@@ -96,7 +94,15 @@ public class pnTagihan extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbTagihan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTagihanMouseClicked(evt);
@@ -105,9 +111,11 @@ public class pnTagihan extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tbTagihan);
 
         tNIM.setFont(new java.awt.Font("DM Sans", 0, 18)); // NOI18N
+        tNIM.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tNIM.setText("202357201036");
 
         tJudul.setFont(new java.awt.Font("DM Sans SemiBold", 0, 24)); // NOI18N
+        tJudul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tJudul.setText("Pembayaran Nama Mahasiswa");
 
         bBayar.setText("Tambah Pembayaran");
@@ -126,61 +134,68 @@ public class pnTagihan extends javax.swing.JPanel {
 
         bBalik.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bBalik.setText("<---");
+        bBalik.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bBalik.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bBalikMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tNIM)
-                        .addGap(513, 513, 513))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tJudul)
-                        .addGap(397, 397, 397))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(838, 838, 838)
-                .addComponent(bBayarC)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bBayar)
-                .addContainerGap(77, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bBalik)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bBayarC, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bBayar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1115, Short.MAX_VALUE)
+                    .addComponent(tJudul, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tNIM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bBalik)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(tJudul)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tNIM)
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bBayar)
-                    .addComponent(bBayarC))
-                .addGap(46, 46, 46))
+                    .addComponent(bBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bBayarC, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void bBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBayarActionPerformed
         mahasiswa.setNama(tJudul.getText().substring(11));
         Pembayaran.setNim(tNIM.getText());
-//        pnUtatma.removeAll();
-//        pnUtatma.add(new pnBayar());
-//        pnUtatma.repaint();
-//        pnUtatma.revalidate();
+        mahasiswa mhs = new mahasiswa();
+        mhs.getMahasiswa();
+        if (mahasiswa.getKoneksi().equals("true")) {
+            DashPem.Content.removeAll();
+            DashPem.Content.add(new pnBayar());
+            DashPem.Content.repaint();
+            DashPem.Content.revalidate();
+        } else if (mahasiswa.getKoneksi().equals("false")) {
+            DashPem.Content.removeAll();
+            DashPem.Content.add(new pnNoSignal());
+            DashPem.Content.repaint();
+            DashPem.Content.revalidate();
+        }
     }//GEN-LAST:event_bBayarActionPerformed
 
     private void tbTagihanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTagihanMouseClicked
@@ -201,11 +216,36 @@ public class pnTagihan extends javax.swing.JPanel {
         Pembayaran.setNominal_jenis(hargaAsli);
         jenis_pembayaran.setNama_jenis(tbTagihan.getModel().getValueAt(row, 1).toString());
         Pembayaran.setId_pembayaran(tbTagihan.getModel().getValueAt(row, 0).toString());
-//        pnUtatma.removeAll();
-//        pnUtatma.add(new pnCicilan());
-//        pnUtatma.repaint();
-//        pnUtatma.revalidate();
+        mahasiswa mhs = new mahasiswa();
+        mhs.getMahasiswa();
+        if (mahasiswa.getKoneksi().equals("true")) {
+            DashPem.Content.removeAll();
+            DashPem.Content.add(new pnCicilan());
+            DashPem.Content.repaint();
+            DashPem.Content.revalidate();
+        } else if (mahasiswa.getKoneksi().equals("false")) {
+            DashPem.Content.removeAll();
+            DashPem.Content.add(new pnNoSignal());
+            DashPem.Content.repaint();
+            DashPem.Content.revalidate();
+        }
     }//GEN-LAST:event_bBayarCActionPerformed
+
+    private void bBalikMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBalikMouseClicked
+        mahasiswa mhs = new mahasiswa();
+        mhs.getMahasiswa();
+        if (mahasiswa.getKoneksi().equals("true")) {
+            DashPem.Content.removeAll();
+            DashPem.Content.add(new Mahasiswa());
+            DashPem.Content.repaint();
+            DashPem.Content.revalidate();
+        } else if (mahasiswa.getKoneksi().equals("false")) {
+            DashPem.Content.removeAll();
+            DashPem.Content.add(new pnNoSignal());
+            DashPem.Content.repaint();
+            DashPem.Content.revalidate();
+        }
+    }//GEN-LAST:event_bBalikMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
