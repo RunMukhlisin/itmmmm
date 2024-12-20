@@ -9,18 +9,16 @@ import javax.swing.UIManager;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-
 /**
  *
  * @author Irawa
  */
-public class DashPem extends javax.swing.JFrame {
+public class DashPem1 extends javax.swing.JFrame {
 
     /**
      * Creates new form Frame
      */
-    public DashPem() {
+    public DashPem1() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
     }
@@ -39,10 +37,10 @@ public class DashPem extends javax.swing.JFrame {
         panelDashboard = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        panelHistory = new javax.swing.JPanel();
+        panelPembayaran = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        panelSetting = new javax.swing.JPanel();
+        panelJenis = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -50,9 +48,6 @@ public class DashPem extends javax.swing.JFrame {
         panelLogOut = new javax.swing.JPanel();
         LOGOUT = new javax.swing.JLabel();
         LOGOUTBLU = new javax.swing.JLabel();
-        panelMahasiswa = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -102,73 +97,73 @@ public class DashPem extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
         );
 
-        panelHistory.setBackground(new java.awt.Color(0, 51, 153));
-        panelHistory.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelPembayaran.setBackground(new java.awt.Color(0, 51, 153));
+        panelPembayaran.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                panelHistoryMouseEntered(evt);
+                panelPembayaranMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                panelHistoryMouseExited(evt);
+                panelPembayaranMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                panelHistoryMousePressed(evt);
+                panelPembayaranMousePressed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("History");
+        jLabel8.setText("pembayaran");
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/bank-account.png"))); // NOI18N
 
-        javax.swing.GroupLayout panelHistoryLayout = new javax.swing.GroupLayout(panelHistory);
-        panelHistory.setLayout(panelHistoryLayout);
-        panelHistoryLayout.setHorizontalGroup(
-            panelHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHistoryLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelPembayaranLayout = new javax.swing.GroupLayout(panelPembayaran);
+        panelPembayaran.setLayout(panelPembayaranLayout);
+        panelPembayaranLayout.setHorizontalGroup(
+            panelPembayaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPembayaranLayout.createSequentialGroup()
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelHistoryLayout.setVerticalGroup(
-            panelHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelPembayaranLayout.setVerticalGroup(
+            panelPembayaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        panelSetting.setBackground(new java.awt.Color(0, 51, 153));
-        panelSetting.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelJenis.setBackground(new java.awt.Color(0, 51, 153));
+        panelJenis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                panelSettingMouseEntered(evt);
+                panelJenisMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                panelSettingMouseExited(evt);
+                panelJenisMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                panelSettingMousePressed(evt);
+                panelJenisMousePressed(evt);
             }
         });
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Setting");
+        jLabel10.setText("Jenis");
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/money.png"))); // NOI18N
 
-        javax.swing.GroupLayout panelSettingLayout = new javax.swing.GroupLayout(panelSetting);
-        panelSetting.setLayout(panelSettingLayout);
-        panelSettingLayout.setHorizontalGroup(
-            panelSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSettingLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelJenisLayout = new javax.swing.GroupLayout(panelJenis);
+        panelJenis.setLayout(panelJenisLayout);
+        panelJenisLayout.setHorizontalGroup(
+            panelJenisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJenisLayout.createSequentialGroup()
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelSettingLayout.setVerticalGroup(
-            panelSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelJenisLayout.setVerticalGroup(
+            panelJenisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
         );
@@ -228,50 +223,14 @@ public class DashPem extends javax.swing.JFrame {
             .addComponent(LOGOUTBLU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        panelMahasiswa.setBackground(new java.awt.Color(0, 51, 153));
-        panelMahasiswa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                panelMahasiswaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                panelMahasiswaMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                panelMahasiswaMousePressed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Mahasiswa");
-
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/graduation (1).png"))); // NOI18N
-
-        javax.swing.GroupLayout panelMahasiswaLayout = new javax.swing.GroupLayout(panelMahasiswa);
-        panelMahasiswa.setLayout(panelMahasiswaLayout);
-        panelMahasiswaLayout.setHorizontalGroup(
-            panelMahasiswaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMahasiswaLayout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelMahasiswaLayout.setVerticalGroup(
-            panelMahasiswaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelMahasiswa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelJenis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPembayaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -280,15 +239,13 @@ public class DashPem extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(103, 103, 103)
                 .addComponent(panelDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panelMahasiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panelSetting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panelHistory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelJenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelPembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                 .addComponent(panelLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+                .addGap(150, 150, 150))
         );
 
         Content.setBackground(new java.awt.Color(255, 255, 255));
@@ -359,85 +316,76 @@ public class DashPem extends javax.swing.JFrame {
 
     private void panelDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDashboardMouseEntered
         // TODO add your handling code here:
-        panelDashboard.setBackground(new Color(0,0,102));
+        panelDashboard.setBackground(new Color(0, 0, 102));
     }//GEN-LAST:event_panelDashboardMouseEntered
 
     private void panelDashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDashboardMouseExited
         // TODO add your handling code here:
-        panelDashboard.setBackground(new Color(0,51,153));
+        panelDashboard.setBackground(new Color(0, 51, 153));
     }//GEN-LAST:event_panelDashboardMouseExited
 
-    private void panelHistoryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHistoryMouseEntered
+    private void panelPembayaranMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelPembayaranMouseEntered
         // TODO add your handling code here:
-        panelHistory.setBackground(new Color(0,0,102));
-    }//GEN-LAST:event_panelHistoryMouseEntered
+        panelPembayaran.setBackground(new Color(0, 0, 102));
+    }//GEN-LAST:event_panelPembayaranMouseEntered
 
-    private void panelHistoryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHistoryMouseExited
+    private void panelPembayaranMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelPembayaranMouseExited
         // TODO add your handling code here:
-        panelHistory.setBackground(new Color(0,51,153));
-    }//GEN-LAST:event_panelHistoryMouseExited
+        panelPembayaran.setBackground(new Color(0, 51, 153));
+    }//GEN-LAST:event_panelPembayaranMouseExited
 
-    private void panelSettingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingMouseEntered
+    private void panelJenisMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelJenisMouseEntered
         // TODO add your handling code here:
-        panelSetting.setBackground(new Color(0,0,102));
-    }//GEN-LAST:event_panelSettingMouseEntered
+        panelJenis.setBackground(new Color(0, 0, 102));
+    }//GEN-LAST:event_panelJenisMouseEntered
 
-    private void panelSettingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingMouseExited
+    private void panelJenisMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelJenisMouseExited
         // TODO add your handling code here:
-        panelSetting.setBackground(new Color(0,51,153));
-    }//GEN-LAST:event_panelSettingMouseExited
+        panelJenis.setBackground(new Color(0, 51, 153));
+    }//GEN-LAST:event_panelJenisMouseExited
 
     private void panelLogOutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLogOutMouseEntered
         // TODO add your handling code here:
-        panelLogOut.setBackground(new Color(0,0,102));
+        panelLogOut.setBackground(new Color(0, 0, 102));
     }//GEN-LAST:event_panelLogOutMouseEntered
 
     private void panelLogOutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLogOutMouseExited
         // TODO add your handling code here:
-        panelLogOut.setBackground(new Color(0,51,153));
+        panelLogOut.setBackground(new Color(0, 51, 153));
     }//GEN-LAST:event_panelLogOutMouseExited
 
-    private void panelMahasiswaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMahasiswaMouseEntered
-        // TODO add your handling code here:
-        panelMahasiswa.setBackground(new Color(0,0,102));
-    }//GEN-LAST:event_panelMahasiswaMouseEntered
-
-    private void panelMahasiswaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMahasiswaMouseExited
-        // TODO add your handling code here:
-        panelMahasiswa.setBackground(new Color(0,51,153));
-    }//GEN-LAST:event_panelMahasiswaMouseExited
-
     private void panelDashboardMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDashboardMousePressed
-        // TODO add your handling code here:
+        panelDashboard.setBackground(new Color(0, 51, 153));
+        panelPembayaran.setBackground(new Color(0, 0, 102));
+        panelJenis.setBackground(new Color(0, 0, 102));
+
         Content.removeAll();
         Content.add(new pnDashboard());
         Content.repaint();
         Content.revalidate();
     }//GEN-LAST:event_panelDashboardMousePressed
 
-    private void panelMahasiswaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelMahasiswaMousePressed
-        // TODO add your handling code here:
-        Content.removeAll();
-        Content.add(new Mahasiswa());
-        Content.repaint();
-        Content.revalidate();
-    }//GEN-LAST:event_panelMahasiswaMousePressed
+    private void panelJenisMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelJenisMousePressed
+        panelJenis.setBackground(new Color(0, 51, 153));
+        panelDashboard.setBackground(new Color(0, 0, 102));
+        panelPembayaran.setBackground(new Color(0, 0, 102));
 
-    private void panelSettingMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelSettingMousePressed
-        // TODO add your handling code here:
         Content.removeAll();
         Content.add(new pnJenisTampil());
         Content.repaint();
         Content.revalidate();
-    }//GEN-LAST:event_panelSettingMousePressed
+    }//GEN-LAST:event_panelJenisMousePressed
 
-    private void panelHistoryMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHistoryMousePressed
-        // TODO add your handling code here:
+    private void panelPembayaranMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelPembayaranMousePressed
+        panelPembayaran.setBackground(new Color(0, 51, 153));
+        panelDashboard.setBackground(new Color(0, 0, 102));
+        panelJenis.setBackground(new Color(0, 0, 102));
+
         Content.removeAll();
         Content.add(new pnHistory());
         Content.repaint();
         Content.revalidate();
-    }//GEN-LAST:event_panelHistoryMousePressed
+    }//GEN-LAST:event_panelPembayaranMousePressed
 
     private void panelLogOutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLogOutMousePressed
         // TODO add your handling code here:
@@ -464,21 +412,23 @@ public class DashPem extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashPem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashPem1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashPem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashPem1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashPem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashPem1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashPem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DashPem1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashPem().setVisible(true);
+                new DashPem1().setVisible(true);
             }
         });
     }
@@ -495,8 +445,6 @@ public class DashPem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -504,9 +452,8 @@ public class DashPem extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel panelDashboard;
-    private javax.swing.JPanel panelHistory;
+    private javax.swing.JPanel panelJenis;
     private javax.swing.JPanel panelLogOut;
-    private javax.swing.JPanel panelMahasiswa;
-    private javax.swing.JPanel panelSetting;
+    private javax.swing.JPanel panelPembayaran;
     // End of variables declaration//GEN-END:variables
 }
