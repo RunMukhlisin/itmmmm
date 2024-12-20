@@ -1,5 +1,8 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
 package Pembayaran;
-
 import Pembayaran.Kelas.Pembayaran;
 import Pembayaran.Kelas.jenis_pembayaran;
 import Pembayaran.Kelas.mahasiswa;
@@ -9,26 +12,22 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JOptionPane;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-
 /**
  *
  * @author Alxxstrdy
  */
-public class pnCicilan extends javax.swing.JPanel {
+public class pnBayar extends javax.swing.JPanel {
 
     /**
-     * Creates new form pnCicilan
+     * Creates new form pnBayar
      */
-    public pnCicilan() {
+    public pnBayar() {
         initComponents();
-        cJenis.setEnabled(false);
-        tampilan();
+        cancel();
+        tNama.setText(mahasiswa.getNama());
+        tNIM.setText(Pembayaran.getNim());
+        comboBox();
+        bBayar.setVisible(false);
     }
 
     /**
@@ -102,12 +101,17 @@ public class pnCicilan extends javax.swing.JPanel {
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         pnUtama = new javax.swing.JPanel();
+        bTambah = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         tNama = new javax.swing.JLabel();
         tNIM = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cJenis = new javax.swing.JComboBox<>();
         tPemLain = new javax.swing.JLabel();
+        LabNama = new javax.swing.JLabel();
+        tNamaP = new javax.swing.JTextField();
+        LabNom = new javax.swing.JLabel();
+        tNominal = new javax.swing.JTextField();
         PnDetail = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         tNomBay = new javax.swing.JTextField();
@@ -120,6 +124,11 @@ public class pnCicilan extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         bBayar = new javax.swing.JButton();
+        pnLunas = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        pnCicil = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        Close = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -688,6 +697,13 @@ public class pnCicilan extends javax.swing.JPanel {
 
         pnUtama.setBackground(new java.awt.Color(255, 255, 255));
 
+        bTambah.setText("Tambah");
+        bTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bTambahActionPerformed(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("DM Sans SemiBold", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/user (4).png"))); // NOI18N
@@ -718,6 +734,22 @@ public class pnCicilan extends javax.swing.JPanel {
         tPemLain.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tPemLainMouseClicked(evt);
+            }
+        });
+
+        LabNama.setFont(new java.awt.Font("DM Sans SemiBold", 0, 14)); // NOI18N
+        LabNama.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabNama.setText("Nama Pembayaran");
+
+        LabNom.setFont(new java.awt.Font("DM Sans SemiBold", 0, 14)); // NOI18N
+        LabNom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LabNom.setText("Nominal");
+
+        tNominal.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
+        tNominal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tNominal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tNominalKeyReleased(evt);
             }
         });
 
@@ -794,6 +826,62 @@ public class pnCicilan extends javax.swing.JPanel {
             }
         });
 
+        pnLunas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnLunas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnLunasMouseClicked(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("DM Sans", 0, 14)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("LUNAS");
+
+        javax.swing.GroupLayout pnLunasLayout = new javax.swing.GroupLayout(pnLunas);
+        pnLunas.setLayout(pnLunasLayout);
+        pnLunasLayout.setHorizontalGroup(
+            pnLunasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 169, Short.MAX_VALUE)
+            .addGroup(pnLunasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
+        );
+        pnLunasLayout.setVerticalGroup(
+            pnLunasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(pnLunasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+        );
+
+        pnCicil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnCicil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnCicilMouseClicked(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("DM Sans", 0, 14)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("CICILAN");
+
+        javax.swing.GroupLayout pnCicilLayout = new javax.swing.GroupLayout(pnCicil);
+        pnCicil.setLayout(pnCicilLayout);
+        pnCicilLayout.setHorizontalGroup(
+            pnCicilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnCicilLayout.setVerticalGroup(
+            pnCicilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+
+        Close.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Close.setText("X");
+        Close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CloseMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout PnDetailLayout = new javax.swing.GroupLayout(PnDetail);
         PnDetail.setLayout(PnDetailLayout);
         PnDetailLayout.setHorizontalGroup(
@@ -801,45 +889,56 @@ public class pnCicilan extends javax.swing.JPanel {
             .addGroup(PnDetailLayout.createSequentialGroup()
                 .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PnDetailLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(PnDetailLayout.createSequentialGroup()
+                                .addComponent(tNamaJen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(106, 106, 106))
+                            .addComponent(tHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addGroup(PnDetailLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)))
                     .addGroup(PnDetailLayout.createSequentialGroup()
-                        .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PnDetailLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(PnDetailLayout.createSequentialGroup()
-                                        .addComponent(tNamaJen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(106, 106, 106))
-                                    .addComponent(tHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)))
-                            .addGroup(PnDetailLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tID, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PnDetailLayout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tNomBay, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 13, Short.MAX_VALUE)))
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tID, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Close)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnDetailLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnDetailLayout.createSequentialGroup()
+                        .addComponent(pnLunas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(pnCicil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(bBayar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(93, 93, 93))
             .addGroup(PnDetailLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(bBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tNomBay, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PnDetailLayout.setVerticalGroup(
             PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnDetailLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnDetailLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(PnDetailLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Close)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
@@ -856,9 +955,13 @@ public class pnCicilan extends javax.swing.JPanel {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(PnDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnLunas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnCicil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(bBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout pnUtamaLayout = new javax.swing.GroupLayout(pnUtama);
@@ -868,13 +971,20 @@ public class pnCicilan extends javax.swing.JPanel {
             .addGroup(pnUtamaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(pnUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabNama, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabNom, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tNIM, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnUtamaLayout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addGroup(pnUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cJenis, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tPemLain, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cJenis, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tPemLain, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(bTambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tNominal, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tNamaP, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(tNama, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnUtamaLayout.createSequentialGroup()
                         .addGap(127, 127, 127)
@@ -898,6 +1008,16 @@ public class pnCicilan extends javax.swing.JPanel {
                 .addComponent(cJenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(tPemLain)
+                .addGap(18, 18, 18)
+                .addComponent(LabNama)
+                .addGap(1, 1, 1)
+                .addComponent(tNamaP, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LabNom)
+                .addGap(11, 11, 11)
+                .addComponent(tNominal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(bTambah)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnUtamaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -910,13 +1030,50 @@ public class pnCicilan extends javax.swing.JPanel {
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cJenisActionPerformed
+    private void bTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTambahActionPerformed
+        PnDetail.setVisible(true);
+        //        String harga = tNominal.getText().replace(",", "").substring(3);
+        tHarga.setText("Rp." + tNominal.getText());
+        tNamaJen.setText(tNamaP.getText());
+        autoID();
+    }//GEN-LAST:event_bTambahActionPerformed
 
+    private void cJenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cJenisActionPerformed
+        if (!cJenis.getSelectedItem().equals("=Pilih Jenis Pembayaran=")) {
+            try {
+                jenis_pembayaran jp = new jenis_pembayaran();
+                jenis_pembayaran.setNama_jenis(cJenis.getSelectedItem().toString());
+                jp.Konversi();
+                PnDetail.setVisible(true);
+                tNamaJen.setText(jenis_pembayaran.getNama_jenis());
+                String bayar = String.valueOf(jenis_pembayaran.getNominal()).replaceAll("[^\\d]", "");
+                double Rp = Double.parseDouble(bayar);
+                DecimalFormat df = new DecimalFormat("#,###,###");
+                tHarga.setText("Rp." + df.format(Rp));
+                autoID();
+            } catch (SQLException sQLException) {
+            }
+        } else {
+            cancel();
+        }
     }//GEN-LAST:event_cJenisActionPerformed
 
     private void tPemLainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tPemLainMouseClicked
-
+        cJenis.setSelectedItem("=Pilih Jenis Pembayaran=");
+        cJenis.setEnabled(false);
+        LabNama.setVisible(true);
+        tNamaP.setVisible(true);
+        LabNom.setVisible(true);
+        tNominal.setVisible(true);
+        bTambah.setVisible(true);
     }//GEN-LAST:event_tPemLainMouseClicked
+
+    private void tNominalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tNominalKeyReleased
+        String bayar = tNominal.getText().replaceAll("[^\\d]", "");
+        double Rp = Double.parseDouble(bayar);
+        DecimalFormat df = new DecimalFormat("#,###,###");
+        tNominal.setText(df.format(Rp));
+    }//GEN-LAST:event_tNominalKeyReleased
 
     private void tNomBayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNomBayActionPerformed
         // TODO add your handling code here:
@@ -930,30 +1087,50 @@ public class pnCicilan extends javax.swing.JPanel {
     }//GEN-LAST:event_tNomBayKeyReleased
 
     private void bBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBayarActionPerformed
-        int hargaKurang = Integer.parseInt(tHarga.getText().replace(",", "").substring(3));
-        int hargaBayar = Integer.parseInt(tNomBay.getText().replace(",", ""));
-        int hargaAsli = Pembayaran.getNominal_jenis();
-        int hargaHasil = hargaAsli - hargaKurang + hargaBayar;
-
         try {
-            if (hargaHasil == hargaAsli) {
-                Pembayaran.setStatus(Integer.parseInt("1"));
-                Pembayaran.setNominal_pembayaran(hargaHasil);
-                Pembayaran.setKeterangan(tKeterangan.getText());
+            jenis_pembayaran jp = new jenis_pembayaran();
+            jenis_pembayaran.setNama_jenis(tNamaJen.getText());
+            ResultSet Data = jp.Konversi2();
+            Pembayaran pem = new Pembayaran();
+            if (Data.next()) {
+                String bayar = tNomBay.getText().replace(",", "");
                 Pembayaran.setId_pembayaran(tID.getText());
-                Pembayaran pem = new Pembayaran();
-                pem.bayarCicilan();
-            } else if (hargaHasil != hargaAsli) {
-                Pembayaran.setStatus(Integer.parseInt("2"));
-                Pembayaran.setNominal_pembayaran(hargaHasil);
-                Pembayaran.setKeterangan(tKeterangan.getText());
+                Pembayaran.setId_jenis(Data.getString("id_jenis"));
+                Pembayaran.setNominal_pembayaran(Integer.parseInt(bayar));
+                if (!tKeterangan.equals(null)) {
+                    Pembayaran.setKeterangan(tKeterangan.getText());
+                } else {
+                    Pembayaran.setKeterangan(null);
+                }
+
+                if (bBayar.getText().equals("Bayar Lunas")) {
+                    Pembayaran.setStatus(1);
+                } else if (bBayar.getText().equals("Bayar Cicilan")) {
+                    Pembayaran.setStatus(2);
+                }
+                pem.tambahPemUt();
+
+            } else {
+                String harga = tHarga.getText().replace(",", "").substring(3);
+                String bayar = tNomBay.getText().replace(",", "");
                 Pembayaran.setId_pembayaran(tID.getText());
-                Pembayaran pem = new Pembayaran();
-                pem.bayarCicilan();
-            } else if (hargaHasil > hargaAsli) {
-                JOptionPane.showMessageDialog(null, "Terlalu banyak");
+                Pembayaran.setNama_jenis(tNamaJen.getText());
+                Pembayaran.setNominal_jenis(Integer.parseInt(harga));
+                Pembayaran.setNominal_pembayaran(Integer.parseInt(bayar));
+                if (!tKeterangan.equals(null)) {
+                    Pembayaran.setKeterangan(tKeterangan.getText());
+                } else {
+                    Pembayaran.setKeterangan(null);
+                }
+
+                if (bBayar.getText().equals("Bayar Lunas")) {
+                    Pembayaran.setStatus(1);
+                } else if (bBayar.getText().equals("Bayar Cicilan")) {
+                    Pembayaran.setStatus(2);
+                }
+                pem.tambahPemKhu();
             }
-            //                        pnUtatma.removeAll();
+            //        pnUtatma.removeAll();
             //        pnUtatma.add(new pnTagihan());
             //        pnUtatma.repaint();
             //        pnUtatma.revalidate();
@@ -961,12 +1138,34 @@ public class pnCicilan extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_bBayarActionPerformed
 
+    private void pnLunasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnLunasMouseClicked
+        bBayar.setVisible(true);
+        bBayar.setText("Bayar Lunas");
+        pnLunas.setBackground(new Color(220,220,220));
+        pnCicil.setBackground(new Color(255,255,255));
+    }//GEN-LAST:event_pnLunasMouseClicked
+
+    private void pnCicilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnCicilMouseClicked
+        bBayar.setVisible(true);
+        bBayar.setText("Bayar Cicilan");
+        pnCicil.setBackground(new Color(220,220,220));
+        pnLunas.setBackground(new Color(255,255,255));
+    }//GEN-LAST:event_pnCicilMouseClicked
+
+    private void CloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseMouseClicked
+        PnDetail.setVisible(false);
+    }//GEN-LAST:event_CloseMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Close;
     public static javax.swing.JPanel Kwitansi1;
     public static javax.swing.JPanel Kwitansi2;
+    private javax.swing.JLabel LabNama;
+    private javax.swing.JLabel LabNom;
     private javax.swing.JPanel PnDetail;
     private javax.swing.JButton bBayar;
+    private javax.swing.JButton bTambah;
     private javax.swing.JComboBox<String> cJenis;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -976,6 +1175,8 @@ public class pnCicilan extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -1015,7 +1216,9 @@ public class pnCicilan extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel pnCicil;
     public static javax.swing.JPanel pnKwitansi;
+    private javax.swing.JPanel pnLunas;
     private javax.swing.JPanel pnPrint;
     public static javax.swing.JPanel pnPrint1;
     private javax.swing.JPanel pnUtama;
@@ -1035,26 +1238,66 @@ public class pnCicilan extends javax.swing.JPanel {
     private javax.swing.JLabel tNama1;
     private javax.swing.JLabel tNama2;
     private javax.swing.JLabel tNamaJen;
+    private javax.swing.JTextField tNamaP;
     private javax.swing.JLabel tNim;
     private javax.swing.JLabel tNim1;
     private javax.swing.JTextField tNomBay;
+    private javax.swing.JTextField tNominal;
     private javax.swing.JLabel tPemLain;
     private javax.swing.JLabel tProdi;
     private javax.swing.JLabel tProdi1;
     private javax.swing.JLabel tTanggal;
     private javax.swing.JLabel tTanggal1;
     // End of variables declaration//GEN-END:variables
-    void tampilan() {
-        tNama.setText(mahasiswa.getNama());
-        tNim.setText(Pembayaran.getNim());
-        tHarga.setText(String.valueOf(Pembayaran.getNominal_pembayaran()));
-        String bayar = tHarga.getText().replaceAll("[^\\d]", "");
-        double Rp = Double.parseDouble(bayar);
-        DecimalFormat df = new DecimalFormat("#,###,###");
-        tHarga.setText("Rp." + df.format(Rp));
-        tNamJen.setText(jenis_pembayaran.getNama_jenis());
-        cJenis.setSelectedItem(jenis_pembayaran.getNama_jenis());
-        tID.setText(Pembayaran.getId_pembayaran());
+    void autoID() {
+        String lastId = null;
+        String ID = null;
+
+        try {
+            Pembayaran pem = new Pembayaran();
+            ResultSet data = pem.autoID();
+
+            if (data.next()) {
+                lastId = data.getString("id_pembayaran");
+            }
+
+            String tahun = new SimpleDateFormat("yyyy").format(new Date());
+            if (lastId == null || !lastId.startsWith("ITM" + tahun)) {
+                ID = String.format("ITM%s%04d", tahun, 1);
+            } else {
+                // Ekstrak nomor urut dari ID terakhir
+                int idAkhir = Integer.parseInt(lastId.substring(7)); // Ambil bagian urutan
+                ID = String.format("ITM%s%04d", tahun, idAkhir + 1);
+            }
+
+            tID.setText(ID);
+
+        } catch (SQLException sQLException) {
+        }
+    }
+
+    void cancel() {
+        PnDetail.setVisible(false);
+        LabNama.setVisible(false);
+        tNamaP.setVisible(false);
+        tNominal.setVisible(false);
+        LabNom.setVisible(false);
+        bTambah.setVisible(false);
+    }
+
+    void comboBox() {
+
+        try {
+            jenis_pembayaran jp = new jenis_pembayaran();
+            ResultSet data = jp.tampilComBox();
+
+            while (data.next()) {
+                String isi = data.getString("nama_jenis");
+                cJenis.addItem(isi);
+            }
+
+        } catch (SQLException ex) {
+        }
 
     }
 }

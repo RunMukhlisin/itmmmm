@@ -81,7 +81,6 @@ public class mahasiswa {
     public static String getSearch() {
         return search;
     }
-
     public static void setSearch(String search) {
         mahasiswa.search = search;
     }
