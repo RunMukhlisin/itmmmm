@@ -29,7 +29,6 @@ public class Login extends javax.swing.JFrame {
         icon = new javax.swing.JLabel();
         bLogin = new javax.swing.JButton();
         tClose = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -44,7 +43,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/admin-panel.png"))); // NOI18N
-        getContentPane().add(icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 60, 60));
+        getContentPane().add(icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 60, 60));
 
         bLogin.setBackground(new java.awt.Color(28, 122, 161));
         bLogin.setFont(new java.awt.Font("Poppins SemiBold", 0, 12)); // NOI18N
@@ -55,7 +54,7 @@ public class Login extends javax.swing.JFrame {
                 bLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(bLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 180, -1));
+        getContentPane().add(bLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 180, -1));
 
         tClose.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tClose.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -66,9 +65,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(tClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/logo kmptrpngg.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 270, 280));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -101,7 +97,7 @@ public class Login extends javax.swing.JFrame {
             .addComponent(jTextField2)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 180, 30));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 180, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -135,11 +131,12 @@ public class Login extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 180, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 180, -1));
 
-        jLabel4.setFont(new java.awt.Font("Poppins SemiBold", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("DM Sans ExtraBold", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("ITM Super Apps");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
 
         backg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/Login bcg.jpg"))); // NOI18N
         getContentPane().add(backg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 280));
@@ -206,7 +203,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton bLogin;
     private javax.swing.JLabel backg;
     private javax.swing.JLabel icon;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
