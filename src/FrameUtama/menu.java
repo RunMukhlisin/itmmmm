@@ -340,7 +340,7 @@ public class menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel4MouseClicked
 
     private void PEMBABLUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PEMBABLUMouseClicked
-        new Pembayaran.DashPem().setVisible(true);
+        new Pembayaran.template.Main().setVisible(true);
     }//GEN-LAST:event_PEMBABLUMouseClicked
 
     /**

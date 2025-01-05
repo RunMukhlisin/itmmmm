@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author X1 Carbon
+ * @author Alxxstrdy
  */
 public class jenis_pembayaran {
 
@@ -27,7 +27,7 @@ public class jenis_pembayaran {
     private String query;
 
     public jenis_pembayaran() throws SQLException {
-        Koneksi koneksi = new Koneksi();
+        koneksi koneksi = new koneksi();
         konek = koneksi.connectDb();
     }
 
@@ -54,7 +54,8 @@ public class jenis_pembayaran {
     public static void setNominal(int nominal) {
         jenis_pembayaran.nominal = nominal;
     }
- public ResultSet tampilComBox() {
+
+    public ResultSet tampilComBox() {
         query = "SELECT nama_jenis FROM jenis_pembayaran where deleted = 0";
         try {
             st = konek.createStatement();
@@ -150,7 +151,7 @@ public class jenis_pembayaran {
         }
     }
     
-    public void updateJenis() {
+        public void updateJenis() {
         query = "UPDATE jenis_pembayaran SET nama_jenis = ?, nominal = ? WHERE id_jenis = ?";
         try {
             ps = konek.prepareStatement(query);
@@ -160,7 +161,7 @@ public class jenis_pembayaran {
 
             ps.executeUpdate();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Berhasil Diubah");
+            JOptionPane.showMessageDialog(null, "Berhasil Dihapus");
         } catch (SQLException sQLException) {
             JOptionPane.showMessageDialog(null, "tambah Gagal");
         }

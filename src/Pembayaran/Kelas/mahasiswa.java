@@ -7,22 +7,18 @@ package Pembayaran.Kelas;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import kong.unirest.UnirestException;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.*;
 
-/**
- *
- * @author X1 Carbon
- */
 public class mahasiswa {
+
     private static String nama, prodi, nim, search, koneksi;
     private static int semester, angkatan;
     String token = "ufb2a73ed1e2bae2403ea3b3e9b5eb86ed6fdb66b49";
     String query;
     private static JSONArray dataMhs;
     private static int baris;
-    
-      public static int getBaris() {
+
+    public static int getBaris() {
         return baris;
     }
 
@@ -81,6 +77,7 @@ public class mahasiswa {
     public static String getSearch() {
         return search;
     }
+
     public static void setSearch(String search) {
         mahasiswa.search = search;
     }
@@ -223,26 +220,6 @@ public class mahasiswa {
         return obj;
     }
 
-    public JSONObject getJalur() {
-        query = "SELECT jalur_masuk FROM t_mhs where deleted = 0 AND mhs_nim = " + nim;
-        HttpResponse<String> response = Unirest.post("https://siakad.itmnganjuk.ac.id/api/select")
-                .header("Content-Type", "application/json")
-                .header("Cookie", "siakaditm1=q1399g4dor4strf9b227ojlghp")
-                .body("{\"token\":\"" + token + "\",\r\n\"query\":\"" + query + "\"}")
-                .asString();
-
-        String jsonresponse = response.getBody();
-        JSONObject obj = new JSONObject(jsonresponse);
-        int rows = obj.getInt("rows");
-        JSONArray results = obj.getJSONArray("results");
-        if (rows != 0) {
-            for (int i = 0; i < results.length(); i++) {
-                JSONObject item = results.getJSONObject(i);
-            }
-        }
-        return obj;
-    }
-
     public JSONObject search() {
         query = "SELECT m.mhs_nim, m.mhs_nama, m.mhs_jk, m.angkatan, p.prodi FROM t_mhs m LEFT JOIN t_prodi p ON m.prodi_id = p.prodi_id WHERE m.deleted = 0 AND m.mhs_nim like '%" + search + "%' OR m.mhs_nama like '%" + search + "%' ORDER BY m.angkatan DESC LIMIT 18446744073709551615";
         HttpResponse<String> response = Unirest.post("https://siakad.itmnganjuk.ac.id/api/select")
@@ -263,8 +240,8 @@ public class mahasiswa {
         return obj;
     }
 
-    public JSONObject searchNim() {
-        query = "SELECT mhs_nim, mhs_nama FROM t_mhs WHERE deleted = 0 AND mhs_nim =" + nim;
+    public JSONObject getBayar() {
+        query = "SELECT m.mhs_nim, m.mhs_nama, m.mhs_jk, m.angkatan, p.prodi FROM t_mhs m LEFT JOIN t_prodi p ON m.prodi_id = p.prodi_id WHERE m.deleted = 0 AND m.mhs_nim = '" + nim + "' LIMIT 18446744073709551615";
         HttpResponse<String> response = Unirest.post("https://siakad.itmnganjuk.ac.id/api/select")
                 .header("Content-Type", "application/json")
                 .header("Cookie", "siakaditm1=q1399g4dor4strf9b227ojlghp")
@@ -282,4 +259,5 @@ public class mahasiswa {
         }
         return obj;
     }
+
 }

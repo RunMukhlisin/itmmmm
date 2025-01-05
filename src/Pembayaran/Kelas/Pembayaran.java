@@ -4,21 +4,28 @@
  */
 package Pembayaran.Kelas;
 
-/**
- *
- * @author SayMukhlisin
- */
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+/**
+ *
+ * @author Alxxstrdy
+ */
 public class Pembayaran {
 
     private static String id_pembayaran, nim, id_jenis, nama_jenis, keterangan;
-    private static int nominal_pembayaran, status, nominal_jenis;
+    private static int nominal_pembayaran, status, nominal_jenis, nomial_dibayar;
 
     private Connection konek;
     private PreparedStatement ps;
@@ -27,7 +34,7 @@ public class Pembayaran {
     private String query;
 
     public Pembayaran() throws SQLException {
-        Koneksi koneksi = new Koneksi();
+        koneksi koneksi = new koneksi();
         konek = koneksi.connectDb();
     }
 
@@ -95,24 +102,20 @@ public class Pembayaran {
         Pembayaran.nominal_jenis = nominal_jenis;
     }
 
-    public ResultSet history() {
-        query = "SELECT p.id_pembayaran AS 'ID Pembayaran', p.nim AS 'NIM', COALESCE(j.nama_jenis, p.nama_jenis) AS 'Nama Jenis', p.nominal_pembayaran AS 'Nominal Dibayar',p.tanggal AS 'Tanggal', CASE WHEN p.status = 1 THEN 'LUNAS' ELSE 'BELUM LUNAS' END AS 'Status' FROM pembayaran p LEFT JOIN jenis_pembayaran j ON p.id_jenis = j.id_jenis ORDER BY p.tanggal DESC";
-        try {
-            ps = konek.prepareStatement(query);
-            rs = ps.executeQuery();
-//            System.out.println("data masuk");
-        } catch (SQLException sQLException) {
-            System.out.println("data tak masuk");
-        }
-        return rs;
+    public static int getNomial_dibayar() {
+        return nomial_dibayar;
     }
 
-    public ResultSet historyIni() {
-        query = "SELECT p.id_pembayaran AS 'ID Pembayaran', p.nim AS 'NIM', COALESCE(j.nama_jenis, p.nama_jenis) AS 'Nama Jenis', p.nominal_pembayaran AS 'Nominal Dibayar',p.tanggal AS 'Tanggal', CASE WHEN p.status = 1 THEN 'LUNAS' ELSE 'BELUM LUNAS' END AS 'Status' FROM pembayaran p LEFT JOIN jenis_pembayaran j ON p.id_jenis = j.id_jenis ORDER BY p.tanggal DESC LIMIT 10";
+    public static void setNomial_dibayar(int nomial_dibayar) {
+        Pembayaran.nomial_dibayar = nomial_dibayar;
+    }
+        
+
+    public ResultSet history() {
+        query = "SELECT p.id_pembayaran AS 'ID Pembayaran', p.nim AS 'NIM', COALESCE(j.nama_jenis, p.nama_jenis) AS 'Nama Jenis', p.nominal_pembayaran AS 'Nominal Dibayar',p.tanggal AS 'Tanggal', CASE WHEN p.status = 1 THEN 'LUNAS' ELSE 'CICILAN' END AS 'Status' FROM pembayaran p LEFT JOIN jenis_pembayaran j ON p.id_jenis = j.id_jenis ORDER BY p.tanggal DESC LIMIT 20";
         try {
             ps = konek.prepareStatement(query);
             rs = ps.executeQuery();
-//            System.out.println("data masuk");
         } catch (SQLException sQLException) {
             System.out.println("data tak masuk");
         }
@@ -120,7 +123,7 @@ public class Pembayaran {
     }
 
     public ResultSet historyJenis() {
-        query = "SELECT p.id_pembayaran AS 'ID Pembayaran', p.nim AS 'NIM', COALESCE(j.nama_jenis, p.nama_jenis) AS 'Nama Jenis', p.nominal_pembayaran AS 'Nominal Dibayar',p.tanggal AS 'Tanggal', CASE WHEN p.status = 1 THEN 'LUNAS' ELSE 'BELUM LUNAS' END AS 'Status' FROM pembayaran p LEFT JOIN jenis_pembayaran j ON p.id_jenis = j.id_jenis WHERE p.id_jenis = ? ORDER BY p.tanggal DESC";
+        query = "SELECT p.id_pembayaran AS 'ID Pembayaran', p.nim AS 'NIM', COALESCE(j.nama_jenis, p.nama_jenis) AS 'Nama Jenis', p.nominal_pembayaran AS 'Nominal Dibayar',p.tanggal AS 'Tanggal', CASE WHEN p.status = 1 THEN 'LUNAS' ELSE 'CICILAN' END AS 'Status' FROM pembayaran p LEFT JOIN jenis_pembayaran j ON p.id_jenis = j.id_jenis WHERE p.id_jenis = ? ORDER BY p.tanggal DESC";
         try {
             ps = konek.prepareStatement(query);
             ps.setString(1, id_jenis);
@@ -131,25 +134,13 @@ public class Pembayaran {
         return rs;
     }
 
-    public ResultSet historyJeniskhu() {
-        query = "SELECT p.id_pembayaran AS 'ID Pembayaran', p.nim AS 'NIM', COALESCE(j.nama_jenis, p.nama_jenis) AS 'Nama Jenis', p.nominal_pembayaran AS 'Nominal Dibayar',p.tanggal AS 'Tanggal', CASE WHEN p.status = 1 THEN 'LUNAS' ELSE 'BELUM LUNAS' END AS 'Status' FROM pembayaran p LEFT JOIN jenis_pembayaran j ON p.id_jenis = j.id_jenis WHERE p.id_jenis IS NULL ORDER BY p.tanggal DESC";
-        try {
-            ps = konek.prepareStatement(query);
-            rs = ps.executeQuery();
-        } catch (SQLException sQLException) {
-            System.out.println("data tak masuk");
-        }
-        return rs;
-    }
-
     public ResultSet tampilUt() {
-        query = "SELECT p.id_pembayaran AS 'ID Pembayaran', COALESCE(j.nama_jenis, p.nama_jenis) AS 'Nama Jenis', p.nominal_pembayaran AS 'Nominal Dibayar',COALESCE(j.nominal, p.nominal_jenis) AS 'Nominal',p.keterangan AS 'Keterangan',CASE WHEN p.status = 1 THEN 'LUNAS' ELSE 'BELUM LUNAS' END AS 'Status' FROM pembayaran p LEFT JOIN jenis_pembayaran j ON p.id_jenis = j.id_jenis WHERE p.nim = ? ";
+        query = "SELECT p.tanggal AS 'Tanggal', p.id_pembayaran AS 'ID Pembayaran', COALESCE(j.nama_jenis, p.nama_jenis) AS 'Nama Jenis', p.nominal_pembayaran AS 'Nominal Dibayar',COALESCE(j.nominal, p.nominal_jenis) AS 'Nominal',p.keterangan AS 'Keterangan',CASE WHEN p.status = 1 THEN 'LUNAS' ELSE 'CICILAN' END AS 'Status' FROM pembayaran p LEFT JOIN jenis_pembayaran j ON p.id_jenis = j.id_jenis WHERE p.nim = ?";
         try {
             ps = konek.prepareStatement(query);
             ps.setString(1, nim);
 
             rs = ps.executeQuery();
-            System.out.println("data utama masuk");
         } catch (SQLException sQLException) {
             System.out.println("data tak masuk");
         }
@@ -169,51 +160,12 @@ public class Pembayaran {
 
             ps.executeUpdate();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Pembayaran Berhasil");
-        } catch (SQLException sQLException) {
-            JOptionPane.showMessageDialog(null, "Pembayaran Gagal");
-        }
-    }
-
-    public void tambahPemKhu() {
-        query = "INSERT INTO pembayaran(id_pembayaran,nim,nama_jenis,nominal_jenis,nominal_pembayaran,status,keterangan) VALUES(?,?,?,?,?,?,?)";
-        try {
-            ps = konek.prepareStatement(query);
-            ps.setString(1, id_pembayaran);
-            ps.setString(2, nim);
-            ps.setString(3, nama_jenis);
-            ps.setInt(4, nominal_jenis);
-            ps.setInt(5, nominal_pembayaran);
-            ps.setInt(6, status);
-            ps.setString(7, keterangan);
-
-            ps.executeUpdate();
-            ps.close();
-            JOptionPane.showMessageDialog(null, "Pembayaran Berhasil");
         } catch (SQLException sQLException) {
             JOptionPane.showMessageDialog(null, "Pembayaran Gagal");
             System.out.println(sQLException);
         }
     }
 
-    public void bayarCicilan() {
-
-        query = "UPDATE pembayaran set nominal_pembayaran = ?, keterangan = ?, status = ?, tanggal = current_timestamp() WHERE id_pembayaran = ?";
-
-        try {
-            ps = konek.prepareStatement(query);
-            ps.setInt(1, nominal_pembayaran);
-            ps.setString(2, keterangan);
-            ps.setInt(3, status);
-            ps.setString(4, id_pembayaran);
-
-            ps.executeUpdate();
-            ps.close();
-            JOptionPane.showMessageDialog(null, "Pembayaran Berhasil");
-        } catch (SQLException sQLException) {
-            System.out.println("gagal");
-        }
-    }
 
     public ResultSet autoID() {
         query = "SELECT id_pembayaran FROM pembayaran ORDER BY id_pembayaran DESC LIMIT 1";
@@ -225,38 +177,8 @@ public class Pembayaran {
         }
         return rs;
     }
+    
 
-    public ResultSet TampilMhs() {
-        query = "SELECT COUNT(DISTINCT nim) AS 'NIM' FROM pembayaran";
-        try {
-            st = konek.createStatement();
-            rs = st.executeQuery(query);
-        } catch (SQLException sQLException) {
-            JOptionPane.showMessageDialog(null, "Data Gagal Tampil");
-        }
-        return rs;
-    }
 
-    public ResultSet TampilHariIni() {
-        query = "SELECT SUM(nominal_pembayaran) AS 'Hari Ini'  FROM pembayaran WHERE DATE(tanggal) = CURDATE()";
-        try {
-            st = konek.createStatement();
-            rs = st.executeQuery(query);
-        } catch (SQLException sQLException) {
-            JOptionPane.showMessageDialog(null, "Data Gagal Tampil");
-        }
-        return rs;
-    }
-
-    public ResultSet tampilTotal() {
-        query = "SELECT SUM(nominal_pembayaran) AS 'Total' FROM pembayaran";
-        try {
-            st = konek.createStatement();
-            rs = st.executeQuery(query);
-        } catch (SQLException sQLException) {
-            JOptionPane.showMessageDialog(null, "Data Gagal Tampil");
-        }
-        return rs;
-    }
 
 }
