@@ -1,24 +1,100 @@
 package FrameUtama;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+import java.awt.Color;
+import javax.swing.UIManager;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import User.kelas.*;
+import Buku_Induk.Frame.*;
+import User.Frame.*;
+import Pembayaran.template.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
-
-/**
- *
- * @author SayMukhlisin
- */
 public class menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form contohh
-     */
-    public menu() {
+    private static String username;
+
+    public menu(String username) {
         initComponents();
+        menu.username = username;
+        tUser.setText(sesi.getNama());
+        loadUserPrivileges(username);
+        displayDate();
+        displayTime();
+        System.out.println(username);
+
     }
 
+    private void loadUserPrivileges(String username) {
+        try {
+            userPrivilege up = new userPrivilege();
+            up.setUsername(username);
+            ResultSet rs = up.loadUserPrivilege();
+
+            // Reset semua menu ke invisible
+            setMenuVisibility(false);
+
+            // Aktifkan menu berdasarkan privilege
+            while (rs.next()) {
+                String privilege = rs.getString("nama_privilege");
+                System.out.println(privilege);
+                enableMenu(privilege);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error loading privileges: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void setMenuVisibility(boolean isVisible) {
+
+        bBukuInduk.setVisible(isVisible);
+        bPembayaran.setVisible(isVisible);
+        bInventaris.setVisible(isVisible);
+        bManagemntsurat.setVisible(isVisible);
+        bPerpustakaan.setVisible(isVisible);
+        bKepegawaian.setVisible(isVisible);
+        
+    }
+
+    private void enableMenu(String privilegeName) {
+        switch (privilegeName) {
+            case "Kepegawaian":
+                bKepegawaian.setVisible(true);
+                break;
+            case "Buku Induk":
+                bBukuInduk.setVisible(true);
+                break;
+            case "Pembayaran":
+                bPembayaran.setVisible(true);
+                break;
+            case "Inventaris":
+                bInventaris.setVisible(true);
+                break;
+            case "Manajemen Surat":
+                bManagemntsurat.setVisible(true);
+                break;
+            case "Perpustakaan":
+                bPerpustakaan.setVisible(true);
+                break;
+        }
+    }
+    private void displayDate() {
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy"); 
+        String formattedDate = currentDate.format(formatter);
+        tTanggal.setText(formattedDate);
+    }
+
+    private void displayTime() {
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm"); 
+        String formattedTime = currentTime.format(formatter);
+        tJam.setText(formattedTime);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,27 +106,20 @@ public class menu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        bUser = new javax.swing.JLabel();
+        tUser = new javax.swing.JLabel();
         tTanggal = new javax.swing.JLabel();
         tJam = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        KPGGRAY = new javax.swing.JLabel();
-        KPGBLU = new javax.swing.JLabel();
-        BUKUBLU = new javax.swing.JLabel();
-        BUKUGRAY = new javax.swing.JLabel();
-        PEMBABLU = new javax.swing.JLabel();
-        PEMBAGRAY1 = new javax.swing.JLabel();
-        IVEBLU = new javax.swing.JLabel();
-        IVEGRAY = new javax.swing.JLabel();
-        MANABLU = new javax.swing.JLabel();
-        MANAGRAY = new javax.swing.JLabel();
-        PERPUSBLU = new javax.swing.JLabel();
-        PERPUSGRAY = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        bLogout = new javax.swing.JPanel();
         LOGOUT = new javax.swing.JLabel();
-        LOGOUTGRAY = new javax.swing.JLabel();
         LOGOUTBLU = new javax.swing.JLabel();
+        bBukuInduk = new javax.swing.JButton();
+        bPembayaran = new javax.swing.JButton();
+        bManagemntsurat = new javax.swing.JButton();
+        bPerpustakaan = new javax.swing.JButton();
+        bInventaris = new javax.swing.JButton();
+        bKepegawaian = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -60,12 +129,17 @@ public class menu extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 102));
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/User New.png"))); // NOI18N
+        bUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/User_1.png"))); // NOI18N
+        bUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bUserMouseClicked(evt);
+            }
+        });
 
-        jLabel9.setFont(new java.awt.Font("DM Sans SemiBold", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Admin");
+        tUser.setFont(new java.awt.Font("DM Sans SemiBold", 0, 14)); // NOI18N
+        tUser.setForeground(new java.awt.Color(255, 255, 255));
+        tUser.setText("Admin");
 
         tTanggal.setBackground(new java.awt.Color(255, 255, 255));
         tTanggal.setFont(new java.awt.Font("DM Sans SemiBold", 0, 18)); // NOI18N
@@ -83,10 +157,10 @@ public class menu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bUser, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 535, Short.MAX_VALUE)
+                .addComponent(tUser, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 416, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tTanggal, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tJam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -101,8 +175,8 @@ public class menu extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addComponent(jLabel9))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(tUser))
+                            .addComponent(bUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(tJam)
@@ -117,117 +191,107 @@ public class menu extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 110, 30));
 
-        KPGGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        KPGGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN GRAY.png"))); // NOI18N
-        jPanel1.add(KPGGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 128, 99, -1));
-
-        KPGBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        KPGBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN BLU.png"))); // NOI18N
-        KPGBLU.addMouseListener(new java.awt.event.MouseAdapter() {
+        bLogout.setBackground(new java.awt.Color(255, 255, 255));
+        bLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bLogoutMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                KPGBLUMouseEntered(evt);
+                bLogoutMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                KPGBLUMouseExited(evt);
+                bLogoutMouseExited(evt);
             }
         });
-        jPanel1.add(KPGBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 128, 99, -1));
-
-        BUKUBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BUKUBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK BLUEpng.png"))); // NOI18N
-        jPanel1.add(BUKUBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(377, 128, 98, -1));
-
-        BUKUGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BUKUGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK GRAY.png"))); // NOI18N
-        jPanel1.add(BUKUGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(377, 128, 98, -1));
-
-        PEMBABLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PEMBABLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PEMBAYARAN BLUE.png"))); // NOI18N
-        jPanel1.add(PEMBABLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 128, 98, -1));
-
-        PEMBAGRAY1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PEMBAGRAY1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PEMBAYARAN GRAYpng.png"))); // NOI18N
-        jPanel1.add(PEMBAGRAY1, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 128, 98, -1));
-
-        IVEBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        IVEBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/IVENTARISBLU.png"))); // NOI18N
-        jPanel1.add(IVEBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 364, 99, -1));
-
-        IVEGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        IVEGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/IVENTARISGRAY.png"))); // NOI18N
-        jPanel1.add(IVEGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 364, 99, -1));
-
-        MANABLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MANABLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/MANAJEMEN BLU.png"))); // NOI18N
-        jPanel1.add(MANABLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 150, -1));
-
-        MANAGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MANAGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/MANAJEMEN GRAY.png"))); // NOI18N
-        jPanel1.add(MANAGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 150, -1));
-
-        PERPUSBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PERPUSBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PERPUSTAKAAN BLU.png"))); // NOI18N
-        jPanel1.add(PERPUSBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 364, 110, -1));
-
-        PERPUSGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PERPUSGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PERPUSTAKAAN GRAY.png"))); // NOI18N
-        jPanel1.add(PERPUSGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 364, 110, -1));
-
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        bLogout.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LOGOUT.setFont(new java.awt.Font("DM Sans", 1, 18)); // NOI18N
         LOGOUT.setText("Log Out");
-        jPanel4.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, 30));
-
-        LOGOUTGRAY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LOGOUTGRAY.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/LOGOUT GRAY.png"))); // NOI18N
-        jPanel4.add(LOGOUTGRAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        bLogout.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, 30));
 
         LOGOUTBLU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LOGOUTBLU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/LOGOUT BLU.png"))); // NOI18N
-        jPanel4.add(LOGOUTBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        bLogout.add(LOGOUTBLU, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 510, -1, 30));
+        jPanel1.add(bLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 510, -1, 30));
+
+        bBukuInduk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/BUKU INDUK BLUEpng.png"))); // NOI18N
+        bBukuInduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBukuIndukActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bBukuInduk, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 140, 150));
+
+        bPembayaran.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PEMBAYARAN BLUE.png"))); // NOI18N
+        bPembayaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPembayaranActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bPembayaran, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 140, 150));
+
+        bManagemntsurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/MANAJEMEN BLU.png"))); // NOI18N
+        jPanel1.add(bManagemntsurat, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 140, 150));
+
+        bPerpustakaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/PERPUSTAKAAN BLU.png"))); // NOI18N
+        jPanel1.add(bPerpustakaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 300, 140, 150));
+
+        bInventaris.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/IVENTARISBLU.png"))); // NOI18N
+        jPanel1.add(bInventaris, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 140, 150));
+
+        bKepegawaian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/KEPEGAWAIAN BLU.png"))); // NOI18N
+        jPanel1.add(bKepegawaian, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 140, 150));
 
         getContentPane().add(jPanel1, "card2");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void KPGBLUMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KPGBLUMouseEntered
-        // TODO add your handling code here:
-        KPGBLU.setVisible(true);
-    }//GEN-LAST:event_KPGBLUMouseEntered
+    private void bLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bLogoutMouseClicked
+        dispose();
+        new Login().setVisible(true);
+    }//GEN-LAST:event_bLogoutMouseClicked
 
-    private void KPGBLUMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KPGBLUMouseExited
-        // TODO add your handling code here:
-        KPGGRAY.setVisible(true);
-    }//GEN-LAST:event_KPGBLUMouseExited
+    private void bLogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bLogoutMouseEntered
+        bLogout.setBackground(new Color(0, 0, 102));
+    }//GEN-LAST:event_bLogoutMouseEntered
+
+    private void bLogoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bLogoutMouseExited
+        bLogout.setBackground(new Color(255, 255, 255));
+    }//GEN-LAST:event_bLogoutMouseExited
+
+    private void bBukuIndukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBukuIndukActionPerformed
+        new menuBukuinduk().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bBukuIndukActionPerformed
+
+    private void bPembayaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPembayaranActionPerformed
+        new DashPem().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bPembayaranActionPerformed
+
+    private void bUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bUserMouseClicked
+        new popUser().setVisible(true);
+        
+    }//GEN-LAST:event_bUserMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+            UIManager.put("Button.arc", 10);
+            UIManager.put("TextComponent.arc", 10);
+            UIManager.put("TableHeader.background", new Color(0, 51, 153));
+            UIManager.put("TableHeader.foreground", Color.WHITE);
+            UIManager.put("Table.selectionBackground", new Color(102, 153, 255));
+            UIManager.put("Table.alternateRowColor", new Color(240, 240, 240));
+            UIManager.put("Component.focusedBorderColor", new Color(102, 153, 255));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         //</editor-fold>
         //</editor-fold>
@@ -235,34 +299,28 @@ public class menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new menu().setVisible(true);
+
+                new menu(username).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel BUKUBLU;
-    private javax.swing.JLabel BUKUGRAY;
-    private javax.swing.JLabel IVEBLU;
-    private javax.swing.JLabel IVEGRAY;
-    private javax.swing.JLabel KPGBLU;
-    private javax.swing.JLabel KPGGRAY;
     private javax.swing.JLabel LOGOUT;
     private javax.swing.JLabel LOGOUTBLU;
-    private javax.swing.JLabel LOGOUTGRAY;
-    private javax.swing.JLabel MANABLU;
-    private javax.swing.JLabel MANAGRAY;
-    private javax.swing.JLabel PEMBABLU;
-    private javax.swing.JLabel PEMBAGRAY1;
-    private javax.swing.JLabel PERPUSBLU;
-    private javax.swing.JLabel PERPUSGRAY;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton bBukuInduk;
+    private javax.swing.JButton bInventaris;
+    private javax.swing.JButton bKepegawaian;
+    private javax.swing.JPanel bLogout;
+    private javax.swing.JButton bManagemntsurat;
+    private javax.swing.JButton bPembayaran;
+    private javax.swing.JButton bPerpustakaan;
+    private javax.swing.JLabel bUser;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel tJam;
     private javax.swing.JLabel tTanggal;
+    private javax.swing.JLabel tUser;
     // End of variables declaration//GEN-END:variables
 }
