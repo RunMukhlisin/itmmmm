@@ -396,12 +396,12 @@ public class Main extends javax.swing.JFrame {
         kon.connectDb();
         if (koneksi.getStatus() == 1) {
         pnKonten.removeAll();
-        pnKonten.add(new pnPembayaran());
+        pnKonten.add(new pnJenisPembayaran());
         pnKonten.repaint();
         pnKonten.revalidate();
         } else if (koneksi.getStatus() == 0) {
         pnKonten.removeAll();
-        pnKonten.add(new pnJenisPembayaran());
+        pnKonten.add(new pnNosignal());
         pnKonten.repaint();
         pnKonten.revalidate();   
         }
@@ -453,14 +453,14 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 void gambar(){
         //LOGO ITM
-        ImageIcon icon = new ImageIcon(getClass().getResource("/sistempembayaranitm/itm-tulis.png"));
+        ImageIcon icon = new ImageIcon(getClass().getResource("/FOTO/itm-tulis.png"));
         Image img = icon.getImage();
         Image scaledImg = img.getScaledInstance(130, 60, java.awt.Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImg);
         tLogo.setIcon(scaledIcon);
         
         //USER
-        ImageIcon ico = new ImageIcon(getClass().getResource("/sistempembayaranitm/user (4).png"));
+        ImageIcon ico = new ImageIcon(getClass().getResource("/FOTO/user (4).png"));
         Image image = ico.getImage();
         Image scaleImg = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
         ImageIcon scaleIcon = new ImageIcon(scaleImg);

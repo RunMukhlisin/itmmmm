@@ -4,6 +4,9 @@
  */
 package Pembayaran.template;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Alxxstrdy
@@ -48,8 +51,6 @@ public class pnHome extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 42, Short.MAX_VALUE)
         );
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sistempembayaranitm/3d-wallet.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("DM Sans 18pt Medium", 0, 48)); // NOI18N
         jLabel1.setText("USER");
@@ -98,4 +99,13 @@ public class pnHome extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+void gambar(){
+        //LOGO ITM
+        ImageIcon icon = new ImageIcon(getClass().getResource("/FOTO/3d-wallet.png"));
+        Image img = icon.getImage();
+        Image scaledImg = img.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImg);
+        jLabel2.setIcon(scaledIcon);
+        
+}
 }

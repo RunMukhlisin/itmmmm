@@ -943,7 +943,17 @@ public class pnPembayaran extends javax.swing.JPanel {
     }//GEN-LAST:event_cJenisActionPerformed
 
     private void bResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bResetActionPerformed
-
+        try {
+            pb_sementara pb = new pb_sementara();
+            if (bReset.getText().equals("RESET")) {
+                pb.hapus();
+            } else {
+                pb.hapus1();
+            }
+        } catch (SQLException sQLException) {
+        }
+        
+        getData();
     }//GEN-LAST:event_bResetActionPerformed
 
     private void bBayCetkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBayCetkActionPerformed
