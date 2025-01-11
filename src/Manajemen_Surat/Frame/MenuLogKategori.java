@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author rizan
+ * @author jjseleb
  */
 public class MenuLogKategori extends javax.swing.JPanel {
 
