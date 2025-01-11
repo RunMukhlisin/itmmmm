@@ -52,8 +52,8 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="cb_SampahBagian" pref="200" max="32767" attributes="0"/>
-                                      <Component id="cb_SampahKategori" max="32767" attributes="0"/>
+                                      <Component id="cb_BagianSampah" pref="200" max="32767" attributes="0"/>
+                                      <Component id="cb_SampahSampah" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -62,8 +62,8 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="dc_TanggalAwal" pref="170" max="32767" attributes="0"/>
-                                      <Component id="dc_TanggalAkhir" max="32767" attributes="0"/>
+                                      <Component id="dc_tglAwal" pref="170" max="32767" attributes="0"/>
+                                      <Component id="dc_tglAkhir" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="bt_Reset" min="-2" pref="115" max="-2" attributes="0"/>
@@ -96,18 +96,18 @@
                               <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cb_SampahBagian" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cb_BagianSampah" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="dc_TanggalAwal" min="-2" max="-2" attributes="0"/>
+                              <Component id="dc_tglAwal" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cb_SampahKategori" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cb_SampahSampah" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="dc_TanggalAkhir" min="-2" max="-2" attributes="0"/>
+                              <Component id="dc_tglAkhir" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="bt_Reset" min="-2" max="-2" attributes="0"/>
@@ -161,7 +161,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tf_Cari">
         </Component>
-        <Component class="javax.swing.JComboBox" name="cb_SampahBagian">
+        <Component class="javax.swing.JComboBox" name="cb_BagianSampah">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -171,7 +171,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cb_SampahKategori">
+        <Component class="javax.swing.JComboBox" name="cb_SampahSampah">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -181,14 +181,17 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="dc_TanggalAwal">
+        <Component class="com.toedter.calendar.JDateChooser" name="dc_tglAwal">
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="dc_TanggalAkhir">
+        <Component class="com.toedter.calendar.JDateChooser" name="dc_tglAkhir">
         </Component>
         <Component class="javax.swing.JButton" name="bt_Reset">
           <Properties>
             <Property name="text" type="java.lang.String" value="Reset Filter"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_ResetActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -208,6 +211,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_SampahSuratKeluarMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

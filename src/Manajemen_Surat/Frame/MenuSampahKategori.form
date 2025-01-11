@@ -46,11 +46,13 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="bt_HapusPermanen" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <Component id="bt_HapusPermanen" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="bt_Restore" min="-2" pref="169" max="-2" attributes="0"/>
+                                          <Component id="bt_Restore" min="-2" pref="108" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="bt_Reset" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="tf_Nama" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tf_Nama" alignment="0" pref="325" max="32767" attributes="0"/>
                                       <Component id="tf_Kode" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -81,6 +83,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="bt_HapusPermanen" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bt_Restore" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bt_Reset" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="490" max="32767" attributes="0"/>
@@ -116,11 +119,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Hapus Permanen"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_HapusPermanenActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bt_Restore">
           <Properties>
             <Property name="text" type="java.lang.String" value="Restore"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_RestoreActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="bt_Reset">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Reset"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_ResetActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -140,6 +157,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_SampahKategoriMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -239,5 +239,19 @@ public class Kategori {
             TimeJOption.AutoCloseJOptionPane.showMessageDialog("Kategori Surat gagal diRestore!", null, JOptionPane.ERROR_MESSAGE, 3000);
         }
     }
+    
+    public ResultSet KonversiKateori() {
+        query = "SELECT nama_kategori FROM kategori_surat WHERE kode_kategori = ?";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, kode_kategori);
+
+            rs = ps.executeQuery();
+
+        } catch (SQLException SQLException) {
+            System.out.println("data tidak masuk");
+        }
+        return rs;
+    }
 
 }

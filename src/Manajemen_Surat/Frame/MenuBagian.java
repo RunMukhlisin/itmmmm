@@ -4,6 +4,15 @@
  */
 package Manajemen_Surat.Frame;
 
+import Manajemen_Surat.Kelas.Bagian;
+import Manajemen_Surat.Kelas.Kelas;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author rizan
@@ -15,6 +24,7 @@ public class MenuBagian extends javax.swing.JPanel {
      */
     public MenuBagian() {
         initComponents();
+        loadTabel();
     }
 
     /**
@@ -37,7 +47,7 @@ public class MenuBagian extends javax.swing.JPanel {
         bt_Hapus = new javax.swing.JButton();
         bt_Reset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_Bagian = new javax.swing.JTable();
+        tb_MenuBagian = new javax.swing.JTable();
 
         setLayout(new java.awt.CardLayout());
 
@@ -51,14 +61,34 @@ public class MenuBagian extends javax.swing.JPanel {
         jLabel3.setText("Kode Bagian");
 
         bt_Tambah.setText("Tambah");
+        bt_Tambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_TambahActionPerformed(evt);
+            }
+        });
 
         bt_Ubah.setText("Ubah");
+        bt_Ubah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_UbahActionPerformed(evt);
+            }
+        });
 
         bt_Hapus.setText("Hapus");
+        bt_Hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_HapusActionPerformed(evt);
+            }
+        });
 
         bt_Reset.setText("Reset");
+        bt_Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_ResetActionPerformed(evt);
+            }
+        });
 
-        tb_Bagian.setModel(new javax.swing.table.DefaultTableModel(
+        tb_MenuBagian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -69,7 +99,12 @@ public class MenuBagian extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tb_Bagian);
+        tb_MenuBagian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_MenuBagianMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tb_MenuBagian);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,6 +163,84 @@ public class MenuBagian extends javax.swing.JPanel {
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bt_TambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_TambahActionPerformed
+        try {
+            if (tf_Kode.getText().isEmpty() || tf_Nama.getText().isEmpty()) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Kode dan Nama bagian tidak boleh kosong!", null, JOptionPane.ERROR_MESSAGE, 3000);
+                return;
+            }
+
+            Bagian kodeTambah = new Manajemen_Surat.Kelas.Bagian();
+            kodeTambah.setKode_bagian(tf_Kode.getText());
+            kodeTambah.setNama_bagian(tf_Nama.getText());
+            kodeTambah.setUser_login(MenuUtama.lb_Username.getText());
+
+            kodeTambah.KodeTambah();
+            reset();
+
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + sQLException.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bt_TambahActionPerformed
+
+    private void bt_UbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_UbahActionPerformed
+        try {
+            if (MenuUtama.lb_Username.getText().isEmpty() || tf_Nama.getText().isEmpty()) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Kode dan Nama bagian tidak boleh kosong!", null, JOptionPane.ERROR_MESSAGE, 3000);
+                return;
+            }
+
+            Bagian kodeUbah = new Bagian();
+            kodeUbah.setKode_bagian(tf_Kode.getText());
+            kodeUbah.setNama_bagian(tf_Nama.getText());
+            kodeUbah.setUser_login(MenuUtama.lb_Username.getText());
+            kodeUbah.KodeUbah();
+
+            reset();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuBagian.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt_UbahActionPerformed
+
+    private void bt_HapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_HapusActionPerformed
+        try {
+
+            if (tf_Kode.getText().isEmpty()) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Pilih data yang ingin dihapus!", null, JOptionPane.WARNING_MESSAGE, 1000);
+                return;
+            }
+
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "Yakin ingin menghapus data ini? \n Ini akan memindahkan data ke dalam sampah",
+                    "Konfirmasi",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+
+                Bagian kodeHapus = new Bagian();
+                kodeHapus.setUser_login(MenuUtama.lb_Username.getText());
+                kodeHapus.setKode_bagian(tf_Kode.getText());
+                kodeHapus.KodeHapus();
+                reset();
+                tf_Kode.setEditable(false);
+            }
+        } catch (SQLException sQLException) {
+        }
+    }//GEN-LAST:event_bt_HapusActionPerformed
+
+    private void bt_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ResetActionPerformed
+        reset();
+    }//GEN-LAST:event_bt_ResetActionPerformed
+
+    private void tb_MenuBagianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_MenuBagianMouseClicked
+        int baris = tb_MenuBagian.rowAtPoint(evt.getPoint());
+        String kode = tb_MenuBagian.getValueAt(baris, 0).toString();
+        String nama = tb_MenuBagian.getValueAt(baris, 1).toString();
+        tf_Kode.setText(kode);
+        tf_Nama.setText(nama);
+        tf_Kode.setEditable(false);
+    }//GEN-LAST:event_tb_MenuBagianMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_Hapus;
@@ -139,8 +252,47 @@ public class MenuBagian extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tb_Bagian;
+    private javax.swing.JTable tb_MenuBagian;
     private javax.swing.JTextField tf_Kode;
     private javax.swing.JTextField tf_Nama;
     // End of variables declaration//GEN-END:variables
+
+    private void loadTabel() {
+        // Model tabel dengan sel yang tidak bisa diedit
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Semua sel tidak dapat diedit
+            }
+        };
+        model.addColumn("Kode Bagian Surat");
+        model.addColumn("Nama Bagian Surat");
+        model.addColumn("User Login");
+
+        try {
+            Bagian k = new Bagian();
+            ResultSet data = k.KodeTampilTabel();
+
+            while (data.next()) {
+                model.addRow(new Object[]{
+                    data.getString("kode_bagian"),
+                    data.getString("nama_bagian"),
+                    data.getString("user_login"),});
+            }
+
+            data.close();
+        } catch (SQLException sQLException) {
+        }
+
+        tb_MenuBagian.setModel(model);
+        tb_MenuBagian.getTableHeader().setReorderingAllowed(false);
+        tb_MenuBagian.getTableHeader().setResizingAllowed(false);
+    }
+
+    void reset() {
+        tf_Kode.setText(null);
+        tf_Nama.setText(null);
+        loadTabel();
+    }
+
 }

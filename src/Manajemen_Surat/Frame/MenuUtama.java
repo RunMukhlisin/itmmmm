@@ -6,6 +6,7 @@ package Manajemen_Surat.Frame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -41,6 +42,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         pn_Sidebar = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        lb_Username = new javax.swing.JLabel();
         pn_Kanan = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -58,15 +60,25 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 255));
 
+        lb_Username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lb_Username.setForeground(new java.awt.Color(255, 255, 255));
+        lb_Username.setText("USERNAME");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lb_Username, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 72, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lb_Username, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -167,14 +179,15 @@ public class MenuUtama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel pn_Kanan;
-    private javax.swing.JPanel pn_Sidebar;
-    public javax.swing.JPanel pn_Utama;
+    public static javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanel2;
+    public static javax.swing.JPanel jPanel3;
+    public static javax.swing.JPanel jPanel4;
+    public static javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JLabel lb_Username;
+    public static javax.swing.JPanel pn_Kanan;
+    public static javax.swing.JPanel pn_Sidebar;
+    public static javax.swing.JPanel pn_Utama;
     // End of variables declaration//GEN-END:variables
 
     private void execute() {
@@ -226,37 +239,62 @@ public class MenuUtama extends javax.swing.JFrame {
                 pn_Utama.revalidate();
             }
         });
-        
+
         MenuItem menuSuratKeluar = new MenuItem(null, true, null, "Surat Keluar", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pn_Utama.removeAll();
-                pn_Utama.add(new MenuSuratKeluar());
-                pn_Utama.repaint();
-                pn_Utama.revalidate();
+                try {
+                    pn_Utama.removeAll();
+                    pn_Utama.add(new MenuSuratKeluar());
+                    pn_Utama.repaint();
+                    pn_Utama.revalidate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
-                
+
         MenuItem menuLogSuratKeluar = new MenuItem(null, true, null, "Log Surat Keluar", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pn_Utama.removeAll();
-                pn_Utama.add(new MenuLogSuratKeluar());
-                pn_Utama.repaint();
-                pn_Utama.revalidate();
+                try {
+                    pn_Utama.removeAll();
+                    pn_Utama.add(new MenuLogSuratKeluar());
+                    pn_Utama.repaint();
+                    pn_Utama.revalidate();
+                } catch (ParseException ex) {
+                    Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
-        
+
         MenuItem menuSampahSuratKeluar = new MenuItem(null, true, null, "Sampah Surat Keluar", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    pn_Utama.removeAll();
+                    pn_Utama.add(new MenuSampahSuratKeluar());
+                    pn_Utama.repaint();
+                    pn_Utama.revalidate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        MenuItem MenuSuratMasuk = new MenuItem(null, true, null, "Surat Masuk", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 pn_Utama.removeAll();
-                pn_Utama.add(new MenuSampahSuratKeluar());
+                pn_Utama.add(new MenuSuratMasuk());
                 pn_Utama.repaint();
                 pn_Utama.revalidate();
             }
         });
-        
         MenuItem menuLogSuratMasuk = new MenuItem(null, true, null, "Log Surat Masuk", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -288,10 +326,9 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
 
-        
-        MenuItem menuSurat                          = new MenuItem(null, false, null, "Surat", null, menuSuratKeluar);
-        MenuItem menuLog                            = new MenuItem(null, false, null, "Log Aktifitas", null, menuLogBagian, menuLogKategori, menuLogSuratKeluar, menuLogSuratMasuk);
-        MenuItem menuSampah                         = new MenuItem(null, false, null, "Sampah", null, menuSampahBagian, menuSampahKategori, menuSampahSuratKeluar);
+        MenuItem menuSurat = new MenuItem(null, false, null, "Surat", null, menuSuratKeluar, MenuSuratMasuk);
+        MenuItem menuLog = new MenuItem(null, false, null, "Log Aktifitas", null, menuLogBagian, menuLogKategori, menuLogSuratKeluar, menuLogSuratMasuk);
+        MenuItem menuSampah = new MenuItem(null, false, null, "Sampah", null, menuSampahBagian, menuSampahKategori, menuSampahSuratKeluar);
 
         addMenu(menuBagian, menuKategori, menuSurat, menuLog, menuSampah);
 

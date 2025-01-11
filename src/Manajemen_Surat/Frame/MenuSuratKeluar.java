@@ -4,23 +4,482 @@
  */
 package Manajemen_Surat.Frame;
 
+import Manajemen_Surat.Kelas.Bagian;
+import Manajemen_Surat.Kelas.Kategori;
 import Manajemen_Surat.Kelas.Surat_Keluar;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JTextFieldDateEditor;
+import java.awt.Component;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.Timer;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author rizan
  */
-public class MenuSuratKeluar extends javax.swing.JPanel {
+public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.PerubahanData {
 
     /**
      * Creates new form MenuSuratKeluar
      */
     private Surat_Keluar sk;
-    public MenuSuratKeluar() {
+
+    public MenuSuratKeluar() throws SQLException, ParseException {
         initComponents();
+        ListenerCari();
+        sk = new Surat_Keluar();
+        sk.TambahPerubahanData(this);
+
+        BlokJDate();
+
+        // Mengatur Locale ke bahasa Indonesia
+        dc_tglAwal.setLocale(new Locale("id"));
+        dc_tglAkhir.setLocale(new Locale("id"));
+
+        // Mengatur format tanggal ke "dd MMMM yyyy"
+        dc_tglAwal.setDateFormatString("dd MMMM yyyy");
+        dc_tglAkhir.setDateFormatString("dd MMMM yyyy");
+
+        loadTabel();
+        cbBagianSurat();
+        cbKategoriSurat();
+
+        cb_KategoriMenu.addActionListener(evt -> {
+            try {
+                applyFilters();
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        cb_BagianMenu.addActionListener(evt -> {
+            try {
+                applyFilters();
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
+        dc_tglAwal.addPropertyChangeListener(evt -> {
+            if ("date".equals(evt.getPropertyName())) {
+                try {
+                    applyFilters();
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        dc_tglAkhir.addPropertyChangeListener(evt -> {
+            if ("date".equals(evt.getPropertyName())) {
+                try {
+                    applyFilters();
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+    }
+
+    void cbKategoriSurat() {
+        try {
+            cb_KategoriMenu.addItem("--Pilih Kategori Surat--");
+
+            Kategori ks = new Manajemen_Surat.Kelas.Kategori();
+            ResultSet data = ks.Tampil_CbKategoriSurat();
+
+            while (data.next()) {
+                cb_KategoriMenu.addItem(data.getString("kode_kategori") + " - " + data.getString("nama_kategori"));
+            }
+
+            cb_KategoriMenu.setSelectedItem("--Pilih Kategori Surat--");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    void cbBagianSurat() {
+        try {
+            cb_BagianMenu.addItem("--Pilih Bagian Surat--");
+
+            Bagian bg = new Manajemen_Surat.Kelas.Bagian();
+            ResultSet data = bg.Tampil_CbBagianSurat();
+
+            while (data.next()) {
+                cb_BagianMenu.addItem(data.getString("kode_bagian") + " - " + data.getString("nama_bagian"));
+            }
+
+            cb_BagianMenu.setSelectedItem("--Pilih Bagian Surat--");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadTabel() throws ParseException {
+        // Model tabel dengan sel yang tidak bisa diedit
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Semua sel tidak dapat diedit
+            }
+        };
+
+        model.addColumn(null);
+        model.addColumn("Bagian");
+        model.addColumn("Kategori");
+        model.addColumn("Nomor");
+        model.addColumn("Tanggal");
+        model.addColumn("Perihal");
+        model.addColumn("Tujuan");
+        model.addColumn("Nama File");
+        model.addColumn("User");
+
+        try {
+            Surat_Keluar k = new Surat_Keluar();
+            ResultSet data = k.KodeTampilTabel();
+
+            java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id", "ID"));
+
+            while (data.next()) {
+
+                String formattedDate = "";
+                if (data.getString("tanggal_dibuat") != null) {
+                    java.util.Date date = java.sql.Date.valueOf(data.getString("tanggal_dibuat"));
+                    formattedDate = dateFormat.format(date);
+                }
+
+                model.addRow(new Object[]{
+                    data.getString("id_suratkeluar"), // ID
+                    data.getString("bagian"),
+                    data.getString("kategori"),
+                    data.getString("no_surat"),
+                    formattedDate,
+                    data.getString("perihal"),
+                    data.getString("tujuan"),
+                    data.getString("nama_file"),
+                    data.getString("user_login"),});
+            }
+
+            data.close();
+        } catch (SQLException sQLException) {
+            sQLException.printStackTrace(); // Tambahkan log untuk debugging
+        }
+
+        tb_SuratKeluar.setModel(model);
+        // Sembunyikan kolom ID
+        tb_SuratKeluar.getColumnModel().getColumn(0).setMinWidth(0);
+        tb_SuratKeluar.getColumnModel().getColumn(0).setMaxWidth(0);
+        tb_SuratKeluar.getColumnModel().getColumn(0).setWidth(0);
+
+        // Mengatur word wrap di setiap kolom tabel
+        tb_SuratKeluar.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                    boolean hasFocus, int row, int column) {
+                JTextArea textArea = new JTextArea(value != null ? value.toString() : "");
+                textArea.setLineWrap(true); // Aktifkan pembungkusan teks
+                textArea.setWrapStyleWord(true); // Bungkus berdasarkan kata
+                textArea.setOpaque(true); // Pastikan background sel sesuai
+                if (isSelected) {
+                    textArea.setBackground(table.getSelectionBackground());
+                    textArea.setForeground(table.getSelectionForeground());
+                } else {
+                    textArea.setBackground(table.getBackground());
+                    textArea.setForeground(table.getForeground());
+                }
+                return textArea;
+            }
+        });
+        // Mengatur tinggi baris agar sesuai dengan konten
+        tb_SuratKeluar.setRowHeight(40);
+
+        // Mengatur ukuran kolom
+        tb_SuratKeluar.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tb_SuratKeluar.getColumnModel().getColumn(1).setPreferredWidth(100); // Kolom "Bagian"
+        tb_SuratKeluar.getColumnModel().getColumn(2).setPreferredWidth(125); // Kolom "Kategori"
+        tb_SuratKeluar.getColumnModel().getColumn(3).setPreferredWidth(125); // Kolom "Nomor Surat"
+        tb_SuratKeluar.getColumnModel().getColumn(4).setPreferredWidth(120); // Kolom "Tanggal dibuat"
+        tb_SuratKeluar.getColumnModel().getColumn(5).setPreferredWidth(150); // Kolom "Perihal"
+        tb_SuratKeluar.getColumnModel().getColumn(6).setPreferredWidth(150); // Kolom "Tujuan"
+        tb_SuratKeluar.getColumnModel().getColumn(7).setPreferredWidth(160); // Kolom "Nama File"
+        tb_SuratKeluar.getColumnModel().getColumn(8).setPreferredWidth(90);  // Kolom "User Login"
+
+        // Mengatur agar tabel tidak bisa diubah ukuran kolomnya atau di-geser
+        tb_SuratKeluar.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
+        tb_SuratKeluar.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
+    }
+
+    private void applyFilters() throws SQLException {
+
+        Surat_Keluar suratKeluar = new Surat_Keluar();
+
+        // Set nilai filter dari komponen UI
+        if (!cb_KategoriMenu.getSelectedItem().toString().equals("--Pilih Kategori Surat--")) {
+            suratKeluar.setKategori(cb_KategoriMenu.getSelectedItem().toString().split(" - ")[0]);
+        }
+
+        if (!cb_BagianMenu.getSelectedItem().toString().equals("--Pilih Bagian Surat--")) {
+            suratKeluar.setBagian(cb_BagianMenu.getSelectedItem().toString().split(" - ")[0]);
+        }
+
+        suratKeluar.setTanggalAwal(dc_tglAwal.getDate());
+        suratKeluar.setTanggalAkhir(dc_tglAkhir.getDate());
+
+        // Ambil data berdasarkan filter
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn(null);
+        model.addColumn("Bagian");
+        model.addColumn("Kategori");
+        model.addColumn("Nomor");
+        model.addColumn("Tanggal");
+        model.addColumn("Perihal");
+        model.addColumn("Tujuan");
+        model.addColumn("Nama File");
+        model.addColumn("User");
+
+        try {
+            ResultSet data = suratKeluar.KodeTampilByFilters();
+            java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id", "ID"));
+
+            while (data.next()) {
+                String formattedDate = "";
+                if (data.getString("tanggal_dibuat") != null) {
+                    java.util.Date date = java.sql.Date.valueOf(data.getString("tanggal_dibuat"));
+                    formattedDate = dateFormat.format(date);
+                }
+
+                model.addRow(new Object[]{
+                    data.getString("id_suratkeluar"),
+                    data.getString("bagian"),
+                    data.getString("kategori"),
+                    data.getString("no_surat"),
+                    formattedDate,
+                    data.getString("perihal"),
+                    data.getString("tujuan"),
+                    data.getString("nama_file"),
+                    data.getString("user_login"),});
+            }
+            data.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        tb_SuratKeluar.setModel(model);
+
+        tb_SuratKeluar.getColumnModel().getColumn(0).setMinWidth(0);
+        tb_SuratKeluar.getColumnModel().getColumn(0).setMaxWidth(0);
+        tb_SuratKeluar.getColumnModel().getColumn(0).setWidth(0);
+
+        // Mengatur word wrap di setiap kolom tabel
+        tb_SuratKeluar.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                    boolean hasFocus, int row, int column) {
+                JTextArea textArea = new JTextArea(value != null ? value.toString() : "");
+                textArea.setLineWrap(true); // Aktifkan pembungkusan teks
+                textArea.setWrapStyleWord(true); // Bungkus berdasarkan kata
+                textArea.setOpaque(true); // Pastikan background sel sesuai
+                if (isSelected) {
+                    textArea.setBackground(table.getSelectionBackground());
+                    textArea.setForeground(table.getSelectionForeground());
+                } else {
+                    textArea.setBackground(table.getBackground());
+                    textArea.setForeground(table.getForeground());
+                }
+                return textArea;
+            }
+        });
+
+        // Mengatur tinggi baris agar sesuai dengan konten
+        tb_SuratKeluar.setRowHeight(40);
+
+        // Mengatur ukuran kolom
+        tb_SuratKeluar.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tb_SuratKeluar.getColumnModel().getColumn(1).setPreferredWidth(100); // Kolom "Bagian"
+        tb_SuratKeluar.getColumnModel().getColumn(2).setPreferredWidth(125); // Kolom "Kategori"
+        tb_SuratKeluar.getColumnModel().getColumn(3).setPreferredWidth(125); // Kolom "Nomor Surat"
+        tb_SuratKeluar.getColumnModel().getColumn(4).setPreferredWidth(120); // Kolom "Tanggal dibuat"
+        tb_SuratKeluar.getColumnModel().getColumn(5).setPreferredWidth(150); // Kolom "Perihal"
+        tb_SuratKeluar.getColumnModel().getColumn(6).setPreferredWidth(150); // Kolom "Tujuan"
+        tb_SuratKeluar.getColumnModel().getColumn(7).setPreferredWidth(160); // Kolom "Nama File"
+        tb_SuratKeluar.getColumnModel().getColumn(8).setPreferredWidth(90);  // Kolom "User Login"
+
+        // Mengatur agar tabel tidak bisa diubah ukuran kolomnya atau di-geser
+        tb_SuratKeluar.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
+        tb_SuratKeluar.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
+
+    }
+
+    private void Cari() throws SQLException, ParseException {
+        // Ambil teks dari text field
+        String keyword = tf_Cari.getText().trim();
+        if (keyword.isEmpty()) {
+            loadTabel(); // Jika kosong, reset tabel
+            return;
+        }
+
+        // Model tabel dengan sel yang tidak bisa diedit
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Semua sel tidak dapat diedit
+            }
+        };
+
+        // Tambahkan kolom ke model
+        model.addColumn(null); // Kolom untuk ID
+        model.addColumn("Bagian");
+        model.addColumn("Kategori");
+        model.addColumn("No Surat");
+        model.addColumn("Tanggal Dibuat");
+        model.addColumn("Perihal");
+        model.addColumn("Tujuan");
+        model.addColumn("Nama File");
+        model.addColumn("User Login");
+
+        // Set kata kunci pencarian di objek Surat_Keluar
+        Surat_Keluar suratKeluar = new Surat_Keluar();
+        suratKeluar.setKata_kunci(keyword); // Set kata kunci menggunakan setter
+
+        // Jalankan query dan ambil data
+        try (ResultSet data = suratKeluar.KodeTampilByPerihalTujuan()) {
+            // Format tanggal
+            java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id", "ID"));
+
+            while (data.next()) {
+                // Format tanggal
+                String formattedDate = "";
+                java.util.Date date = data.getDate("tanggal_dibuat");
+                if (date != null) {
+                    formattedDate = dateFormat.format(date);
+                }
+
+                // Tambahkan baris ke model
+                model.addRow(new Object[]{
+                    data.getString("id_suratkeluar"),
+                    data.getString("bagian"),
+                    data.getString("kategori"),
+                    data.getString("no_surat"),
+                    formattedDate,
+                    data.getString("perihal"),
+                    data.getString("tujuan"),
+                    data.getString("nama_file"),
+                    data.getString("user_login"),});
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log error untuk debugging
+            JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        // Set model ke tabel
+        tb_SuratKeluar.setModel(model);
+
+        // Sembunyikan kolom ID
+        tb_SuratKeluar.getColumnModel().getColumn(0).setMinWidth(0);
+        tb_SuratKeluar.getColumnModel().getColumn(0).setMaxWidth(0);
+        tb_SuratKeluar.getColumnModel().getColumn(0).setWidth(0);
+
+        // Custom renderer untuk word wrap
+        tb_SuratKeluar.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                    boolean hasFocus, int row, int column) {
+                JTextArea textArea = new JTextArea(value != null ? value.toString() : "");
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+                textArea.setOpaque(true);
+                if (isSelected) {
+                    textArea.setBackground(table.getSelectionBackground());
+                    textArea.setForeground(table.getSelectionForeground());
+                } else {
+                    textArea.setBackground(table.getBackground());
+                    textArea.setForeground(table.getForeground());
+                }
+                return textArea;
+            }
+        });
+
+        // Atur tinggi baris
+        tb_SuratKeluar.setRowHeight(40);
+
+        // Atur lebar kolom
+        tb_SuratKeluar.getColumnModel().getColumn(1).setPreferredWidth(100); // Bagian
+        tb_SuratKeluar.getColumnModel().getColumn(2).setPreferredWidth(125); // Kategori
+        tb_SuratKeluar.getColumnModel().getColumn(3).setPreferredWidth(125); // No Surat
+        tb_SuratKeluar.getColumnModel().getColumn(4).setPreferredWidth(120); // Tanggal Dibuat
+        tb_SuratKeluar.getColumnModel().getColumn(5).setPreferredWidth(150); // Perihal
+        tb_SuratKeluar.getColumnModel().getColumn(6).setPreferredWidth(150); // Tujuan
+        tb_SuratKeluar.getColumnModel().getColumn(7).setPreferredWidth(160); // Nama File
+        tb_SuratKeluar.getColumnModel().getColumn(8).setPreferredWidth(90);  // User Login
+
+        // Atur header tabel
+        tb_SuratKeluar.getTableHeader().setReorderingAllowed(false);
+        tb_SuratKeluar.getTableHeader().setResizingAllowed(false);
+    }
+
+    private void ListenerCari() {
+        // Timer dengan delay 300ms
+        Timer timer = new Timer(500, e -> {
+            String keyword = tf_Cari.getText().trim();
+            if (keyword.isEmpty()) {
+                try {
+                    loadTabel(); // Jika text field kosong, reset tabel
+                } catch (ParseException ex) {
+                    Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                try {
+                    Cari(); // Jika tidak kosong, lakukan pencarian
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
+        // Pastikan timer tidak otomatis dijalankan
+        timer.setRepeats(false);
+
+        // Tambahkan DocumentListener ke text field
+        tf_Cari.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                timer.restart(); // Restart timer setiap kali teks berubah
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                timer.restart(); // Restart timer setiap kali teks dihapus
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // Tidak diperlukan untuk JTextField
+            }
+        });
+    }
+
+    public void reset() throws ParseException {
+        cb_KategoriMenu.setSelectedIndex(0);
+        cb_BagianMenu.setSelectedIndex(0);
+        dc_tglAwal.setCalendar(null);
+        dc_tglAkhir.setCalendar(null);
+        tf_Cari.setText(null);
+        loadTabel();
     }
 
     /**
@@ -43,6 +502,8 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
         tf_Cari = new javax.swing.JTextField();
         cb_BagianMenu = new javax.swing.JComboBox<>();
         cb_KategoriMenu = new javax.swing.JComboBox<>();
+        dc_tglAwal = new com.toedter.calendar.JDateChooser();
+        dc_tglAkhir = new com.toedter.calendar.JDateChooser();
         bt_TambahSurat = new javax.swing.JButton();
         bt_Reset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -53,7 +514,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel1.setText("Menu Surat Masuk");
+        jLabel1.setText("Menu Surat Keluar");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Filter Tabel");
@@ -98,10 +559,9 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
@@ -116,11 +576,18 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
                                     .addComponent(cb_KategoriMenu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(206, 206, 206)
-                                .addComponent(bt_Reset, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(dc_tglAkhir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(321, 321, 321))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(dc_tglAwal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bt_Reset, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(bt_TambahSurat, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -139,18 +606,23 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(tf_Cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel4)
                                 .addComponent(cb_BagianMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(cb_KategoriMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(cb_KategoriMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(dc_tglAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dc_tglAwal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(bt_Reset))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,6 +652,8 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
     private javax.swing.JButton bt_TambahSurat;
     private javax.swing.JComboBox<String> cb_BagianMenu;
     private javax.swing.JComboBox<String> cb_KategoriMenu;
+    private com.toedter.calendar.JDateChooser dc_tglAkhir;
+    private com.toedter.calendar.JDateChooser dc_tglAwal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -192,4 +666,25 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
     private javax.swing.JTable tb_SuratKeluar;
     private javax.swing.JTextField tf_Cari;
     // End of variables declaration//GEN-END:variables
+public void BlokJDate() {
+        blokirEditor(dc_tglAwal);
+        blokirEditor(dc_tglAkhir);
+    }
+
+    private void blokirEditor(JDateChooser dateChooser) {
+        if (dateChooser.getDateEditor() instanceof JTextFieldDateEditor) {
+            JTextFieldDateEditor editor = (JTextFieldDateEditor) dateChooser.getDateEditor();
+            editor.setEditable(false);
+        }
+    }
+
+    @Override
+    public void AktifPerubahanData() {
+        try {
+            loadTabel();
+        } catch (ParseException ex) {
+            Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

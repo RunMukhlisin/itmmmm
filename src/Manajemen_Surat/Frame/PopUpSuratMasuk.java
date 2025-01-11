@@ -109,15 +109,11 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
     }
 
     private void updateView() {
-        try {
-            dispose();
-            MenuUtama.pn_Utama.removeAll();
-            MenuUtama.pn_Utama.add(new menuSuratMasuk());
-            MenuUtama.pn_Utama.repaint();
-            MenuUtama.pn_Utama.revalidate();
-        } catch (SQLException sQLException) {
-        } catch (ParseException parseException) {
-        }
+        dispose();
+        MenuUtama.pn_Utama.removeAll();
+        MenuUtama.pn_Utama.add(new MenuSuratMasuk());
+        MenuUtama.pn_Utama.repaint();
+        MenuUtama.pn_Utama.revalidate();
     }
 
     /**
@@ -139,7 +135,6 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         cb_Kategori = new javax.swing.JComboBox<>();
         tf_NomorSurat = new javax.swing.JTextField();
-        tTanggalDiterima = new org.netbeans.modules.form.InvalidComponent();
         tf_Perihal = new javax.swing.JTextField();
         tf_pengirim = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -153,6 +148,7 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
         bt_Restore = new javax.swing.JButton();
         bt_HapusPermanen = new javax.swing.JButton();
         bt_Close = new javax.swing.JButton();
+        tTanggalDiterima = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -176,53 +172,18 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
         jScrollPane1.setViewportView(txtfilepath);
 
         bUpload.setText("Upload File");
-        bUpload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bUploadActionPerformed(evt);
-            }
-        });
 
         bTambah.setText("Tambah");
-        bTambah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bTambahActionPerformed(evt);
-            }
-        });
 
         bt_Reset.setText("Reset");
-        bt_Reset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_ResetActionPerformed(evt);
-            }
-        });
 
         bEdit.setText("Ubah");
-        bEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bEditActionPerformed(evt);
-            }
-        });
 
         bHapus.setText("Hapus");
-        bHapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bHapusActionPerformed(evt);
-            }
-        });
 
         bOpen.setText("Lihat Surat");
-        bOpen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bOpenActionPerformed(evt);
-            }
-        });
 
         bt_Restore.setText("Restore");
-        bt_Restore.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_RestoreActionPerformed(evt);
-            }
-        });
 
         bt_HapusPermanen.setText("Hapus Permanen");
         bt_HapusPermanen.addActionListener(new java.awt.event.ActionListener() {
@@ -303,9 +264,9 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
                     .addComponent(jLabel5)
                     .addComponent(tf_NomorSurat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tTanggalDiterima, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tTanggalDiterima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -675,7 +636,7 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public static org.netbeans.modules.form.InvalidComponent tTanggalDiterima;
+    public static com.toedter.calendar.JDateChooser tTanggalDiterima;
     public static javax.swing.JTextField tf_NomorSurat;
     public static javax.swing.JTextField tf_Perihal;
     private javax.swing.JTextField tf_id;

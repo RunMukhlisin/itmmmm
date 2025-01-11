@@ -49,6 +49,11 @@ public class MenuLogSuratMasuk extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_LogSuratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_LogSuratMasukMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_LogSuratMasuk);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -76,6 +81,10 @@ public class MenuLogSuratMasuk extends javax.swing.JPanel {
 
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tb_LogSuratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_LogSuratMasukMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tb_LogSuratMasukMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
