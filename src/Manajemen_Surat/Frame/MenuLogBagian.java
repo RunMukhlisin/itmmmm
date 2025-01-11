@@ -4,17 +4,116 @@
  */
 package Manajemen_Surat.Frame;
 
+import Manajemen_Surat.Kelas.Bagian;
+import java.awt.Component;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author rizan
+ * @author aziz
  */
 public class MenuLogBagian extends javax.swing.JPanel {
 
     /**
      * Creates new form MenuLogBagian
      */
-    public MenuLogBagian() {
+    public MenuLogBagian() throws ParseException {
         initComponents();
+        loadTabel();
+    }
+
+    public void loadTabel() throws ParseException {
+
+        // Model tabel dengan sel yang tidak bisa diedit
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Semua sel tidak dapat diedit
+            }
+        };
+
+        model.addColumn("User Login");
+        model.addColumn("Kolom yang berubah");
+        model.addColumn("Nilai lama");
+        model.addColumn("Nilai baru");
+        model.addColumn("Waktu");
+        model.addColumn("Keterangan");
+
+        try {
+            Bagian k = new Bagian();
+            ResultSet data = k.KodeTampilTabelLog();
+
+            // Format waktu: 21:11:16 (newline) 25 Desember 2024
+            SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID"));
+
+            while (data.next()) {
+                String waktu = data.getString("waktu"); // Ambil waktu dari database
+                String waktuFormatted = "";
+                if (waktu != null) {
+                    waktuFormatted = timeFormat.format(originalFormat.parse(waktu)) + "\n"
+                            + dateFormat.format(originalFormat.parse(waktu));
+                }
+
+                model.addRow(new Object[]{
+                    data.getString("user_login"),
+                    data.getString("kolom_yang_berubah"),
+                    data.getString("nilai_lama"),
+                    data.getString("nilai_baru"),
+                    waktuFormatted, // Format waktu yang sudah diubah
+                    data.getString("keterangan"),});
+            }
+
+            data.close();
+        } catch (SQLException sQLException) {
+            sQLException.printStackTrace(); // Tambahkan log untuk debugging
+        }
+
+        tb_LogBagian.setModel(model);
+
+        // Mengatur word wrap di setiap kolom tabel
+        tb_LogBagian.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                    boolean hasFocus, int row, int column) {
+                JTextArea textArea = new JTextArea(value != null ? value.toString() : "");
+                textArea.setLineWrap(true); // Aktifkan pembungkusan teks
+                textArea.setWrapStyleWord(true); // Bungkus berdasarkan kata
+                textArea.setOpaque(true); // Pastikan background sel sesuai
+                if (isSelected) {
+                    textArea.setBackground(table.getSelectionBackground());
+                    textArea.setForeground(table.getSelectionForeground());
+                } else {
+                    textArea.setBackground(table.getBackground());
+                    textArea.setForeground(table.getForeground());
+                }
+                return textArea;
+            }
+        });
+
+        // Mengatur tinggi baris agar sesuai dengan konten
+        tb_LogBagian.setRowHeight(40);
+
+        // Mengatur ukuran kolom
+        tb_LogBagian.getColumnModel().getColumn(0).setPreferredWidth(90); // Kolom "User Login"
+        tb_LogBagian.getColumnModel().getColumn(1).setPreferredWidth(90); // Kolom "Kolom yang berubah"
+        tb_LogBagian.getColumnModel().getColumn(2).setPreferredWidth(130); // Kolom "Nilai Lama"
+        tb_LogBagian.getColumnModel().getColumn(3).setPreferredWidth(130); // Kolom "Nilai Baru"
+        tb_LogBagian.getColumnModel().getColumn(4).setPreferredWidth(90); // Kolom "Waktu"
+        tb_LogBagian.getColumnModel().getColumn(5).setPreferredWidth(240); // Kolom "Keterangan"
+
+        // Mengatur agar tabel tidak bisa diubah ukuran kolomnya atau di-geser
+        tb_LogBagian.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
+        tb_LogBagian.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
     }
 
     /**
