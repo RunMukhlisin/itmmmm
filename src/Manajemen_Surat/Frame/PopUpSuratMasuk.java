@@ -4,28 +4,120 @@
  */
 package Manajemen_Surat.Frame;
 
-import Manajemen_Surat.Kelas.Surat_Keluar;
+import Manajemen_Surat.Kelas.Kategori;
+import Manajemen_Surat.Kelas.Surat_Masuk;
+import Manajemen_Surat.Frame.MenuUtama;
+import Manajemen_Surat.Frame.MenuSampahSuratMasuk;
+import Manajemen_Surat.Frame.MenuSuratMasuk;
+import com.toedter.calendar.JTextFieldDateEditor;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- *
- * @author dickyi
- */
 public class PopUpSuratMasuk extends javax.swing.JDialog {
 
-    /**
-     * Creates new form PopUpSuratKeluar
-     */
-    private Surat_Keluar sk;
-    private boolean isEditMode = false; // Tambahkan flag untuk melacak mode
-    public boolean isInitializing = true; // Flag untuk mencegah pemanggilan updateNoSurat saat inisialisasi data
+    private Surat_Masuk sk;
 
-    public PopUpSuratMasuk(java.awt.Frame parent, boolean b, Surat_Keluar srtkel, boolean editMode) throws SQLException {
-        super(parent, b);
+    public PopUpSuratMasuk() throws SQLException {
+
         initComponents();
-        this.sk = srtkel;
+
+        blokirtextfieldTanggal();
+        cbKategoriSurat();
+        otoID();
+        tTanggalDiterima.setDate(new Date());
+        tTanggalDiterima.setLocale(new Locale("id"));
+        tTanggalDiterima.setDateFormatString("dd MMMM yyyy");
+
+    }
+
+    public void ambilDetail() {
+
+        tf_id.setText(Surat_Masuk.getId_surat());
+        cb_Kategori.setSelectedItem(Surat_Masuk.getKategori());
+        tf_NomorSurat.setText(Surat_Masuk.getNomor_surat());
+        tf_pengirim.setText(Surat_Masuk.getPengirim());
+        tf_Perihal.setText(Surat_Masuk.getPerihal());
+        tTanggalDiterima.setDate(Surat_Masuk.getTanggal_diterima());
+        txtfilepath.setText(Surat_Masuk.getFile_data());
+
+    }
+
+    public void otoID() {
+        try {
+            Surat_Masuk surat = new Surat_Masuk();
+            String autoId = surat.otoID();
+
+            if (autoId != null) {
+                tf_id.setText(autoId);
+            } else {
+                tf_id.setText("1");
+            }
+        } catch (SQLException sQLException) {
+            System.out.println("Error saat memperoleh ID otomatis: " + sQLException.getMessage());
+            tf_id.setText("1");
+        }
+    }
+
+    void reset() {
+
+        cb_Kategori.setSelectedItem("--Pilih Kategori Surat--");
+        tf_NomorSurat.setText(null);
+        tf_pengirim.setText(null);
+        tf_Perihal.setText(null);
+        txtfilepath.setText(null);
+    }
+
+    void cbKategoriSurat() {
+        try {
+            PopUpSuratMasuk.this.cb_Kategori.addItem("--Pilih Kategori Surat--");
+
+            Kategori ks = new Kategori();
+            ResultSet data = ks.Tampil_CbKategoriSurat();
+
+            while (data.next()) {
+                PopUpSuratMasuk.this.cb_Kategori.addItem(data.getString("kode_kategori") + " - " + data.getString("nama_kategori"));
+            }
+
+            PopUpSuratMasuk.this.cb_Kategori.setSelectedItem("--Pilih Kategori Surat--");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void blokirtextfieldTanggal() {
+
+        if (tTanggalDiterima.getDateEditor() instanceof JTextFieldDateEditor) {
+            JTextFieldDateEditor editorAwal = (JTextFieldDateEditor) tTanggalDiterima.getDateEditor();
+            editorAwal.setEditable(false);
+            editorAwal.setEnabled(false);
+        }
+    }
+
+    private void updateView() {
+        try {
+            dispose();
+            MenuUtama.pn_Utama.removeAll();
+            MenuUtama.pn_Utama.add(new menuSuratMasuk());
+            MenuUtama.pn_Utama.repaint();
+            MenuUtama.pn_Utama.revalidate();
+        } catch (SQLException sQLException) {
+        } catch (ParseException parseException) {
+        }
     }
 
     /**
@@ -47,7 +139,7 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         cb_Kategori = new javax.swing.JComboBox<>();
         tf_NomorSurat = new javax.swing.JTextField();
-        tTanggalDiterima = new com.toedter.calendar.JDateChooser();
+        tTanggalDiterima = new org.netbeans.modules.form.InvalidComponent();
         tf_Perihal = new javax.swing.JTextField();
         tf_pengirim = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -84,20 +176,60 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
         jScrollPane1.setViewportView(txtfilepath);
 
         bUpload.setText("Upload File");
+        bUpload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bUploadActionPerformed(evt);
+            }
+        });
 
         bTambah.setText("Tambah");
+        bTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bTambahActionPerformed(evt);
+            }
+        });
 
         bt_Reset.setText("Reset");
+        bt_Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_ResetActionPerformed(evt);
+            }
+        });
 
         bEdit.setText("Ubah");
+        bEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditActionPerformed(evt);
+            }
+        });
 
         bHapus.setText("Hapus");
+        bHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bHapusActionPerformed(evt);
+            }
+        });
 
         bOpen.setText("Lihat Surat");
+        bOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOpenActionPerformed(evt);
+            }
+        });
 
         bt_Restore.setText("Restore");
+        bt_Restore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_RestoreActionPerformed(evt);
+            }
+        });
 
         bt_HapusPermanen.setText("Hapus Permanen");
+        bt_HapusPermanen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_HapusPermanenActionPerformed(evt);
+            }
+        });
 
         bt_Close.setText("Close");
 
@@ -216,6 +348,274 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUploadActionPerformed
+         JFileChooser jfc = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Dokumen PDF", "pdf");
+        jfc.setFileFilter(filter);
+        jfc.setAcceptAllFileFilterUsed(false);
+
+        int result = jfc.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                File selectedFile = jfc.getSelectedFile();
+                String fileName = selectedFile.getName();
+                String fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+                if (!fileExtension.equalsIgnoreCase("pdf")) {
+                    JOptionPane.showMessageDialog(null, "Hanya file PDF yang diizinkan!");
+                    return;
+                }
+
+                String filepath = selectedFile.getAbsolutePath();
+                filepath = filepath.replace('\\', '/');
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                String timestamp = sdf.format(new Date());
+
+                String newName = timestamp + "_" + fileName;
+
+                String destinationPath = "./Upload/FileSuratMasuk/";
+                txtfilepath.setText(destinationPath + newName);
+
+                File destinationDirectory = new File(destinationPath);
+                if (!destinationDirectory.exists()) {
+                    destinationDirectory.mkdirs();
+                }
+
+                File destinationFile = new File(destinationDirectory, newName);
+                Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Gagal menyalin file: " + e.getMessage());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + e.getMessage());
+            }
+        } else {
+            TimeJOption.AutoCloseJOptionPane.showMessageDialog("Tidak ada file yang dipilih", "Error", JOptionPane.ERROR_MESSAGE, 1000); 
+
+        }
+    }//GEN-LAST:event_bUploadActionPerformed
+
+    private void bTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTambahActionPerformed
+         try {
+            Surat_Masuk surat = new Surat_Masuk();
+
+            String idSurat = tf_id.getText().trim();
+            String pengirim = tf_pengirim.getText().trim();
+            String kategori = cb_Kategori.getSelectedItem().toString();
+            String nomorSurat = tf_NomorSurat.getText().trim();
+            String perihal = tf_Perihal.getText().trim();
+            java.util.Date tanggalDiterima = tTanggalDiterima.getDate();
+            String filePath = txtfilepath.getText().trim();
+
+            if (pengirim.isEmpty()) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Pengirim Surat harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000);
+                return;
+            }
+
+            if (kategori.equals("--Pilih Kategori Surat--")) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Pilih kategori surat terlebih dahulu!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000);
+                return;
+            }
+            if (perihal.isEmpty()) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Perihal harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000);
+                return;
+            }
+            if (tanggalDiterima == null) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Tanggal Diterima harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000);
+                return;
+            }
+            if (filePath.isEmpty()) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("File Path harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000);
+                return;
+            }
+
+            surat.setId_surat(idSurat);
+            surat.setKategori(kategori);
+            surat.setNomor_surat(nomorSurat);
+            surat.setPengirim(pengirim);
+            surat.setPerihal(perihal);
+            surat.setTanggal_diterima(new java.sql.Date(tanggalDiterima.getTime()));
+            surat.setFile_data(filePath);
+            surat.setUser_login(MenuUtama.lb_Username.getText());
+            surat.tambahSurat();
+
+            otoID();
+            reset();
+            updateView();
+
+        } catch (SQLException sQLException) {
+            System.err.println("Data tidak masuk: " + sQLException.getMessage());
+            TimeJOption.AutoCloseJOptionPane.showMessageDialog("Gagal menyimpan data surat: " + sQLException.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE, 1000);
+        }
+    }//GEN-LAST:event_bTambahActionPerformed
+
+    private void bt_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ResetActionPerformed
+         reset();
+    }//GEN-LAST:event_bt_ResetActionPerformed
+
+    private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
+      try {
+            Surat_Masuk surat = new Surat_Masuk();
+
+            String idSurat = tf_id.getText().trim();
+            if (idSurat.isEmpty()) {
+              TimeJOption.AutoCloseJOptionPane.showMessageDialog("ID Surat harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000); // 1 detik
+                return;
+            }
+            surat.setId_surat(idSurat);
+
+            String pengirim = tf_pengirim.getText().trim();
+            if (pengirim.isEmpty()) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Pengirim Surat harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000); // 1 detik
+                return;
+            }
+            surat.setPengirim(pengirim);
+
+            String kategori = cb_Kategori.getSelectedItem().toString();
+            if (kategori.equals("--Pilih Kategori Surat--")) {
+               TimeJOption.AutoCloseJOptionPane.showMessageDialog("Silahkan pilih kategori surat yang valid!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000); // 1 detik
+                return;
+            }
+            surat.setKategori(kategori);
+
+            String nomorSurat = tf_NomorSurat.getText().trim();
+            if (nomorSurat.isEmpty()) {
+                 TimeJOption.AutoCloseJOptionPane.showMessageDialog("Nomor Surat harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000); // 1 detik
+                return;
+            }
+            surat.setNomor_surat(nomorSurat);
+
+            String perihal = tf_Perihal.getText().trim();
+            if (perihal.isEmpty()) {
+               TimeJOption.AutoCloseJOptionPane.showMessageDialog("Perihal Surat harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000); 
+                return;
+            }
+            surat.setPerihal(perihal);
+
+            java.util.Date tanggalDiterima = tTanggalDiterima.getDate();
+            if (tanggalDiterima == null) {
+                 TimeJOption.AutoCloseJOptionPane.showMessageDialog("Tanggal diterima tidak boleh kosong", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000); 
+                return;
+            }
+            surat.setTanggal_diterima(new java.sql.Date(tanggalDiterima.getTime()));
+
+            String filePath = txtfilepath.getText().trim();
+            if (filePath.isEmpty()) {
+                 TimeJOption.AutoCloseJOptionPane.showMessageDialog("File path harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000); 
+                return;
+            }
+            surat.setFile_data(filePath);
+
+            surat.ubahSurat();
+
+        } catch (SQLException sQLException) {
+            System.err.println("Data tidak masuk: " + sQLException.getMessage());
+            TimeJOption.AutoCloseJOptionPane.showMessageDialog("Gagal mengubah data surat: " + sQLException.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE, 1000); 
+        }
+
+        updateView();
+    }//GEN-LAST:event_bEditActionPerformed
+
+    private void bHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHapusActionPerformed
+           int response = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin menghapus surat ini?", "Konfirmasi Penghapusan", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (response == JOptionPane.YES_OPTION) {
+            try {
+                Surat_Masuk sur = new Surat_Masuk();
+                sur.setId_surat(tf_id.getText());
+                sur.KodeHapus();
+                updateView();
+                //   JOptionPane.showMessageDialog(null, "Surat berhasil dihapus.");
+            } catch (SQLException sQLException) {
+                 TimeJOption.AutoCloseJOptionPane.showMessageDialog( "Gagal menghapus surat: " + sQLException.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, 1000);
+            }
+        } else if (response == JOptionPane.NO_OPTION) {
+           TimeJOption.AutoCloseJOptionPane.showMessageDialog("Penghapusan dibatalkan.","Informasi",  JOptionPane.INFORMATION_MESSAGE,1000); 
+        }
+    }//GEN-LAST:event_bHapusActionPerformed
+
+    private void bOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOpenActionPerformed
+         try {
+            String filePath = txtfilepath.getText().trim();
+            File file = new File(filePath);
+
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            } else {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("File tidak ditemukan!", "Error", JOptionPane.ERROR_MESSAGE, 1000);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bOpenActionPerformed
+
+    private void bt_RestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_RestoreActionPerformed
+         try {
+            int response = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin memulihkan surat ini?", "Konfirmasi Pemulihan", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (response == JOptionPane.YES_OPTION) {
+                Surat_Masuk kodeRestore = new Surat_Masuk();
+                kodeRestore.setUser_login(MenuUtama.lb_Username.getText());
+                kodeRestore.setId_surat(tf_id.getText());
+
+                kodeRestore.KodeRestore();
+
+                MenuSuratMasuk kt = new MenuSuratMasuk();
+                kt.loadTabel();
+
+                dispose();
+                MenuUtama.pn_Utama.removeAll();
+                MenuUtama.pn_Utama.add(new MenuSampahSuratMasuk());
+                MenuUtama.pn_Utama.repaint();
+                MenuUtama.pn_Utama.revalidate();
+
+             //   JOptionPane.showMessageDialog(null, "Surat berhasil dipulihkan.");
+            } else {
+               TimeJOption.AutoCloseJOptionPane.showMessageDialog("Proses pemulihan surat dibatalkan.", "Informasi", JOptionPane.INFORMATION_MESSAGE, 1000); 
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PopUpSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat memulihkan surat: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ParseException ex) {
+            Logger.getLogger(PopUpSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat memproses data: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bt_RestoreActionPerformed
+
+    private void bt_HapusPermanenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_HapusPermanenActionPerformed
+    try {
+            int response = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin menghapus surat ini secara permanen?", "Konfirmasi Penghapusan", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                Surat_Masuk kodeHapus = new Surat_Masuk();
+                kodeHapus.setId_surat(tf_id.getText());
+                kodeHapus.KodeHapusPermanen();
+
+                MenuSuratMasuk kt = new MenuSuratMasuk();
+                kt.loadTabel();
+
+                dispose();
+                MenuUtama.pn_Utama.removeAll();
+                MenuUtama.pn_Utama.add(new MenuSampahSuratMasuk());
+                MenuUtama.pn_Utama.repaint();
+                MenuUtama.pn_Utama.revalidate();
+
+              TimeJOption.AutoCloseJOptionPane.showMessageDialog("Surat berhasil dihapus secara permanen.", "Informasi", JOptionPane.INFORMATION_MESSAGE, 1000); 
+
+            } else {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Proses penghapusan surat dibatalkan.", "Informasi", JOptionPane.INFORMATION_MESSAGE, 1000); 
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PopUpSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat menghapus surat: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ParseException ex) {
+            Logger.getLogger(PopUpSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat memproses data: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_bt_HapusPermanenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -246,10 +646,9 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+           public void run() {
                 try {
-                    Surat_Keluar srtkel = new Surat_Keluar();
-                    new PopUpSuratMasuk(null, true, srtkel, true).setVisible(true);
+                    new PopUpSuratMasuk().setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(PopUpSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -276,7 +675,7 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public static com.toedter.calendar.JDateChooser tTanggalDiterima;
+    public static org.netbeans.modules.form.InvalidComponent tTanggalDiterima;
     public static javax.swing.JTextField tf_NomorSurat;
     public static javax.swing.JTextField tf_Perihal;
     private javax.swing.JTextField tf_id;
