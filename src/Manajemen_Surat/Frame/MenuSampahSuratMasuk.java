@@ -13,13 +13,13 @@ import java.util.logging.Logger;
  *
  * @author Dicky
  */
-public class MenuSuratMasuk extends javax.swing.JPanel {
+public class MenuSampahSuratMasuk extends javax.swing.JPanel {
 
     /**
      * Creates new form MenuSuratMasuk
      */
     private Surat_Keluar sk;
-    public MenuSuratMasuk() {
+    public MenuSampahSuratMasuk() {
         initComponents();
     }
 
@@ -43,7 +43,6 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
         cb_KategoriMenu = new javax.swing.JComboBox<>();
         dc_TglAwal = new com.toedter.calendar.JDateChooser();
         dc_TglAkhir = new com.toedter.calendar.JDateChooser();
-        bTambah = new javax.swing.JButton();
         bReset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_SuratMasuk = new javax.swing.JTable();
@@ -65,13 +64,6 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
         jLabel6.setText("Tanggal Awal");
 
         jLabel7.setText("Tanggal Akhir");
-
-        bTambah.setText("Tambah Surat Masuk");
-        bTambah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bTambahActionPerformed(evt);
-            }
-        });
 
         bReset.setText("Reset Filter");
 
@@ -119,8 +111,7 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
                                     .addComponent(dc_TglAkhir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addComponent(bReset, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
-                        .addComponent(bTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 388, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -128,9 +119,7 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(bTambah))
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(33, 33, 33)
@@ -153,30 +142,15 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
                     .addComponent(bReset))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTambahActionPerformed
-        try {
-            PopUpSuratKeluar ppsk = new PopUpSuratKeluar(null, true, sk, false);
-            ppsk.bt_Ubah.setVisible(false);
-            ppsk.bt_Hapus.setVisible(false);
-            ppsk.bt_Lihat.setVisible(false);
-            ppsk.bt_HapusPermanen.setVisible(false);
-            ppsk.bt_Restore.setVisible(false);
-            ppsk.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_bTambahActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bReset;
-    private javax.swing.JButton bTambah;
     private javax.swing.JComboBox<String> cb_KategoriMenu;
     private com.toedter.calendar.JDateChooser dc_TglAkhir;
     private com.toedter.calendar.JDateChooser dc_TglAwal;
