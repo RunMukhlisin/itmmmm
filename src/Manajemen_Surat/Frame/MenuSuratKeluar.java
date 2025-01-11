@@ -42,8 +42,8 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
         tf_Cari = new javax.swing.JTextField();
         cb_BagianMenu = new javax.swing.JComboBox<>();
         cb_KategoriMenu = new javax.swing.JComboBox<>();
-        dc_TanggalAwal = new com.toedter.calendar.JDateChooser();
-        dc_TanggalAkhir = new com.toedter.calendar.JDateChooser();
+        dc_TanggalAwal = new org.netbeans.modules.form.InvalidComponent();
+        dc_TanggalAkhir = new org.netbeans.modules.form.InvalidComponent();
         bt_TambahSurat = new javax.swing.JButton();
         bt_Reset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -125,7 +125,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
                                     .addComponent(dc_TanggalAkhir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addComponent(bt_Reset, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bt_TambahSurat, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -147,10 +147,10 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel4)
-                                .addComponent(cb_BagianMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cb_BagianMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(dc_TanggalAwal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +162,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
                     .addComponent(bt_Reset))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(jPanel1, "card2");
@@ -184,8 +184,8 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
     private javax.swing.JButton bt_TambahSurat;
     private javax.swing.JComboBox<String> cb_BagianMenu;
     private javax.swing.JComboBox<String> cb_KategoriMenu;
-    private com.toedter.calendar.JDateChooser dc_TanggalAkhir;
-    private com.toedter.calendar.JDateChooser dc_TanggalAwal;
+    private org.netbeans.modules.form.InvalidComponent dc_TanggalAkhir;
+    private org.netbeans.modules.form.InvalidComponent dc_TanggalAwal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
