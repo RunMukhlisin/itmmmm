@@ -182,10 +182,14 @@ public class MenuUtama extends javax.swing.JFrame {
         MenuItem menuLogBagian = new MenuItem(null, true, null, "Log Bagian", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pn_Utama.removeAll();
-                pn_Utama.add(new MenuLogBagian());
-                pn_Utama.repaint();
-                pn_Utama.revalidate();
+                try {
+                    pn_Utama.removeAll();
+                    pn_Utama.add(new MenuLogBagian());
+                    pn_Utama.repaint();
+                    pn_Utama.revalidate();
+                } catch (ParseException ex) {
+                    Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -202,10 +206,14 @@ public class MenuUtama extends javax.swing.JFrame {
         MenuItem menuLogKategori = new MenuItem(null, true, null, "Log Kategori", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                pn_Utama.removeAll();
-                pn_Utama.add(new MenuLogKategori());
-                pn_Utama.repaint();
-                pn_Utama.revalidate();
+                try {
+                    pn_Utama.removeAll();
+                    pn_Utama.add(new MenuLogKategori());
+                    pn_Utama.repaint();
+                    pn_Utama.revalidate();
+                } catch (ParseException ex) {
+                    Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 

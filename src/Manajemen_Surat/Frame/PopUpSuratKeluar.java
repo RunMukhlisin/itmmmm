@@ -4,6 +4,7 @@
  */
 package Manajemen_Surat.Frame;
 
+import Manajemen_Surat.Kelas.Surat_Keluar;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -13,13 +13,13 @@ import java.util.logging.Logger;
  *
  * @author rizan
  */
-public class MenuSuratKeluar extends javax.swing.JPanel {
+public class MenuSuratMasuk extends javax.swing.JPanel {
 
     /**
-     * Creates new form MenuSuratKeluar
+     * Creates new form MenuSuratMasuk
      */
     private Surat_Keluar sk;
-    public MenuSuratKeluar() {
+    public MenuSuratMasuk() {
         initComponents();
     }
 
@@ -70,7 +70,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
 
         jLabel7.setText("Tanggal Akhir");
 
-        bt_TambahSurat.setText("Tambah Surat Keluar");
+        bt_TambahSurat.setText("Tambah Surat Masuk");
         bt_TambahSurat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_TambahSuratActionPerformed(evt);
@@ -179,7 +179,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel {
             ppsk.bt_Restore.setVisible(false);
             ppsk.setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bt_TambahSuratActionPerformed
 
