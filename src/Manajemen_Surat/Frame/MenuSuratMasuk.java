@@ -47,7 +47,7 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
             try {
                 applyFilters();
             } catch (SQLException ex) {
-                Logger.getLogger(menuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MenuSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 
@@ -56,7 +56,7 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
                 try {
                     applyFilters();
                 } catch (SQLException ex) {
-                    Logger.getLogger(menuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MenuSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -66,7 +66,7 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
                 try {
                     applyFilters();
                 } catch (SQLException ex) {
-                    Logger.getLogger(menuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MenuSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -446,8 +446,8 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         tf_Cari = new javax.swing.JTextField();
         cb_KategoriMenu = new javax.swing.JComboBox<>();
-        dc_TglAwal = new org.netbeans.modules.form.InvalidComponent();
-        dc_TglAkhir = new org.netbeans.modules.form.InvalidComponent();
+        dc_TglAwal = new com.toedter.calendar.JDateChooser();
+        dc_TglAkhir = new com.toedter.calendar.JDateChooser();
         bTambah = new javax.swing.JButton();
         bReset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -479,11 +479,6 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
         });
 
         bReset.setText("Reset Filter");
-        bReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bResetActionPerformed(evt);
-            }
-        });
 
         tb_SuratMasuk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -496,6 +491,11 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_SuratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_SuratMasukMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_SuratMasuk);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -593,26 +593,8 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_bResetActionPerformed
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bReset;
-    private javax.swing.JButton bTambah;
-    private javax.swing.JComboBox<String> cb_KategoriMenu;
-    private org.netbeans.modules.form.InvalidComponent dc_TglAkhir;
-    private org.netbeans.modules.form.InvalidComponent dc_TglAwal;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tb_SuratMasuk;
-    private javax.swing.JTextField tf_Cari;
-    // End of variables declaration//GEN-END:variables
- private void tb_SuratMasukMouseClicked(java.awt.event.MouseEvent evt) {                                           
-        PopUpSuratMasuk suratMasukFrame = null;
+    private void tb_SuratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_SuratMasukMouseClicked
+     PopUpSuratMasuk suratMasukFrame = null;
         try {
             suratMasukFrame = new PopUpSuratMasuk();
             suratMasukFrame.setVisible(true);
@@ -668,5 +650,25 @@ public class MenuSuratMasuk extends javax.swing.JPanel {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }                                
+    }//GEN-LAST:event_tb_SuratMasukMouseClicked
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bReset;
+    private javax.swing.JButton bTambah;
+    private javax.swing.JComboBox<String> cb_KategoriMenu;
+    private com.toedter.calendar.JDateChooser dc_TglAkhir;
+    private com.toedter.calendar.JDateChooser dc_TglAwal;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tb_SuratMasuk;
+    private javax.swing.JTextField tf_Cari;
+    // End of variables declaration//GEN-END:variables
+                               
 }
