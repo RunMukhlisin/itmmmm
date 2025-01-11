@@ -4,9 +4,16 @@
  */
 package Manajemen_Surat.Frame;
 
+import Manajemen_Surat.Kelas.Bagian;
+import static Manajemen_Surat.Frame.MenuUtama.lb_Username;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author rizan
+ * @author syarah
  */
 public class MenuSampahBagian extends javax.swing.JPanel {
 
@@ -15,6 +22,45 @@ public class MenuSampahBagian extends javax.swing.JPanel {
      */
     public MenuSampahBagian() {
         initComponents();
+        loadTabel();
+    }
+
+    public void loadTabel() {
+        // Model tabel dengan sel yang tidak bisa diedit
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Semua sel tidak dapat diedit
+            }
+        };
+        model.addColumn("Kode Bagian Surat");
+        model.addColumn("Nama Bagian Surat");
+        model.addColumn("User Login");
+
+        try {
+            Bagian k = new Bagian();
+            ResultSet data = k.KodeTampilTabelSampah();
+
+            while (data.next()) {
+                model.addRow(new Object[]{
+                    data.getString("kode_bagian"),
+                    data.getString("nama_bagian"),
+                    data.getString("user_login"),});
+            }
+
+            data.close();
+        } catch (SQLException sQLException) {
+        }
+
+        tb_SampahBagian.setModel(model);
+        tb_SampahBagian.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
+        tb_SampahBagian.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
+    }
+
+    void reset() {
+        tf_Kode.setText(null);
+        tf_Nama.setText(null);
+        loadTabel();
     }
 
     /**
@@ -36,6 +82,7 @@ public class MenuSampahBagian extends javax.swing.JPanel {
         bt_Restore = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_SampahBagian = new javax.swing.JTable();
+        bt_Reset = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
@@ -49,8 +96,18 @@ public class MenuSampahBagian extends javax.swing.JPanel {
         jLabel3.setText("Kode Bagian");
 
         bt_HapusPermanen.setText("Hapus Permanen");
+        bt_HapusPermanen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_HapusPermanenActionPerformed(evt);
+            }
+        });
 
         bt_Restore.setText("Restore");
+        bt_Restore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_RestoreActionPerformed(evt);
+            }
+        });
 
         tb_SampahBagian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,7 +120,19 @@ public class MenuSampahBagian extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_SampahBagian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_SampahBagianMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_SampahBagian);
+
+        bt_Reset.setText("Reset");
+        bt_Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_ResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -87,7 +156,9 @@ public class MenuSampahBagian extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(bt_Restore, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(tf_Nama)
-                                    .addComponent(tf_Kode))))
+                                    .addComponent(tf_Kode))
+                                .addGap(31, 31, 31)
+                                .addComponent(bt_Reset, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -107,7 +178,8 @@ public class MenuSampahBagian extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_HapusPermanen)
-                    .addComponent(bt_Restore))
+                    .addComponent(bt_Restore)
+                    .addComponent(bt_Reset))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
                 .addContainerGap())
@@ -116,9 +188,77 @@ public class MenuSampahBagian extends javax.swing.JPanel {
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bt_RestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_RestoreActionPerformed
+        try {
+
+            if (tf_Kode.getText().isEmpty()) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Pilih data yang ingin dikembalikan!", null, JOptionPane.WARNING_MESSAGE, 1000);
+                return;
+            }
+
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "Ingin mengembalikan data ini?",
+                    "Konfirmasi",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+
+                Bagian kodeHapus = new Bagian();
+                kodeHapus.setUser_login(MenuUtama.lb_Username.getText());
+                kodeHapus.setKode_bagian(tf_Kode.getText());
+                kodeHapus.KodeRestore();
+                reset();
+                tf_Kode.setEditable(false);
+            }
+        } catch (SQLException sQLException) {
+        }
+    }//GEN-LAST:event_bt_RestoreActionPerformed
+
+    private void bt_HapusPermanenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_HapusPermanenActionPerformed
+        try {
+
+            if (tf_Kode.getText().isEmpty()) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Pilih data yang ingin dihapus!", null, JOptionPane.WARNING_MESSAGE, 1000);
+                return;
+            }
+
+            int confirm = JOptionPane.showConfirmDialog(this, """
+                                                              Yakin ingin menghapus data ini?
+                                                               Anda tidak dapat membalikkan aksi ini""",
+                    "Konfirmasi",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+
+                Bagian kodeHapus = new Bagian();
+                kodeHapus.setUser_login(lb_Username.getText());
+                kodeHapus.KodeSetUser();
+                kodeHapus.setKode_bagian(tf_Kode.getText());
+                kodeHapus.KodeHapusPermanen();
+                reset();
+
+            }
+        } catch (SQLException sQLException) {
+        }
+    }//GEN-LAST:event_bt_HapusPermanenActionPerformed
+
+    private void bt_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ResetActionPerformed
+        reset();
+    }//GEN-LAST:event_bt_ResetActionPerformed
+
+    private void tb_SampahBagianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_SampahBagianMouseClicked
+        int baris = tb_SampahBagian.rowAtPoint(evt.getPoint());
+        String kode = tb_SampahBagian.getValueAt(baris, 0).toString();
+        String nama = tb_SampahBagian.getValueAt(baris, 1).toString();
+        tf_Kode.setText(kode);
+        tf_Nama.setText(nama);
+        tf_Kode.setEditable(false);
+    }//GEN-LAST:event_tb_SampahBagianMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_HapusPermanen;
+    private javax.swing.JButton bt_Reset;
     private javax.swing.JButton bt_Restore;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

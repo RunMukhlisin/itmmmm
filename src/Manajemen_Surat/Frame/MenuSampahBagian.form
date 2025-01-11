@@ -53,6 +53,8 @@
                                       <Component id="tf_Nama" alignment="0" max="32767" attributes="0"/>
                                       <Component id="tf_Kode" alignment="0" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="bt_Reset" min="-2" pref="110" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -81,6 +83,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="bt_HapusPermanen" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bt_Restore" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bt_Reset" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="490" max="32767" attributes="0"/>
@@ -116,11 +119,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Hapus Permanen"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_HapusPermanenActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bt_Restore">
           <Properties>
             <Property name="text" type="java.lang.String" value="Restore"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_RestoreActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -140,9 +149,20 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb_SampahBagianMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="bt_Reset">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Reset"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_ResetActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
