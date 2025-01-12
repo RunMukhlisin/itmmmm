@@ -529,6 +529,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
 
         jLabel7.setText("Tanggal Akhir");
 
+        bt_TambahSurat.setBackground(new java.awt.Color(76, 175, 80));
         bt_TambahSurat.setText("Tambah Surat Keluar");
         bt_TambahSurat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -537,6 +538,11 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
         });
 
         bt_Reset.setText("Reset Filter");
+        bt_Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_ResetActionPerformed(evt);
+            }
+        });
 
         tb_SuratKeluar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -549,6 +555,11 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_SuratKeluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_SuratKeluarMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_SuratKeluar);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -559,14 +570,15 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(tf_Cari, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(tf_Cari, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel4))
@@ -575,19 +587,17 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
                                     .addComponent(cb_BagianMenu, 0, 200, Short.MAX_VALUE)
                                     .addComponent(cb_KategoriMenu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(dc_tglAkhir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(321, 321, 321))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(dc_tglAwal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(bt_Reset, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(dc_tglAwal, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dc_tglAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bt_Reset, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                         .addComponent(bt_TambahSurat, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -606,7 +616,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
                     .addComponent(jLabel3)
                     .addComponent(tf_Cari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -621,12 +631,13 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
                                 .addComponent(cb_KategoriMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(dc_tglAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dc_tglAwal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bt_Reset))
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dc_tglAwal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_Reset))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         add(jPanel1, "card2");
@@ -645,6 +656,79 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
             Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bt_TambahSuratActionPerformed
+
+    private void tb_SuratKeluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_SuratKeluarMouseClicked
+        try {
+            int baris = tb_SuratKeluar.getSelectedRow();
+            if (baris != -1 && tb_SuratKeluar.getValueAt(baris, 0) != null) {
+
+                String Id = tb_SuratKeluar.getValueAt(baris, 0) != null ? tb_SuratKeluar.getValueAt(baris, 0).toString() : "";
+                String Bagian = tb_SuratKeluar.getValueAt(baris, 1) != null ? tb_SuratKeluar.getValueAt(baris, 1).toString() : "";
+                String Kategori = tb_SuratKeluar.getValueAt(baris, 2) != null ? tb_SuratKeluar.getValueAt(baris, 2).toString() : "";
+                String Nomor = tb_SuratKeluar.getValueAt(baris, 3) != null ? tb_SuratKeluar.getValueAt(baris, 3).toString() : "";
+                String Tanggal = tb_SuratKeluar.getValueAt(baris, 4) != null ? tb_SuratKeluar.getValueAt(baris, 4).toString() : "";
+                String Perihal = tb_SuratKeluar.getValueAt(baris, 5) != null ? tb_SuratKeluar.getValueAt(baris, 5).toString() : "";
+                String Tujuan = tb_SuratKeluar.getValueAt(baris, 6) != null ? tb_SuratKeluar.getValueAt(baris, 6).toString() : "";
+                String File = tb_SuratKeluar.getValueAt(baris, 7) != null ? tb_SuratKeluar.getValueAt(baris, 7).toString() : "";
+
+                PopUpSuratKeluar pusk = new PopUpSuratKeluar(null, true, sk, true);
+
+                pusk.bt_Tambah.setVisible(false);
+                pusk.bt_HapusPermanen.setVisible(false);
+                pusk.bt_Restore.setVisible(false);
+                pusk.cb_Bagian.setEnabled(false);
+                pusk.cb_Kategori.setEnabled(false);
+                pusk.tf_NoSurat.setEditable(false);
+                pusk.dc_Tgl.setEnabled(false);
+
+                pusk.isInitializing = true; // Set flag sebelum pengisian data
+                pusk.lb_Id.setText(Id);
+
+                for (int i = 0; i < pusk.cb_Bagian.getItemCount(); i++) {
+                    String item = pusk.cb_Bagian.getItemAt(i);
+                    if (item.startsWith(Bagian + " -")) {
+                        pusk.cb_Bagian.setSelectedIndex(i);
+                        break;
+                    }
+                }
+
+                pusk.cb_Bagian.setEditable(false);
+
+                for (int i = 0; i < pusk.cb_Kategori.getItemCount(); i++) {
+                    String item = pusk.cb_Kategori.getItemAt(i);
+                    if (item.startsWith(Kategori + " -")) {
+                        pusk.cb_Kategori.setSelectedIndex(i);
+                        break;
+                    }
+                }
+
+                pusk.tf_NoSurat.setText(Nomor);
+
+                if (Tanggal != null && !Tanggal.isEmpty()) {
+                    java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id", "ID"));
+                    java.util.Date date = formatter.parse(Tanggal);
+                    pusk.dc_Tgl.setDate(date);
+                }
+
+                pusk.tf_Perihal.setText(Perihal);
+                pusk.tf_Tujuan.setText(Tujuan);
+                pusk.ta_File.setText(File);
+
+                pusk.isInitializing = false; // Selesai inisialisasi
+                pusk.setVisible(true);
+            }
+        } catch (SQLException | java.text.ParseException ex) {
+            Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_tb_SuratKeluarMouseClicked
+
+    private void bt_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ResetActionPerformed
+        try {
+            reset();
+        } catch (ParseException ex) {
+            Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt_ResetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -666,7 +750,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
     private javax.swing.JTable tb_SuratKeluar;
     private javax.swing.JTextField tf_Cari;
     // End of variables declaration//GEN-END:variables
-public void BlokJDate() {
+    public void BlokJDate() {
         blokirEditor(dc_tglAwal);
         blokirEditor(dc_tglAkhir);
     }

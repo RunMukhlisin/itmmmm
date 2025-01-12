@@ -9,6 +9,7 @@ import Manajemen_Surat.Kelas.Surat_Masuk;
 import Manajemen_Surat.Frame.MenuUtama;
 import Manajemen_Surat.Frame.MenuSampahSuratMasuk;
 import Manajemen_Surat.Frame.MenuSuratMasuk;
+import static Manajemen_Surat.Frame.MenuUtama.lb_Username;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Desktop;
 import java.io.File;
@@ -171,20 +172,53 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
         txtfilepath.setRows(5);
         jScrollPane1.setViewportView(txtfilepath);
 
+        bUpload.setBackground(new java.awt.Color(255, 153, 0));
         bUpload.setText("Upload File");
+        bUpload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bUploadActionPerformed(evt);
+            }
+        });
 
+        bTambah.setBackground(new java.awt.Color(76, 175, 80));
         bTambah.setText("Tambah");
+        bTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bTambahActionPerformed(evt);
+            }
+        });
 
+        bt_Reset.setBackground(new java.awt.Color(158, 158, 158));
         bt_Reset.setText("Reset");
 
+        bEdit.setBackground(new java.awt.Color(33, 150, 243));
         bEdit.setText("Ubah");
+        bEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditActionPerformed(evt);
+            }
+        });
 
+        bHapus.setBackground(new java.awt.Color(244, 67, 54));
         bHapus.setText("Hapus");
+        bHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bHapusActionPerformed(evt);
+            }
+        });
 
+        bOpen.setBackground(new java.awt.Color(153, 153, 0));
         bOpen.setText("Lihat Surat");
+        bOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOpenActionPerformed(evt);
+            }
+        });
 
+        bt_Restore.setBackground(new java.awt.Color(76, 175, 80));
         bt_Restore.setText("Restore");
 
+        bt_HapusPermanen.setBackground(new java.awt.Color(244, 67, 54));
         bt_HapusPermanen.setText("Hapus Permanen");
         bt_HapusPermanen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,6 +226,7 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
             }
         });
 
+        bt_Close.setBackground(new java.awt.Color(0, 204, 204));
         bt_Close.setText("Close");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -377,6 +412,10 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
                 TimeJOption.AutoCloseJOptionPane.showMessageDialog("Pilih kategori surat terlebih dahulu!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000);
                 return;
             }
+             if (nomorSurat.isEmpty()) {
+                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Nomor Surat harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000);
+                return;
+            }
             if (perihal.isEmpty()) {
                 TimeJOption.AutoCloseJOptionPane.showMessageDialog("Perihal harus diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE, 1000);
                 return;
@@ -550,6 +589,8 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
             int response = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin menghapus surat ini secara permanen?", "Konfirmasi Penghapusan", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION) {
                 Surat_Masuk kodeHapus = new Surat_Masuk();
+                kodeHapus.setUser_login(lb_Username.getText());
+                kodeHapus.KodeSetUser();
                 kodeHapus.setId_surat(tf_id.getText());
                 kodeHapus.KodeHapusPermanen();
 

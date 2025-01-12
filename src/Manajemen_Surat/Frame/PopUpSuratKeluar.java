@@ -4,6 +4,7 @@
  */
 package Manajemen_Surat.Frame;
 
+import AutoClose.AutoCloseJFrame;
 import static Manajemen_Surat.Frame.MenuUtama.lb_Username;
 import Manajemen_Surat.Kelas.Bagian;
 import Manajemen_Surat.Kelas.Kategori;
@@ -25,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -44,6 +46,11 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
         super(parent, b);
         initComponents();
         this.sk = srtkel;
+
+        // Pindahkan ke setelah semua komponen terinisialisasi
+        SwingUtilities.invokeLater(() -> {
+            AutoCloseJFrame.autoCloseIfIdle(this, 50000);
+        });
 
         cbBagianSurat();
         cbKategoriSurat();
@@ -255,6 +262,7 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
         ta_File.setRows(5);
         jScrollPane1.setViewportView(ta_File);
 
+        bt_Upload.setBackground(new java.awt.Color(255, 153, 0));
         bt_Upload.setText("Upload File");
         bt_Upload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,6 +270,7 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
             }
         });
 
+        bt_Salin.setBackground(new java.awt.Color(153, 0, 153));
         bt_Salin.setText("Salin Nomor");
         bt_Salin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,6 +278,7 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
             }
         });
 
+        bt_Tambah.setBackground(new java.awt.Color(76, 175, 80));
         bt_Tambah.setText("Tambah");
         bt_Tambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,6 +286,7 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
             }
         });
 
+        bt_Reset.setBackground(new java.awt.Color(158, 158, 158));
         bt_Reset.setText("Reset");
         bt_Reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,6 +294,7 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
             }
         });
 
+        bt_Ubah.setBackground(new java.awt.Color(33, 150, 243));
         bt_Ubah.setText("Ubah");
         bt_Ubah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,6 +302,7 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
             }
         });
 
+        bt_Hapus.setBackground(new java.awt.Color(244, 67, 54));
         bt_Hapus.setText("Hapus");
         bt_Hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,6 +310,7 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
             }
         });
 
+        bt_Lihat.setBackground(new java.awt.Color(153, 153, 0));
         bt_Lihat.setText("Lihat Surat");
         bt_Lihat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,6 +318,7 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
             }
         });
 
+        bt_Restore.setBackground(new java.awt.Color(76, 175, 80));
         bt_Restore.setText("Restore");
         bt_Restore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,6 +326,7 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
             }
         });
 
+        bt_HapusPermanen.setBackground(new java.awt.Color(244, 67, 54));
         bt_HapusPermanen.setText("Hapus Permanen");
         bt_HapusPermanen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,6 +334,7 @@ public class PopUpSuratKeluar extends javax.swing.JDialog {
             }
         });
 
+        bt_Close.setBackground(new java.awt.Color(0, 204, 204));
         bt_Close.setText("Close");
         bt_Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

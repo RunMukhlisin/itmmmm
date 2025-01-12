@@ -84,7 +84,7 @@ public class MenuItem extends javax.swing.JPanel {
 
         lb_IconSub.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        lb_Dashboard.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
+        lb_Dashboard.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         lb_Dashboard.setForeground(new java.awt.Color(255, 255, 255));
         lb_Dashboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lb_Dashboard.setText("Dashboard");

@@ -95,6 +95,7 @@ public class MenuSampahBagian extends javax.swing.JPanel {
 
         jLabel3.setText("Kode Bagian");
 
+        bt_HapusPermanen.setBackground(new java.awt.Color(244, 67, 54));
         bt_HapusPermanen.setText("Hapus Permanen");
         bt_HapusPermanen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +103,7 @@ public class MenuSampahBagian extends javax.swing.JPanel {
             }
         });
 
+        bt_Restore.setBackground(new java.awt.Color(33, 150, 243));
         bt_Restore.setText("Restore");
         bt_Restore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +129,7 @@ public class MenuSampahBagian extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tb_SampahBagian);
 
+        bt_Reset.setBackground(new java.awt.Color(158, 158, 158));
         bt_Reset.setText("Reset");
         bt_Reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

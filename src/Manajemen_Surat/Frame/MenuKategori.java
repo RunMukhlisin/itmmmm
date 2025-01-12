@@ -59,6 +59,7 @@ public class MenuKategori extends javax.swing.JPanel {
 
         jLabel3.setText("Kode Kategori");
 
+        bt_Tambah.setBackground(new java.awt.Color(76, 175, 80));
         bt_Tambah.setText("Tambah");
         bt_Tambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +67,7 @@ public class MenuKategori extends javax.swing.JPanel {
             }
         });
 
+        bt_Ubah.setBackground(new java.awt.Color(33, 150, 243));
         bt_Ubah.setText("Ubah");
         bt_Ubah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +75,7 @@ public class MenuKategori extends javax.swing.JPanel {
             }
         });
 
+        bt_Hapus.setBackground(new java.awt.Color(244, 67, 54));
         bt_Hapus.setText("Hapus");
         bt_Hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +83,7 @@ public class MenuKategori extends javax.swing.JPanel {
             }
         });
 
+        bt_Reset.setBackground(new java.awt.Color(158, 158, 158));
         bt_Reset.setText("Reset");
         bt_Reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

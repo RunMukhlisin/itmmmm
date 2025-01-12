@@ -29,7 +29,7 @@ public class Surat_Masuk {
             user_login, status;
     public static java.sql.Date tanggal_diterima;
 
-    private Connection konek;
+    private Connection conn;
     private PreparedStatement ps;
     private Statement st;
     private ResultSet rs;
@@ -56,9 +56,11 @@ public class Surat_Masuk {
         }
     }
 
+    
+    
     public Surat_Masuk() throws SQLException {
         Koneksi koneksi = new Koneksi();
-        konek = koneksi.koneksiDB();
+        conn = koneksi.koneksiDB();
     }
 
     public String getFilterKategori() {
@@ -169,12 +171,12 @@ public class Surat_Masuk {
         Surat_Masuk.tanggal_diterima = tanggal_diterima;
     }
 
-    public Connection getKonek() {
-        return konek;
+    public Connection getconn() {
+        return conn;
     }
 
-    public void setKonek(Connection konek) {
-        this.konek = konek;
+    public void setconn(Connection konek) {
+        this.conn = konek;
     }
 
     public PreparedStatement getPs() {
@@ -220,7 +222,7 @@ public class Surat_Masuk {
                 + "user_login,"
                 + "status) VALUES(?,?,?,?,?,?,?,?,'1')";
         try {
-            ps = konek.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, id_suratmasuk);
             ps.setString(2, pengirim);
             ps.setString(3, kategori);
@@ -252,7 +254,7 @@ public class Surat_Masuk {
                 + "WHERE id_suratmasuk = ?";
 
         try {
-            ps = konek.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, pengirim);
             ps.setString(2, kategori);
             ps.setString(3, nomor_surat);
@@ -275,7 +277,7 @@ public class Surat_Masuk {
         query = "SELECT * FROM surat_masuk WHERE status = '1'";
 
         try {
-            st = konek.createStatement();
+            st = conn.createStatement();
             rs = st.executeQuery(query);
         } catch (SQLException sQLException) {
             TimeJOption.AutoCloseJOptionPane.showMessageDialog("Data gagal ditampilkan", null, JOptionPane.ERROR_MESSAGE, 3000);
@@ -288,7 +290,7 @@ public class Surat_Masuk {
         query = "SELECT * FROM log_suratmasuk";
 
         try {
-            st = konek.createStatement();
+            st = conn.createStatement();
             rs = st.executeQuery(query);
         } catch (SQLException sQLException) {
             TimeJOption.AutoCloseJOptionPane.showMessageDialog("Data gagal ditampilkan", null, JOptionPane.ERROR_MESSAGE, 3000);
@@ -301,7 +303,7 @@ public class Surat_Masuk {
         query = "SELECT * FROM surat_masuk WHERE status = '0'";
 
         try {
-            st = konek.createStatement();
+            st = conn.createStatement();
             rs = st.executeQuery(query);
         } catch (SQLException sQLException) {
             TimeJOption.AutoCloseJOptionPane.showMessageDialog("Data gagal ditampilkan", null, JOptionPane.ERROR_MESSAGE, 3000);
@@ -313,7 +315,7 @@ public class Surat_Masuk {
     public void KodeHapus() {
         query = "UPDATE surat_masuk SET user_login = ?, status = '0' WHERE id_suratmasuk = ?";
         try {
-            ps = konek.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, user_login);
             ps.setString(2, id_suratmasuk);
 
@@ -331,7 +333,7 @@ public class Surat_Masuk {
         query = "DELETE FROM surat_masuk WHERE id_suratmasuk = ?";
 
         try {
-            ps = konek.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, id_suratmasuk);
             ps.executeUpdate();
             ps.close();
@@ -344,7 +346,7 @@ public class Surat_Masuk {
     public void KodeRestore() {
         query = "UPDATE surat_masuk SET user_login = ?, status = '1' WHERE id_suratmasuk = ?";
         try {
-            ps = konek.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, user_login);
             ps.setString(2, id_suratmasuk);
 
@@ -367,7 +369,7 @@ public class Surat_Masuk {
         if (tgl_awal != null && tgl_akhir != null) {
             query += " AND tanggal_diterima BETWEEN ? AND ? ORDER BY tanggal_diterima ASC";
         }
-        PreparedStatement ps = konek.prepareStatement(query);
+        PreparedStatement ps = conn.prepareStatement(query);
         int paramIndex = 1;
 
         if (kategori != null && !kategori.isEmpty()) {
@@ -389,7 +391,7 @@ public class Surat_Masuk {
         if (tgl_awal != null && tgl_akhir != null) {
             query += " AND tanggal_diterima BETWEEN ? AND ? ORDER BY tanggal_diterima ASC";
         }
-        PreparedStatement ps = konek.prepareStatement(query);
+        PreparedStatement ps = conn.prepareStatement(query);
         int paramIndex = 1;
 
         if (kategori != null && !kategori.isEmpty()) {
@@ -407,7 +409,7 @@ public class Surat_Masuk {
         String query = "SELECT * FROM surat_masuk WHERE (perihal LIKE ? OR pengirim LIKE ?) AND status = '1'";
 
         try {
-            PreparedStatement ps = konek.prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             String keywordPattern = "%" + this.kata_kunci + "%";
             ps.setString(1, keywordPattern);
             ps.setString(2, keywordPattern);
@@ -425,7 +427,7 @@ public class Surat_Masuk {
         String query = "SELECT * FROM surat_masuk WHERE (perihal LIKE ? OR pengirim LIKE ?) AND status = '0'";
 
         try {
-            PreparedStatement ps = konek.prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             String keywordPattern = "%" + this.kata_kunci + "%";
             ps.setString(1, keywordPattern);
             ps.setString(2, keywordPattern);
@@ -446,7 +448,7 @@ public class Surat_Masuk {
         String query = "SELECT id_suratmasuk FROM surat_masuk WHERE id_suratmasuk LIKE '" + todayFormatted + "%' ORDER BY id_suratmasuk DESC LIMIT 1";
 
         try {
-            st = konek.createStatement();
+            st = conn.createStatement();
             rs = st.executeQuery(query);
             if (rs.next()) {
                 String lastId = rs.getString("id_suratmasuk");
@@ -467,7 +469,7 @@ public class Surat_Masuk {
         query = "SELECT COUNT(*) AS jumlah FROM surat_masuk";
 
         try {
-            st = konek.createStatement();
+            st = conn.createStatement();
             rs = st.executeQuery(query);
 
             if (rs.next()) {
@@ -487,7 +489,7 @@ public class Surat_Masuk {
     public ResultSet KodeSetUser() {
         try {
             query = "SET @user_login = ?;";
-            ps = konek.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, user_login);
             ps.executeUpdate();
 

@@ -7,7 +7,6 @@ package Manajemen_Surat.Frame;
 import Manajemen_Surat.Kelas.Bagian;
 import Manajemen_Surat.Kelas.Kategori;
 import Manajemen_Surat.Kelas.Surat_Keluar;
-import Manajemen_Surat.Frame.PopUpSuratKeluar;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Component;

@@ -230,7 +230,7 @@ public class Surat_Keluar {
 
     // Method untuk menampilkan data di tabel MenuSuratKeluar (KodeTampilTabel)
     public ResultSet KodeTampilTabel() {;
-        query = "SELECT * FROM surat_keluar WHERE status = '1'";
+        query = "SELECT * FROM surat_keluar WHERE status = '1' ORDER BY tanggal_dibuat DESC";
 
         try {
             st = conn.createStatement();
@@ -244,7 +244,7 @@ public class Surat_Keluar {
 
     // Method untuk menampilkan data di tabel MenuLogSuratKeluar (KodeTampilTabel)
     public ResultSet KodeTampilTabelLog() {;
-        query = "SELECT * FROM log_suratkeluar";
+        query = "SELECT * FROM log_suratkeluar ORDER BY waktu DESC";
 
         try {
             st = conn.createStatement();
@@ -258,7 +258,7 @@ public class Surat_Keluar {
 
     // Method untuk menampilkan data di tabel MenuSampahSuratKeluar (KodeTampilTabel)
     public ResultSet KodeTampilTabelSampah() {;
-        query = "SELECT * FROM surat_keluar WHERE status = '0'";
+        query = "SELECT * FROM surat_keluar WHERE status = '0' ORDER BY tanggal_dibuat DESC";
 
         try {
             st = conn.createStatement();
@@ -281,7 +281,7 @@ public class Surat_Keluar {
             query += " AND kategori = ?";
         }
         if (tgl_awal != null && tgl_akhir != null) {
-            query += " AND tanggal_dibuat BETWEEN ? AND ?";
+            query += " AND tanggal_dibuat BETWEEN ? AND ? ORDER BY tanggal_dibuat DESC";
         }
 
         PreparedStatement ps = conn.prepareStatement(query);
@@ -312,7 +312,7 @@ public class Surat_Keluar {
             query += " AND kategori = ?";
         }
         if (tgl_awal != null && tgl_akhir != null) {
-            query += " AND tanggal_dibuat BETWEEN ? AND ?";
+            query += " AND tanggal_dibuat BETWEEN ? AND ? ORDER BY tanggal_dibuat DESC";
         }
 
         PreparedStatement ps = conn.prepareStatement(query);
@@ -335,7 +335,7 @@ public class Surat_Keluar {
     // Method untuk menampilkan tabel berdasarkan perihal dan tujuan di menu
     public ResultSet KodeTampilByPerihalTujuan() {
         ResultSet rs = null;
-        String query = "SELECT * FROM surat_keluar WHERE (perihal LIKE ? OR tujuan LIKE ?) AND status = '1'";
+        String query = "SELECT * FROM surat_keluar WHERE (perihal LIKE ? OR tujuan LIKE ?) AND status = '1' ORDER BY tanggal_dibuat DESC";
 
         try {
             PreparedStatement ps = conn.prepareStatement(query);
@@ -354,7 +354,7 @@ public class Surat_Keluar {
     // Method untuk menampilkan tabel berdasarkan perihal dan tujuan di menu sampah
     public ResultSet KodeTampilByPerihalTujuanSampah() {
         ResultSet rs = null;
-        String query = "SELECT * FROM surat_keluar WHERE (perihal LIKE ? OR tujuan LIKE ?) AND status = '1'";
+        String query = "SELECT * FROM surat_keluar WHERE (perihal LIKE ? OR tujuan LIKE ?) AND status = '1' ORDER BY tanggal_dibuat DESC";
 
         try {
             PreparedStatement ps = conn.prepareStatement(query);
