@@ -80,7 +80,7 @@ public class Bagian {
 
     // Method untuk menampilkan jumlah Kategori
     public int TampilJumlahBagian() {
-        query = "SELECT COUNT(*) AS jumlah FROM bagian_surat";
+        query = "SELECT COUNT(*) AS jumlah FROM bagian_surat WHERE status = '0'";
 
         try {
             st = conn.createStatement();

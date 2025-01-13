@@ -208,7 +208,7 @@ public class Surat_Keluar {
 
     // Method untuk menampilkan jumlah Surat Keluar
     public int TampilJumlahSuratKeluar() {
-        query = "SELECT COUNT(*) AS jumlah FROM surat_keluar";
+        query = "SELECT COUNT(*) AS jumlah FROM surat_keluar WHERE status = '0'";
 
         try {
             st = conn.createStatement();

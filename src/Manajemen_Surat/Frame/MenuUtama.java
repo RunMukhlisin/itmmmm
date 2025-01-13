@@ -105,6 +105,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cropped-Logo-2-1 150px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -177,6 +178,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/user (1).png"))); // NOI18N
 
         lb_Username.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lb_Username.setText("USERNAME");
