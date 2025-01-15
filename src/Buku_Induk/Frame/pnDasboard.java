@@ -112,7 +112,7 @@ public class pnDasboard extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("MAHASISWA");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Graduation Cap_2.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\foto\\icon\\Graduation Cap_2.png")); // NOI18N
 
         tMahasiswa.setFont(new java.awt.Font("DM Sans ExtraBold", 1, 48)); // NOI18N
         tMahasiswa.setForeground(new java.awt.Color(255, 255, 255));
@@ -160,7 +160,7 @@ public class pnDasboard extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("PRODI");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/School Building.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("D:\\foto\\icon\\School Building.png")); // NOI18N
 
         tProdi.setFont(new java.awt.Font("DM Sans ExtraBold", 1, 36)); // NOI18N
         tProdi.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,7 +203,7 @@ public class pnDasboard extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("ANGKATAN");
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/School Backpack.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon("D:\\foto\\icon\\School Backpack.png")); // NOI18N
 
         tAngkatan.setFont(new java.awt.Font("DM Sans ExtraBold", 1, 36)); // NOI18N
         tAngkatan.setForeground(new java.awt.Color(255, 255, 255));
