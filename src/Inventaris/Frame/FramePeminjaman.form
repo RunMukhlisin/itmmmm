@@ -41,7 +41,6 @@
                                   <Component id="btnPindahkeFrameTampilPeminjaman" min="-2" pref="141" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnSisaBarang" min="-2" pref="103" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

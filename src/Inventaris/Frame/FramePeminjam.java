@@ -1,10 +1,10 @@
 package Inventaris.Frame;
 
-import Kelas.Barang;
+import Inventaris.Kelas.Barang;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-import Kelas.Peminjam;
+import Inventaris.Kelas.Peminjam;
 
 import javax.swing.JOptionPane;
 

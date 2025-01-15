@@ -1,5 +1,6 @@
 package Inventaris.Kelas;
 
+import SuperAdmin.koneksi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,8 +22,8 @@ public class Peminjaman {
     private String query;
 
     public Peminjaman() throws SQLException {
-        Koneksi koneksi = new Koneksi();
-        konek = koneksi.konekDB();
+        koneksi koneksi = new koneksi();
+        konek = koneksi.connectDb();
     }
 
     public String getId_peminjaman() {

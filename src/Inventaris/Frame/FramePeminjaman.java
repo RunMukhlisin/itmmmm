@@ -1,10 +1,9 @@
 package Inventaris.Frame;
 
-import Kelas.Barang;
-import Kelas.Peminjaman;
-import Kelas.Koneksi;
+import Inventaris.Kelas.Barang;
+import Inventaris.Kelas.Peminjaman;
 
-import Kelas.Peminjam;
+import Inventaris.Kelas.Peminjam;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 

@@ -1,10 +1,10 @@
 package Inventaris.Frame;
 
-import Kelas.Kategori;
+import Inventaris.Kelas.Kategori;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-import Kelas.Vendor;
+import Inventaris.Kelas.Vendor;
 import javax.swing.JOptionPane;
 
 public class FrameInputVendor extends javax.swing.JFrame {

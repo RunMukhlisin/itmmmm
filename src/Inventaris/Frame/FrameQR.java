@@ -1,6 +1,6 @@
 package Inventaris.Frame;
 
-import Kelas.Barang;
+import Inventaris.Kelas.Barang;
 import com.barcodelib.barcode.Linear;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;

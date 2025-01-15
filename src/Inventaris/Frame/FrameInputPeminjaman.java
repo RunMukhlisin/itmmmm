@@ -4,9 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.Timer;
-import Kelas.Barang;
-import Kelas.Peminjam;
-import Kelas.Peminjaman;
+import Inventaris.Kelas.Barang;
+import Inventaris.Kelas.Peminjam;
+import Inventaris.Kelas.Peminjaman;
 
 import java.awt.HeadlessException;
 import java.sql.ResultSet;

@@ -1,6 +1,6 @@
 package Inventaris.Frame;
 
-import Kelas.Peminjam;
+import Inventaris.Kelas.Peminjam;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;

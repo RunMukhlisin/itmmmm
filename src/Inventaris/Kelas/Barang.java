@@ -5,8 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import SuperAdmin.koneksi;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,8 +22,8 @@ public class Barang {
     private String query;
 
     public Barang() throws SQLException {
-        Koneksi koneksi = new Koneksi();
-        konek = koneksi.konekDB();
+        koneksi koneksi = new koneksi();
+        konek = koneksi.connectDb();
     }
 
     public int getJumlah() {
@@ -338,8 +337,6 @@ public class Barang {
     model.addColumn("Sisa Barang");
 
     try {
-        Koneksi koneksi = new Koneksi(); // Membuat instance kelas Koneksi
-        Connection conn = koneksi.konekDB(); // Memanggil metode konekDB()
         String query = """
             SELECT 
                 b.nama_barang, 
@@ -357,7 +354,7 @@ public class Barang {
                 b.id_barang, b.nama_barang, b.jumlah
         """;
 
-        PreparedStatement ps = conn.prepareStatement(query);
+        PreparedStatement ps = konek.prepareStatement(query);
         ps.setString(1, "%" + keyword + "%"); // Gunakan wildcard untuk pencarian
         ResultSet rs = ps.executeQuery();
 

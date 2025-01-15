@@ -1,5 +1,6 @@
 package Inventaris.Kelas;
 
+import SuperAdmin.koneksi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,8 +20,8 @@ public class Vendor {
     private String query;
 
     public Vendor() throws SQLException {
-        Koneksi koneksi = new Koneksi();
-        konek = koneksi.konekDB();
+        koneksi koneksi = new koneksi();
+        konek = koneksi.connectDb();
     }
 
     public String getId_vendor() {

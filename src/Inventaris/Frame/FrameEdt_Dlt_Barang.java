@@ -2,9 +2,9 @@ package Inventaris.Frame;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Kelas.Barang;
-import Kelas.Vendor;
-import Kelas.Kategori;
+import Inventaris.Kelas.Barang;
+import Inventaris.Kelas.Vendor;
+import Inventaris.Kelas.Kategori;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

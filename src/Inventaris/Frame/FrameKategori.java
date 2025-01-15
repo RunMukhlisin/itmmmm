@@ -3,7 +3,7 @@ package Inventaris.Frame;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-import Kelas.Kategori;
+import Inventaris.Kelas.Kategori;
 import javax.swing.JOptionPane;
 
 public class FrameKategori extends javax.swing.JPanel {
