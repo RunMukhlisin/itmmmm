@@ -270,10 +270,10 @@ public class FrameInputPeminjam extends javax.swing.JFrame {
 
         loadTable();
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FramePeminjam());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FramePeminjam());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
     }//GEN-LAST:event_btnTambahActionPerformed
 
@@ -293,10 +293,10 @@ public class FrameInputPeminjam extends javax.swing.JFrame {
 
         loadTable();
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FramePeminjam());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FramePeminjam());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
     }//GEN-LAST:event_btnUbahActionPerformed
 
@@ -311,10 +311,10 @@ public class FrameInputPeminjam extends javax.swing.JFrame {
 
         loadTable();
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FramePeminjam());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FramePeminjam());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
     }//GEN-LAST:event_btnHapusActionPerformed
 

@@ -4,13 +4,15 @@
  */
 package Pembayaran.template;
 
-import Pembayaran.Kelas.koneksi;
+import SuperAdmin.Kelas.koneksi;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import SuperAdmin.Kelas.session;
+import SuperAdmin.Frame.menu;
 
 /**
  *
@@ -23,6 +25,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+            tUser.setText(session.getNama());
         setExtendedState(MAXIMIZED_BOTH);
         koneksi kon = new koneksi();
         kon.connectDb();
@@ -65,6 +68,7 @@ public class Main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         tUser = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         pnKonten = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -249,15 +253,30 @@ public class Main extends javax.swing.JFrame {
         tUser.setFont(new java.awt.Font("DM Sans 24pt Medium", 0, 18)); // NOI18N
         tUser.setText("     USER");
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/logout (1)_1.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(tUser, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(33, 33, 33))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -407,6 +426,11 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pJenisMouseClicked
 
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        dispose();
+        new menu().setVisible(true);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -438,6 +462,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -460,11 +485,11 @@ void gambar(){
         tLogo.setIcon(scaledIcon);
         
         //USER
-        ImageIcon ico = new ImageIcon(getClass().getResource("/FOTO/user (4).png"));
-        Image image = ico.getImage();
-        Image scaleImg = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
-        ImageIcon scaleIcon = new ImageIcon(scaleImg);
-        tUser.setIcon(scaleIcon);
+//        ImageIcon ico = new ImageIcon(getClass().getResource("/FOTO/user(4).png"));
+//        Image image = ico.getImage();
+//        Image scaleImg = image.getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
+//        ImageIcon scaleIcon = new ImageIcon(scaleImg);
+//        tUser.setIcon(scaleIcon);
 }
 
 }

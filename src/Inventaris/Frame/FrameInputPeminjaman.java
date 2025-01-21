@@ -439,10 +439,10 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
         }
         loadTable();
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FramePeminjaman());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FramePeminjaman());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
 
 
@@ -481,10 +481,10 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
         }
         loadTable();
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FramePeminjaman());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FramePeminjaman());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
     }//GEN-LAST:event_btnUbahActionPerformed
 
@@ -514,10 +514,10 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
         // Refresh tabel dan reset form
         loadTable();
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FramePeminjaman());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FramePeminjaman());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
     }//GEN-LAST:event_btnKembalikanActionPerformed
 
@@ -534,10 +534,10 @@ public class FrameInputPeminjaman extends javax.swing.JFrame {
         reset();
         loadTable();
 
-        Main.pConten.removeAll();
-        Main.pConten.add(new FramePeminjaman());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FramePeminjaman());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
 
     }//GEN-LAST:event_btnHapusActionPerformed

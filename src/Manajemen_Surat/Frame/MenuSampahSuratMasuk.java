@@ -4,7 +4,7 @@
  */
 package Manajemen_Surat.Frame;
 
-import Manajemen_Surat.Frame.PopUpSuratMasuk;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Manajemen_Surat.Kelas.Kategori;
@@ -44,7 +44,7 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
             try {
                 applyFilters();
             } catch (SQLException ex) {
-                Logger.getLogger(MenuSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MenuSampahSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 
@@ -53,7 +53,7 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
                 try {
                     applyFilters();
                 } catch (SQLException ex) {
-                    Logger.getLogger(MenuSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MenuSampahSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -63,7 +63,7 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
                 try {
                     applyFilters();
                 } catch (SQLException ex) {
-                    Logger.getLogger(MenuSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MenuSampahSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -88,7 +88,7 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
         model.addColumn("File Surat");
         model.addColumn("User Login");
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id", "ID")); // Satu deklarasi dateFormat
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id", "ID")); 
 
         try {
             Surat_Masuk surat = new Surat_Masuk();
@@ -121,13 +121,13 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
             JOptionPane.showMessageDialog(null, "Gagal memuat data: " + sQLException.getMessage());
         }
 
-        tb_SuratMasuk.setModel(model);
+        tb_SuratSampahMasuk.setModel(model);
 
-        tb_SuratMasuk.getColumnModel().getColumn(1).setMinWidth(0);
-        tb_SuratMasuk.getColumnModel().getColumn(1).setMaxWidth(0);
-        tb_SuratMasuk.getColumnModel().getColumn(1).setWidth(0);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(1).setMinWidth(0);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(1).setMaxWidth(0);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(1).setWidth(0);
 
-        tb_SuratMasuk.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        tb_SuratSampahMasuk.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                     boolean hasFocus, int row, int column) {
@@ -146,19 +146,19 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
             }
         });
 
-        tb_SuratMasuk.setRowHeight(40);
+        tb_SuratSampahMasuk.setRowHeight(40);
 
-        tb_SuratMasuk.getColumnModel().getColumn(0).setPreferredWidth(30);  // Kolom "NO"
-        tb_SuratMasuk.getColumnModel().getColumn(2).setPreferredWidth(125); // Kolom "Pengirim"
-        tb_SuratMasuk.getColumnModel().getColumn(3).setPreferredWidth(125); // Kolom "Kategori"
-        tb_SuratMasuk.getColumnModel().getColumn(4).setPreferredWidth(125); // Kolom "Nomor Surat"
-        tb_SuratMasuk.getColumnModel().getColumn(5).setPreferredWidth(130); // Kolom "Perihal"
-        tb_SuratMasuk.getColumnModel().getColumn(6).setPreferredWidth(130); // Kolom "Tanggal Diterima"
-        tb_SuratMasuk.getColumnModel().getColumn(7).setPreferredWidth(200); // Kolom "File Surat"
-        tb_SuratMasuk.getColumnModel().getColumn(8).setPreferredWidth(90);  // Kolom "User Login"
+        tb_SuratSampahMasuk.getColumnModel().getColumn(0).setPreferredWidth(30);  
+        tb_SuratSampahMasuk.getColumnModel().getColumn(2).setPreferredWidth(125); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(3).setPreferredWidth(125); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(4).setPreferredWidth(125); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(5).setPreferredWidth(130); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(6).setPreferredWidth(130); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(7).setPreferredWidth(200); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(8).setPreferredWidth(90);  
 
-        tb_SuratMasuk.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
-        tb_SuratMasuk.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
+        tb_SuratSampahMasuk.getTableHeader().setReorderingAllowed(false); 
+        tb_SuratSampahMasuk.getTableHeader().setResizingAllowed(false);   
     }
 
     private void applyFilters() throws SQLException {
@@ -213,13 +213,13 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        tb_SuratMasuk.setModel(model);
+        tb_SuratSampahMasuk.setModel(model);
 
-        tb_SuratMasuk.getColumnModel().getColumn(1).setMinWidth(0);
-        tb_SuratMasuk.getColumnModel().getColumn(1).setMaxWidth(0);
-        tb_SuratMasuk.getColumnModel().getColumn(1).setWidth(0);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(1).setMinWidth(0);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(1).setMaxWidth(0);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(1).setWidth(0);
 
-        tb_SuratMasuk.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        tb_SuratSampahMasuk.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                     boolean hasFocus, int row, int column) {
@@ -238,19 +238,19 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
             }
         });
 
-        tb_SuratMasuk.setRowHeight(40);
+        tb_SuratSampahMasuk.setRowHeight(40);
 
-        tb_SuratMasuk.getColumnModel().getColumn(0).setPreferredWidth(30);  // Kolom "NO"
-        tb_SuratMasuk.getColumnModel().getColumn(2).setPreferredWidth(125); // Kolom "Pengirim"
-        tb_SuratMasuk.getColumnModel().getColumn(3).setPreferredWidth(125); // Kolom "Kategori"
-        tb_SuratMasuk.getColumnModel().getColumn(4).setPreferredWidth(125); // Kolom "Nomor Surat"
-        tb_SuratMasuk.getColumnModel().getColumn(5).setPreferredWidth(130); // Kolom "Perihal"
-        tb_SuratMasuk.getColumnModel().getColumn(6).setPreferredWidth(130); // Kolom "Tanggal Diterima"
-        tb_SuratMasuk.getColumnModel().getColumn(7).setPreferredWidth(200); // Kolom "File Surat"
-        tb_SuratMasuk.getColumnModel().getColumn(8).setPreferredWidth(90);  // Kolom "User Login"
+        tb_SuratSampahMasuk.getColumnModel().getColumn(0).setPreferredWidth(30);  
+        tb_SuratSampahMasuk.getColumnModel().getColumn(2).setPreferredWidth(125); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(3).setPreferredWidth(125); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(4).setPreferredWidth(125); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(5).setPreferredWidth(130); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(6).setPreferredWidth(130);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(7).setPreferredWidth(200); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(8).setPreferredWidth(90);  
 
-        tb_SuratMasuk.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
-        tb_SuratMasuk.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
+        tb_SuratSampahMasuk.getTableHeader().setReorderingAllowed(false);
+        tb_SuratSampahMasuk.getTableHeader().setResizingAllowed(false);  
     }
 
     private void Cari() throws SQLException, ParseException {
@@ -269,7 +269,7 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
             }
         };
 
-        // Tambahkan kolom ke model
+        
         model.addColumn("NO");
         model.addColumn(null);
         model.addColumn("Pengirim");
@@ -281,11 +281,11 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
         model.addColumn("User Login");
 
        
-        Surat_Masuk suratKeluar = new Surat_Masuk();
-        suratKeluar.setKata_kunci(keyword); 
+        Surat_Masuk sm = new Surat_Masuk();
+        sm.setKata_kunci(keyword); 
 
       
-        try (ResultSet data = suratKeluar.KodeCariTabelSampah()) {
+        try (ResultSet data = sm.KodeCariTabelSampah()) {
             
             java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id", "ID"));
             int no = 1;
@@ -315,13 +315,13 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
             JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        tb_SuratMasuk.setModel(model);
+        tb_SuratSampahMasuk.setModel(model);
 
-        tb_SuratMasuk.getColumnModel().getColumn(1).setMinWidth(0);
-        tb_SuratMasuk.getColumnModel().getColumn(1).setMaxWidth(0);
-        tb_SuratMasuk.getColumnModel().getColumn(1).setWidth(0);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(1).setMinWidth(0);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(1).setMaxWidth(0);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(1).setWidth(0);
 
-        tb_SuratMasuk.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        tb_SuratSampahMasuk.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                     boolean hasFocus, int row, int column) {
@@ -340,19 +340,19 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
             }
         });
 
-        tb_SuratMasuk.setRowHeight(40);
+        tb_SuratSampahMasuk.setRowHeight(40);
 
-        tb_SuratMasuk.getColumnModel().getColumn(0).setPreferredWidth(30);  // Kolom "NO"
-        tb_SuratMasuk.getColumnModel().getColumn(2).setPreferredWidth(125); // Kolom "Pengirim"
-        tb_SuratMasuk.getColumnModel().getColumn(3).setPreferredWidth(125); // Kolom "Kategori"
-        tb_SuratMasuk.getColumnModel().getColumn(4).setPreferredWidth(125); // Kolom "Nomor Surat"
-        tb_SuratMasuk.getColumnModel().getColumn(5).setPreferredWidth(130); // Kolom "Perihal"
-        tb_SuratMasuk.getColumnModel().getColumn(6).setPreferredWidth(130); // Kolom "Tanggal Diterima"
-        tb_SuratMasuk.getColumnModel().getColumn(7).setPreferredWidth(200); // Kolom "File Surat"
-        tb_SuratMasuk.getColumnModel().getColumn(8).setPreferredWidth(90);  // Kolom "User Login"
+        tb_SuratSampahMasuk.getColumnModel().getColumn(0).setPreferredWidth(30);  
+        tb_SuratSampahMasuk.getColumnModel().getColumn(2).setPreferredWidth(125); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(3).setPreferredWidth(125); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(4).setPreferredWidth(125); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(5).setPreferredWidth(130); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(6).setPreferredWidth(130);
+        tb_SuratSampahMasuk.getColumnModel().getColumn(7).setPreferredWidth(200); 
+        tb_SuratSampahMasuk.getColumnModel().getColumn(8).setPreferredWidth(90);
 
-        tb_SuratMasuk.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
-        tb_SuratMasuk.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
+        tb_SuratSampahMasuk.getTableHeader().setReorderingAllowed(false); 
+        tb_SuratSampahMasuk.getTableHeader().setResizingAllowed(false);   
     }
 
     private void addSearchListener() {
@@ -365,9 +365,9 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
                 try {
                     Cari(); 
                 } catch (SQLException ex) {
-                    Logger.getLogger(MenuSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MenuSampahSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
-                    Logger.getLogger(MenuSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MenuSampahSuratMasuk.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -454,7 +454,7 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
         cb_KategoriMenu = new javax.swing.JComboBox<>();
         bReset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb_SuratMasuk = new javax.swing.JTable();
+        tb_SuratSampahMasuk = new javax.swing.JTable();
         dc_TglAwal = new com.toedter.calendar.JDateChooser();
         dc_TglAkhir = new com.toedter.calendar.JDateChooser();
 
@@ -483,7 +483,7 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
             }
         });
 
-        tb_SuratMasuk.setModel(new javax.swing.table.DefaultTableModel(
+        tb_SuratSampahMasuk.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -494,12 +494,12 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tb_SuratMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
+        tb_SuratSampahMasuk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tb_SuratMasukMouseClicked(evt);
+                tb_SuratSampahMasukMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tb_SuratMasuk);
+        jScrollPane1.setViewportView(tb_SuratSampahMasuk);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -569,7 +569,7 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tb_SuratMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_SuratMasukMouseClicked
+    private void tb_SuratSampahMasukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_SuratSampahMasukMouseClicked
         PopUpSuratMasuk suratMasukFrame = null;
         try {
             suratMasukFrame = new PopUpSuratMasuk();
@@ -588,13 +588,13 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
 
             Surat_Masuk sur = new Surat_Masuk();
 
-            int baris = tb_SuratMasuk.getSelectedRow();
+            int baris = tb_SuratSampahMasuk.getSelectedRow();
 
-            sur.setId_surat(tb_SuratMasuk.getValueAt(baris, 1).toString());
-            sur.setPengirim(tb_SuratMasuk.getValueAt(baris, 2).toString());
-            String kode = tb_SuratMasuk.getValueAt(baris, 3).toString();
+            sur.setId_surat(tb_SuratSampahMasuk.getValueAt(baris, 1).toString());
+            sur.setPengirim(tb_SuratSampahMasuk.getValueAt(baris, 2).toString());
+            String kode = tb_SuratSampahMasuk.getValueAt(baris, 3).toString();
 
-            sur.setKategori(tb_SuratMasuk.getValueAt(baris, 3).toString());
+            sur.setKategori(tb_SuratSampahMasuk.getValueAt(baris, 3).toString());
             Kategori kat = new Kategori();
             ResultSet dataKat = kat.KonversiKateori();
             if (dataKat.next()) {
@@ -602,11 +602,11 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
                 Surat_Masuk.setKategori(kode + " - " + namaKategori);
             }
 
-            sur.setNomor_surat(tb_SuratMasuk.getValueAt(baris, 4).toString());
+            sur.setNomor_surat(tb_SuratSampahMasuk.getValueAt(baris, 4).toString());
 
-            sur.setPerihal(tb_SuratMasuk.getValueAt(baris, 5).toString());
+            sur.setPerihal(tb_SuratSampahMasuk.getValueAt(baris, 5).toString());
 
-            String tanggalDiterimaStr = tb_SuratMasuk.getValueAt(baris, 6).toString();
+            String tanggalDiterimaStr = tb_SuratSampahMasuk.getValueAt(baris, 6).toString();
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID"));
             try {
@@ -616,9 +616,9 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
                 e.printStackTrace();
             }
 
-            sur.setFile_data(tb_SuratMasuk.getValueAt(baris, 7).toString());
+            sur.setFile_data(tb_SuratSampahMasuk.getValueAt(baris, 7).toString());
 
-            sur.setUser_login(tb_SuratMasuk.getValueAt(baris, 8).toString());
+            sur.setUser_login(tb_SuratSampahMasuk.getValueAt(baris, 8).toString());
 
             suratMasukFrame.ambilDetail();
 
@@ -627,7 +627,7 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//GEN-LAST:event_tb_SuratMasukMouseClicked
+    }//GEN-LAST:event_tb_SuratSampahMasukMouseClicked
 
     private void bResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bResetActionPerformed
       reset();
@@ -647,7 +647,7 @@ public class MenuSampahSuratMasuk extends javax.swing.JPanel{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tb_SuratMasuk;
+    private javax.swing.JTable tb_SuratSampahMasuk;
     private javax.swing.JTextField tf_Cari;
     // End of variables declaration//GEN-END:variables
 }

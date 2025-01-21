@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import SuperAdmin.Kelas.koneksi;
 
 /**
  *
@@ -27,8 +28,8 @@ public class Bagian {
     private String query;
 
     public Bagian() throws SQLException {
-        Koneksi koneksi = new Koneksi();
-        conn = koneksi.koneksiDB();
+        koneksi koneksi = new koneksi();
+        conn = koneksi.connectDb();
     }
 
     public String getKode_bagian() {

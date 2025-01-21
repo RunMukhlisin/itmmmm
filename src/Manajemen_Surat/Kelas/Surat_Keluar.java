@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import SuperAdmin.Kelas.koneksi;
 
 /**
  *
@@ -55,8 +56,8 @@ public class Surat_Keluar {
     }
 
     public Surat_Keluar() throws SQLException {
-        Koneksi koneksi = new Koneksi();
-        conn = koneksi.koneksiDB();
+        koneksi koneksi = new koneksi();
+        conn = koneksi.connectDb();
     }
 
     public int getId_suratkeluar() {

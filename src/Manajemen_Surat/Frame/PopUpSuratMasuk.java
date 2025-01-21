@@ -6,9 +6,6 @@ package Manajemen_Surat.Frame;
 
 import Manajemen_Surat.Kelas.Kategori;
 import Manajemen_Surat.Kelas.Surat_Masuk;
-import Manajemen_Surat.Frame.MenuUtama;
-import Manajemen_Surat.Frame.MenuSampahSuratMasuk;
-import Manajemen_Surat.Frame.MenuSuratMasuk;
 import static Manajemen_Surat.Frame.MenuUtama.lb_Username;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Desktop;
@@ -190,6 +187,11 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
 
         bt_Reset.setBackground(new java.awt.Color(158, 158, 158));
         bt_Reset.setText("Reset");
+        bt_Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_ResetActionPerformed(evt);
+            }
+        });
 
         bEdit.setBackground(new java.awt.Color(33, 150, 243));
         bEdit.setText("Ubah");
@@ -217,6 +219,11 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
 
         bt_Restore.setBackground(new java.awt.Color(76, 175, 80));
         bt_Restore.setText("Restore");
+        bt_Restore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_RestoreActionPerformed(evt);
+            }
+        });
 
         bt_HapusPermanen.setBackground(new java.awt.Color(244, 67, 54));
         bt_HapusPermanen.setText("Hapus Permanen");
@@ -228,6 +235,11 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
 
         bt_Close.setBackground(new java.awt.Color(0, 204, 204));
         bt_Close.setText("Close");
+        bt_Close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_CloseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -266,7 +278,7 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(bt_Restore, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(bt_HapusPermanen, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                                        .addComponent(bt_HapusPermanen, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(bEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -525,7 +537,7 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
                 sur.setId_surat(tf_id.getText());
                 sur.KodeHapus();
                 updateView();
-                //   JOptionPane.showMessageDialog(null, "Surat berhasil dihapus.");
+            
             } catch (SQLException sQLException) {
                  TimeJOption.AutoCloseJOptionPane.showMessageDialog( "Gagal menghapus surat: " + sQLException.getMessage(), "Error", JOptionPane.ERROR_MESSAGE, 1000);
             }
@@ -570,7 +582,7 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
                 MenuUtama.pn_Utama.repaint();
                 MenuUtama.pn_Utama.revalidate();
 
-             //   JOptionPane.showMessageDialog(null, "Surat berhasil dipulihkan.");
+            
             } else {
                TimeJOption.AutoCloseJOptionPane.showMessageDialog("Proses pemulihan surat dibatalkan.", "Informasi", JOptionPane.INFORMATION_MESSAGE, 1000); 
 
@@ -617,6 +629,10 @@ public class PopUpSuratMasuk extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_bt_HapusPermanenActionPerformed
+
+    private void bt_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_CloseActionPerformed
+      dispose();
+    }//GEN-LAST:event_bt_CloseActionPerformed
 
     /**
      * @param args the command line arguments

@@ -273,10 +273,10 @@ public class FrameInputVendor extends javax.swing.JFrame {
 
         loadTable();
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameVendor());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameVendor());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
     }//GEN-LAST:event_btnTambahActionPerformed
 
@@ -296,10 +296,10 @@ public class FrameInputVendor extends javax.swing.JFrame {
 
         loadTable();
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameVendor());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameVendor());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
     }//GEN-LAST:event_btnUbahActionPerformed
 
@@ -314,10 +314,10 @@ public class FrameInputVendor extends javax.swing.JFrame {
 
         loadTable();
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameVendor());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameVendor());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
     }//GEN-LAST:event_btnHapusActionPerformed
 

@@ -44,11 +44,11 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
 
         BlokJDate();
 
-        // Mengatur Locale ke bahasa Indonesia
+       
         dc_tglAwal.setLocale(new Locale("id"));
         dc_tglAkhir.setLocale(new Locale("id"));
 
-        // Mengatur format tanggal ke "dd MMMM yyyy"
+    
         dc_tglAwal.setDateFormatString("dd MMMM yyyy");
         dc_tglAkhir.setDateFormatString("dd MMMM yyyy");
 
@@ -129,11 +129,11 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
     }
 
     public void loadTabel() throws ParseException {
-        // Model tabel dengan sel yang tidak bisa diedit
+       
         DefaultTableModel model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Semua sel tidak dapat diedit
+                return false; 
             }
         };
 
@@ -162,7 +162,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
                 }
 
                 model.addRow(new Object[]{
-                    data.getString("id_suratkeluar"), // ID
+                    data.getString("id_suratkeluar"), 
                     data.getString("bagian"),
                     data.getString("kategori"),
                     data.getString("no_surat"),
@@ -175,24 +175,24 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
 
             data.close();
         } catch (SQLException sQLException) {
-            sQLException.printStackTrace(); // Tambahkan log untuk debugging
+            sQLException.printStackTrace(); 
         }
 
         tb_SuratKeluar.setModel(model);
-        // Sembunyikan kolom ID
+     
         tb_SuratKeluar.getColumnModel().getColumn(0).setMinWidth(0);
         tb_SuratKeluar.getColumnModel().getColumn(0).setMaxWidth(0);
         tb_SuratKeluar.getColumnModel().getColumn(0).setWidth(0);
 
-        // Mengatur word wrap di setiap kolom tabel
+        
         tb_SuratKeluar.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                     boolean hasFocus, int row, int column) {
                 JTextArea textArea = new JTextArea(value != null ? value.toString() : "");
-                textArea.setLineWrap(true); // Aktifkan pembungkusan teks
-                textArea.setWrapStyleWord(true); // Bungkus berdasarkan kata
-                textArea.setOpaque(true); // Pastikan background sel sesuai
+                textArea.setLineWrap(true); 
+                textArea.setWrapStyleWord(true); 
+                textArea.setOpaque(true); 
                 if (isSelected) {
                     textArea.setBackground(table.getSelectionBackground());
                     textArea.setForeground(table.getSelectionForeground());
@@ -203,30 +203,30 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
                 return textArea;
             }
         });
-        // Mengatur tinggi baris agar sesuai dengan konten
+    
         tb_SuratKeluar.setRowHeight(40);
 
-        // Mengatur ukuran kolom
+    
         tb_SuratKeluar.getColumnModel().getColumn(0).setPreferredWidth(0);
-        tb_SuratKeluar.getColumnModel().getColumn(1).setPreferredWidth(100); // Kolom "Bagian"
-        tb_SuratKeluar.getColumnModel().getColumn(2).setPreferredWidth(125); // Kolom "Kategori"
-        tb_SuratKeluar.getColumnModel().getColumn(3).setPreferredWidth(125); // Kolom "Nomor Surat"
-        tb_SuratKeluar.getColumnModel().getColumn(4).setPreferredWidth(120); // Kolom "Tanggal dibuat"
-        tb_SuratKeluar.getColumnModel().getColumn(5).setPreferredWidth(150); // Kolom "Perihal"
-        tb_SuratKeluar.getColumnModel().getColumn(6).setPreferredWidth(150); // Kolom "Tujuan"
-        tb_SuratKeluar.getColumnModel().getColumn(7).setPreferredWidth(160); // Kolom "Nama File"
-        tb_SuratKeluar.getColumnModel().getColumn(8).setPreferredWidth(90);  // Kolom "User Login"
+        tb_SuratKeluar.getColumnModel().getColumn(1).setPreferredWidth(100); 
+        tb_SuratKeluar.getColumnModel().getColumn(2).setPreferredWidth(125); 
+        tb_SuratKeluar.getColumnModel().getColumn(3).setPreferredWidth(125); 
+        tb_SuratKeluar.getColumnModel().getColumn(4).setPreferredWidth(120);
+        tb_SuratKeluar.getColumnModel().getColumn(5).setPreferredWidth(150); 
+        tb_SuratKeluar.getColumnModel().getColumn(6).setPreferredWidth(150); 
+        tb_SuratKeluar.getColumnModel().getColumn(7).setPreferredWidth(160); 
+        tb_SuratKeluar.getColumnModel().getColumn(8).setPreferredWidth(90);  
 
-        // Mengatur agar tabel tidak bisa diubah ukuran kolomnya atau di-geser
-        tb_SuratKeluar.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
-        tb_SuratKeluar.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
+       
+        tb_SuratKeluar.getTableHeader().setReorderingAllowed(false); 
+        tb_SuratKeluar.getTableHeader().setResizingAllowed(false);   
     }
 
     private void applyFilters() throws SQLException {
 
         Surat_Keluar suratKeluar = new Surat_Keluar();
 
-        // Set nilai filter dari komponen UI
+        
         if (!cb_KategoriMenu.getSelectedItem().toString().equals("--Pilih Kategori Surat--")) {
             suratKeluar.setKategori(cb_KategoriMenu.getSelectedItem().toString().split(" - ")[0]);
         }
@@ -238,7 +238,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
         suratKeluar.setTanggalAwal(dc_tglAwal.getDate());
         suratKeluar.setTanggalAkhir(dc_tglAkhir.getDate());
 
-        // Ambil data berdasarkan filter
+     
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn(null);
         model.addColumn("Bagian");
@@ -283,15 +283,14 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
         tb_SuratKeluar.getColumnModel().getColumn(0).setMaxWidth(0);
         tb_SuratKeluar.getColumnModel().getColumn(0).setWidth(0);
 
-        // Mengatur word wrap di setiap kolom tabel
         tb_SuratKeluar.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                     boolean hasFocus, int row, int column) {
                 JTextArea textArea = new JTextArea(value != null ? value.toString() : "");
-                textArea.setLineWrap(true); // Aktifkan pembungkusan teks
-                textArea.setWrapStyleWord(true); // Bungkus berdasarkan kata
-                textArea.setOpaque(true); // Pastikan background sel sesuai
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true); 
+                textArea.setOpaque(true); 
                 if (isSelected) {
                     textArea.setBackground(table.getSelectionBackground());
                     textArea.setForeground(table.getSelectionForeground());
@@ -303,44 +302,43 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
             }
         });
 
-        // Mengatur tinggi baris agar sesuai dengan konten
+        
         tb_SuratKeluar.setRowHeight(40);
 
-        // Mengatur ukuran kolom
+      
         tb_SuratKeluar.getColumnModel().getColumn(0).setPreferredWidth(0);
-        tb_SuratKeluar.getColumnModel().getColumn(1).setPreferredWidth(100); // Kolom "Bagian"
-        tb_SuratKeluar.getColumnModel().getColumn(2).setPreferredWidth(125); // Kolom "Kategori"
-        tb_SuratKeluar.getColumnModel().getColumn(3).setPreferredWidth(125); // Kolom "Nomor Surat"
-        tb_SuratKeluar.getColumnModel().getColumn(4).setPreferredWidth(120); // Kolom "Tanggal dibuat"
-        tb_SuratKeluar.getColumnModel().getColumn(5).setPreferredWidth(150); // Kolom "Perihal"
-        tb_SuratKeluar.getColumnModel().getColumn(6).setPreferredWidth(150); // Kolom "Tujuan"
-        tb_SuratKeluar.getColumnModel().getColumn(7).setPreferredWidth(160); // Kolom "Nama File"
-        tb_SuratKeluar.getColumnModel().getColumn(8).setPreferredWidth(90);  // Kolom "User Login"
+        tb_SuratKeluar.getColumnModel().getColumn(1).setPreferredWidth(100); 
+        tb_SuratKeluar.getColumnModel().getColumn(2).setPreferredWidth(125); 
+        tb_SuratKeluar.getColumnModel().getColumn(3).setPreferredWidth(125);
+        tb_SuratKeluar.getColumnModel().getColumn(4).setPreferredWidth(120); 
+        tb_SuratKeluar.getColumnModel().getColumn(5).setPreferredWidth(150); 
+        tb_SuratKeluar.getColumnModel().getColumn(6).setPreferredWidth(150);
+        tb_SuratKeluar.getColumnModel().getColumn(7).setPreferredWidth(160); 
+        tb_SuratKeluar.getColumnModel().getColumn(8).setPreferredWidth(90);  
 
-        // Mengatur agar tabel tidak bisa diubah ukuran kolomnya atau di-geser
-        tb_SuratKeluar.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
-        tb_SuratKeluar.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
+        
+        tb_SuratKeluar.getTableHeader().setReorderingAllowed(false); 
+        tb_SuratKeluar.getTableHeader().setResizingAllowed(false);  
 
     }
 
     private void Cari() throws SQLException, ParseException {
-        // Ambil teks dari text field
+     
         String keyword = tf_Cari.getText().trim();
         if (keyword.isEmpty()) {
-            loadTabel(); // Jika kosong, reset tabel
+            loadTabel(); 
             return;
         }
 
-        // Model tabel dengan sel yang tidak bisa diedit
+   
         DefaultTableModel model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Semua sel tidak dapat diedit
+                return false; 
             }
         };
 
-        // Tambahkan kolom ke model
-        model.addColumn(null); // Kolom untuk ID
+        model.addColumn(null); 
         model.addColumn("Bagian");
         model.addColumn("Kategori");
         model.addColumn("No Surat");
@@ -350,24 +348,24 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
         model.addColumn("Nama File");
         model.addColumn("User Login");
 
-        // Set kata kunci pencarian di objek Surat_Keluar
+        
         Surat_Keluar suratKeluar = new Surat_Keluar();
-        suratKeluar.setKata_kunci(keyword); // Set kata kunci menggunakan setter
+        suratKeluar.setKata_kunci(keyword); 
 
-        // Jalankan query dan ambil data
+        
         try (ResultSet data = suratKeluar.KodeTampilByPerihalTujuan()) {
-            // Format tanggal
+           
             java.text.SimpleDateFormat dateFormat = new java.text.SimpleDateFormat("dd MMMM yyyy", new java.util.Locale("id", "ID"));
 
             while (data.next()) {
-                // Format tanggal
+               
                 String formattedDate = "";
                 java.util.Date date = data.getDate("tanggal_dibuat");
                 if (date != null) {
                     formattedDate = dateFormat.format(date);
                 }
 
-                // Tambahkan baris ke model
+                
                 model.addRow(new Object[]{
                     data.getString("id_suratkeluar"),
                     data.getString("bagian"),
@@ -380,19 +378,18 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
                     data.getString("user_login"),});
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Log error untuk debugging
+            e.printStackTrace(); 
             JOptionPane.showMessageDialog(this, "Gagal menampilkan data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        // Set model ke tabel
+      
         tb_SuratKeluar.setModel(model);
 
-        // Sembunyikan kolom ID
+        
         tb_SuratKeluar.getColumnModel().getColumn(0).setMinWidth(0);
         tb_SuratKeluar.getColumnModel().getColumn(0).setMaxWidth(0);
         tb_SuratKeluar.getColumnModel().getColumn(0).setWidth(0);
 
-        // Custom renderer untuk word wrap
         tb_SuratKeluar.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
@@ -412,37 +409,36 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
             }
         });
 
-        // Atur tinggi baris
+       
         tb_SuratKeluar.setRowHeight(40);
 
-        // Atur lebar kolom
-        tb_SuratKeluar.getColumnModel().getColumn(1).setPreferredWidth(100); // Bagian
-        tb_SuratKeluar.getColumnModel().getColumn(2).setPreferredWidth(125); // Kategori
-        tb_SuratKeluar.getColumnModel().getColumn(3).setPreferredWidth(125); // No Surat
-        tb_SuratKeluar.getColumnModel().getColumn(4).setPreferredWidth(120); // Tanggal Dibuat
-        tb_SuratKeluar.getColumnModel().getColumn(5).setPreferredWidth(150); // Perihal
-        tb_SuratKeluar.getColumnModel().getColumn(6).setPreferredWidth(150); // Tujuan
-        tb_SuratKeluar.getColumnModel().getColumn(7).setPreferredWidth(160); // Nama File
-        tb_SuratKeluar.getColumnModel().getColumn(8).setPreferredWidth(90);  // User Login
+       
+        tb_SuratKeluar.getColumnModel().getColumn(1).setPreferredWidth(100); 
+        tb_SuratKeluar.getColumnModel().getColumn(2).setPreferredWidth(125); 
+        tb_SuratKeluar.getColumnModel().getColumn(3).setPreferredWidth(125); 
+        tb_SuratKeluar.getColumnModel().getColumn(4).setPreferredWidth(120); 
+        tb_SuratKeluar.getColumnModel().getColumn(5).setPreferredWidth(150); 
+        tb_SuratKeluar.getColumnModel().getColumn(6).setPreferredWidth(150); 
+        tb_SuratKeluar.getColumnModel().getColumn(7).setPreferredWidth(160); 
+        tb_SuratKeluar.getColumnModel().getColumn(8).setPreferredWidth(90);  
 
-        // Atur header tabel
         tb_SuratKeluar.getTableHeader().setReorderingAllowed(false);
         tb_SuratKeluar.getTableHeader().setResizingAllowed(false);
     }
 
     private void ListenerCari() {
-        // Timer dengan delay 300ms
+       
         Timer timer = new Timer(500, e -> {
             String keyword = tf_Cari.getText().trim();
             if (keyword.isEmpty()) {
                 try {
-                    loadTabel(); // Jika text field kosong, reset tabel
+                    loadTabel();
                 } catch (ParseException ex) {
                     Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 try {
-                    Cari(); // Jika tidak kosong, lakukan pencarian
+                    Cari();
                 } catch (SQLException ex) {
                     Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParseException ex) {
@@ -451,24 +447,23 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
             }
         });
 
-        // Pastikan timer tidak otomatis dijalankan
+       
         timer.setRepeats(false);
 
-        // Tambahkan DocumentListener ke text field
         tf_Cari.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                timer.restart(); // Restart timer setiap kali teks berubah
+                timer.restart(); 
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                timer.restart(); // Restart timer setiap kali teks dihapus
+                timer.restart();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                // Tidak diperlukan untuk JTextField
+               
             }
         });
     }
@@ -528,6 +523,12 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
         jLabel6.setText("Tanggal Awal");
 
         jLabel7.setText("Tanggal Akhir");
+
+        cb_BagianMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_BagianMenuActionPerformed(evt);
+            }
+        });
 
         bt_TambahSurat.setBackground(new java.awt.Color(76, 175, 80));
         bt_TambahSurat.setText("Tambah Surat Keluar");
@@ -681,7 +682,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
                 pusk.tf_NoSurat.setEditable(false);
                 pusk.dc_Tgl.setEnabled(false);
 
-                pusk.isInitializing = true; // Set flag sebelum pengisian data
+                pusk.isInitializing = true; 
                 pusk.lb_Id.setText(Id);
 
                 for (int i = 0; i < pusk.cb_Bagian.getItemCount(); i++) {
@@ -714,7 +715,7 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
                 pusk.tf_Tujuan.setText(Tujuan);
                 pusk.ta_File.setText(File);
 
-                pusk.isInitializing = false; // Selesai inisialisasi
+                pusk.isInitializing = false; 
                 pusk.setVisible(true);
             }
         } catch (SQLException | java.text.ParseException ex) {
@@ -729,6 +730,10 @@ public class MenuSuratKeluar extends javax.swing.JPanel implements Surat_Keluar.
             Logger.getLogger(MenuSuratKeluar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bt_ResetActionPerformed
+
+    private void cb_BagianMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_BagianMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_BagianMenuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

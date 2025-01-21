@@ -120,7 +120,7 @@ public class FramePeminjam extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblPeminjam);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search (1).png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FOTO/search (1).png"))); // NOI18N
         jLabel7.setText("Cari");
 
         btnTambah.setBackground(new java.awt.Color(102, 102, 102));

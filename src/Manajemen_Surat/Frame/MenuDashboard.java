@@ -8,6 +8,7 @@ import Manajemen_Surat.Kelas.Bagian;
 import Manajemen_Surat.Kelas.Kategori;
 import Manajemen_Surat.Kelas.Surat_Keluar;
 import Manajemen_Surat.Kelas.Surat_Masuk;
+import SuperAdmin.Kelas.session;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +24,8 @@ public class MenuDashboard extends javax.swing.JPanel {
      */
     public MenuDashboard() {
         initComponents();
+        lb_Username.setText(session.getNama());
+        
         tampilJumlahBagianSurat();
         tampilJumlahKategoriSurat();
         tampilJumlahSuratMasuk();

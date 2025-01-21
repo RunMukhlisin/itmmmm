@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import SuperAdmin.Kelas.koneksi;
 
 /**
  *
@@ -59,8 +60,8 @@ public class Surat_Masuk {
     
     
     public Surat_Masuk() throws SQLException {
-        Koneksi koneksi = new Koneksi();
-        conn = koneksi.koneksiDB();
+        koneksi koneksi = new koneksi();
+        conn = koneksi.connectDb();
     }
 
     public String getFilterKategori() {
@@ -287,7 +288,7 @@ public class Surat_Masuk {
     }
 
     public ResultSet KodeTampilTabelLog() {;
-        query = "SELECT * FROM log_suratmasuk";
+        query = "SELECT * FROM log_suratmasuk ORDER BY waktu DESC";
 
         try {
             st = conn.createStatement();

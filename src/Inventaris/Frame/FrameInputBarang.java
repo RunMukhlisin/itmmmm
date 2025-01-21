@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import Inventaris.Frame.FrameBarang;
-import Inventaris.Frame.Main;
+import Inventaris.Frame.MainInv;
 
 public class FrameInputBarang extends javax.swing.JFrame {
 
@@ -382,10 +382,10 @@ public class FrameInputBarang extends javax.swing.JFrame {
             System.out.println("data tidak masuk");
         }
 
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameBarang());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameBarang());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
 
 

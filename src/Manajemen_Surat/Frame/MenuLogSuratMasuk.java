@@ -31,11 +31,10 @@ import javax.swing.table.DefaultTableModel;
     
     public void loadTabel() throws ParseException {
 
-        // Model tabel dengan sel yang tidak bisa diedit
         DefaultTableModel model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Semua sel tidak dapat diedit
+                return false; 
             }
         };
 
@@ -50,13 +49,13 @@ import javax.swing.table.DefaultTableModel;
             Surat_Masuk k = new Surat_Masuk();
             ResultSet data = k.KodeTampilTabelLog();
 
-            // Format waktu: 21:11:16 (newline) 25 Desember 2024
+       
             SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID"));
 
             while (data.next()) {
-                String waktu = data.getString("waktu"); // Ambil waktu dari database
+                String waktu = data.getString("waktu"); 
                 String waktuFormatted = "";
                 if (waktu != null) {
                     waktuFormatted = timeFormat.format(originalFormat.parse(waktu)) + "\n"
@@ -68,26 +67,26 @@ import javax.swing.table.DefaultTableModel;
                     data.getString("kolom_yang_berubah"),
                     data.getString("nilai_lama"),
                     data.getString("nilai_baru"),
-                    waktuFormatted, // Format waktu yang sudah diubah
+                    waktuFormatted, 
                     data.getString("keterangan"),});
             }
 
             data.close();
         } catch (SQLException sQLException) {
-            sQLException.printStackTrace(); // Tambahkan log untuk debugging
+            sQLException.printStackTrace(); 
         }
 
         tb_LogSuratMasuk.setModel(model);
 
-        // Mengatur word wrap di setiap kolom tabel
+      
         tb_LogSuratMasuk.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                     boolean hasFocus, int row, int column) {
                 JTextArea textArea = new JTextArea(value != null ? value.toString() : "");
-                textArea.setLineWrap(true); // Aktifkan pembungkusan teks
-                textArea.setWrapStyleWord(true); // Bungkus berdasarkan kata
-                textArea.setOpaque(true); // Pastikan background sel sesuai
+                textArea.setLineWrap(true); 
+                textArea.setWrapStyleWord(true); 
+                textArea.setOpaque(true); 
                 if (isSelected) {
                     textArea.setBackground(table.getSelectionBackground());
                     textArea.setForeground(table.getSelectionForeground());
@@ -99,20 +98,20 @@ import javax.swing.table.DefaultTableModel;
             }
         });
 
-        // Mengatur tinggi baris agar sesuai dengan konten
+       
         tb_LogSuratMasuk.setRowHeight(70);
 
-        // Mengatur ukuran kolom
-        tb_LogSuratMasuk.getColumnModel().getColumn(0).setPreferredWidth(90); // Kolom "User Login"
-        tb_LogSuratMasuk.getColumnModel().getColumn(1).setPreferredWidth(80); // Kolom "Kolom yang berubah"
-        tb_LogSuratMasuk.getColumnModel().getColumn(2).setPreferredWidth(130); // Kolom "Nilai Lama"
-        tb_LogSuratMasuk.getColumnModel().getColumn(3).setPreferredWidth(130); // Kolom "Nilai Baru"
-        tb_LogSuratMasuk.getColumnModel().getColumn(4).setPreferredWidth(110); // Kolom "Waktu"
-        tb_LogSuratMasuk.getColumnModel().getColumn(5).setPreferredWidth(230); // Kolom "Keterangan"
+      
+        tb_LogSuratMasuk.getColumnModel().getColumn(0).setPreferredWidth(90); 
+        tb_LogSuratMasuk.getColumnModel().getColumn(1).setPreferredWidth(80); 
+        tb_LogSuratMasuk.getColumnModel().getColumn(2).setPreferredWidth(130); 
+        tb_LogSuratMasuk.getColumnModel().getColumn(3).setPreferredWidth(130); 
+        tb_LogSuratMasuk.getColumnModel().getColumn(4).setPreferredWidth(110);
+        tb_LogSuratMasuk.getColumnModel().getColumn(5).setPreferredWidth(230); 
 
-        // Mengatur agar tabel tidak bisa diubah ukuran kolomnya atau di-geser
-        tb_LogSuratMasuk.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
-        tb_LogSuratMasuk.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
+
+        tb_LogSuratMasuk.getTableHeader().setReorderingAllowed(false); 
+        tb_LogSuratMasuk.getTableHeader().setResizingAllowed(false); 
     }
    
 

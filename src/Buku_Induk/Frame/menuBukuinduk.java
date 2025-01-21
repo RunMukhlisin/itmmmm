@@ -1,19 +1,17 @@
 package Buku_Induk.Frame;
 
-import User.Frame.*;
-import FrameUtama.*;
-import User.kelas.*;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
 import javax.swing.UIManager;
+import SuperAdmin.Kelas.session;
+import SuperAdmin.Frame.menu;
 
 public class menuBukuinduk extends javax.swing.JFrame {
-    private String username = sesi.getUsername();
     public menuBukuinduk() {
         initComponents();
         loadDasboard();
+        tUser.setText(session.getNama());
         
-        tUser.setText(sesi.getNama());
     }
 
     void loadDasboard() {
@@ -81,7 +79,7 @@ public class menuBukuinduk extends javax.swing.JFrame {
         });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\foto\\icon\\Graduation Cap_1.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Graduation Cap_1.png"))); // NOI18N
         jLabel3.setText(" ");
 
         javax.swing.GroupLayout mahasiswaPanelLayout = new javax.swing.GroupLayout(mahasiswaPanel);
@@ -126,7 +124,7 @@ public class menuBukuinduk extends javax.swing.JFrame {
         });
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\foto\\icon\\School Backpack_1.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/School Backpack_1.png"))); // NOI18N
 
         javax.swing.GroupLayout angkatanPanelLayout = new javax.swing.GroupLayout(angkatanPanel);
         angkatanPanel.setLayout(angkatanPanelLayout);
@@ -162,7 +160,7 @@ public class menuBukuinduk extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\foto\\icon\\University Campus.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/University Campus.png"))); // NOI18N
 
         javax.swing.GroupLayout prodiPanelLayout = new javax.swing.GroupLayout(prodiPanel);
         prodiPanel.setLayout(prodiPanelLayout);
@@ -200,7 +198,7 @@ public class menuBukuinduk extends javax.swing.JFrame {
         });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\foto\\icon\\Dashboard Layout_1.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Dashboard Layout_1.png"))); // NOI18N
 
         javax.swing.GroupLayout dasboardPanelLayout = new javax.swing.GroupLayout(dasboardPanel);
         dasboardPanel.setLayout(dasboardPanelLayout);
@@ -239,6 +237,11 @@ public class menuBukuinduk extends javax.swing.JFrame {
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon("D:\\foto\\icon\\Logout.png")); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout logoutPanelLayout = new javax.swing.GroupLayout(logoutPanel);
         logoutPanel.setLayout(logoutPanelLayout);
@@ -445,7 +448,7 @@ public class menuBukuinduk extends javax.swing.JFrame {
     }//GEN-LAST:event_bProdiMouseExited
 
     private void bLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bLogoutMouseClicked
-     new menu(username).setVisible(true);
+
      dispose();
     }//GEN-LAST:event_bLogoutMouseClicked
 
@@ -458,8 +461,13 @@ public class menuBukuinduk extends javax.swing.JFrame {
     }//GEN-LAST:event_bLogoutMouseExited
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        new popUser().setVisible(true);
+
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        dispose();
+        new menu().setVisible(true);
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments

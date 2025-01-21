@@ -538,38 +538,38 @@ public class FrameDashboard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void showVendorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showVendorMouseClicked
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameVendor());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameVendor());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
     }//GEN-LAST:event_showVendorMouseClicked
 
     private void showKategoriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showKategoriMouseClicked
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameKategori());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameKategori());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
     }//GEN-LAST:event_showKategoriMouseClicked
 
     private void showPeminjamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPeminjamMouseClicked
-        Main.pConten.removeAll();
-        Main.pConten.add(new FramePeminjam());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FramePeminjam());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
     }//GEN-LAST:event_showPeminjamMouseClicked
 
     private void showBarangNewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showBarangNewMouseClicked
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameBarang());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameBarang());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
     }//GEN-LAST:event_showBarangNewMouseClicked
 
     private void showBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showBarangMouseClicked
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameBarang());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameBarang());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
     }//GEN-LAST:event_showBarangMouseClicked
 
     private void showDipinjamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showDipinjamMouseClicked
@@ -577,10 +577,10 @@ public class FrameDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_showDipinjamMouseClicked
 
     private void showBarangSecond1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showBarangSecond1MouseClicked
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameBarang());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameBarang());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
     }//GEN-LAST:event_showBarangSecond1MouseClicked
 
 

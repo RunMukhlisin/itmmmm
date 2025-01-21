@@ -4,7 +4,7 @@
  */
 package Manajemen_Surat.Frame;
 
-import com.formdev.flatlaf.FlatClientProperties;
+import SuperAdmin.Frame.menu;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.UIManager;
+import SuperAdmin.Kelas.session;
 
 /**
  *
@@ -35,6 +36,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     public MenuUtama() {
         initComponents();
+        lb_Username.setText(session.getNama());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         execute();
 
@@ -105,6 +107,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cropped-Logo-2-1 150px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -474,12 +477,23 @@ public class MenuUtama extends javax.swing.JFrame {
                 pn_Utama.revalidate();
             }
         });
+        
+        
+         MenuItem logoutItem = new MenuItem(null, false, null, "Log Out", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               
+             dispose();
+             new menu().setVisible(true);
+              
+            }
+        });
 
         MenuItem menuSurat = new MenuItem(null, false, null, "Surat", null, menuSuratKeluar, MenuSuratMasuk);
         MenuItem menuLog = new MenuItem(null, false, null, "Log Aktifitas", null, menuLogBagian, menuLogKategori, menuLogSuratKeluar, MenuLogSuratMasuk);
         MenuItem menuSampah = new MenuItem(null, false, null, "Sampah", null, menuSampahBagian, menuSampahKategori, menuSampahSuratKeluar, MenuSampahSuratMasuk);
-
-        addMenu(menuDashboard, menuBagian, menuKategori, menuSurat, menuLog, menuSampah);
+       
+        addMenu(menuDashboard, menuBagian, menuKategori, menuSurat, menuLog, menuSampah,logoutItem);
 
     }
 

@@ -1,6 +1,6 @@
 package Kepegawaian.Kelas;
 
-import SuperAdmin.koneksi;
+import SuperAdmin.Kelas.koneksi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

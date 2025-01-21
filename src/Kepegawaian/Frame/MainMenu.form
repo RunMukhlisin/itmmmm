@@ -171,7 +171,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Icon/itmlogo.png"/>
+                  <Image iconType="3" name="/iconkepegawaian/itmlogo.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -343,7 +343,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel3">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/Icon/owner.png"/>
+                          <Image iconType="3" name="/iconkepegawaian/owner.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -427,7 +427,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel7">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/Icon/two-arrow.png"/>
+                          <Image iconType="3" name="/iconkepegawaian/two-arrow.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -511,7 +511,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel8">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/Icon/street-map.png"/>
+                          <Image iconType="3" name="/iconkepegawaian/street-map.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -595,7 +595,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel9">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/Icon/dashboard (1).png"/>
+                          <Image iconType="3" name="/iconkepegawaian/dashboard (1).png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -679,7 +679,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel10">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/Icon/category.png"/>
+                          <Image iconType="3" name="/iconkepegawaian/category.png"/>
                         </Property>
                       </Properties>
                     </Component>

@@ -280,10 +280,10 @@ public class FrameEdt_Dlt_Barang extends javax.swing.JFrame {
             System.out.println("data tidak masuk");
         }
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameBarang());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameBarang());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
     }//GEN-LAST:event_btnUbahActionPerformed
 
@@ -299,10 +299,10 @@ public class FrameEdt_Dlt_Barang extends javax.swing.JFrame {
 
         // Reset dan reload tabel setelah hapus
         reset();
-        Main.pConten.removeAll();
-        Main.pConten.add(new FrameBarang());
-        Main.pConten.repaint();
-        Main.pConten.revalidate();
+        MainInv.pConten.removeAll();
+        MainInv.pConten.add(new FrameBarang());
+        MainInv.pConten.repaint();
+        MainInv.pConten.revalidate();
         dispose();
     }//GEN-LAST:event_btnHapusActionPerformed
 

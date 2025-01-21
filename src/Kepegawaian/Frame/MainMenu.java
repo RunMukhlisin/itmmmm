@@ -128,7 +128,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ITM Super Apps");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/itmlogo.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconkepegawaian/itmlogo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,7 +177,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/owner.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconkepegawaian/owner.png"))); // NOI18N
 
         btnPegawai.setBackground(new java.awt.Color(255, 255, 255));
         btnPegawai.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
@@ -234,7 +234,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/two-arrow.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconkepegawaian/two-arrow.png"))); // NOI18N
 
         btnBagian.setBackground(new java.awt.Color(255, 255, 255));
         btnBagian.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
@@ -291,7 +291,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/street-map.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconkepegawaian/street-map.png"))); // NOI18N
 
         btnJabatan.setBackground(new java.awt.Color(255, 255, 255));
         btnJabatan.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
@@ -348,7 +348,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/dashboard (1).png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconkepegawaian/dashboard (1).png"))); // NOI18N
 
         btnDashboard.setBackground(new java.awt.Color(255, 255, 255));
         btnDashboard.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
@@ -405,7 +405,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/category.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconkepegawaian/category.png"))); // NOI18N
 
         btnKategori1.setBackground(new java.awt.Color(255, 255, 255));
         btnKategori1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N

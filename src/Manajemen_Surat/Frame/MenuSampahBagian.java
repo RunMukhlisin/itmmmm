@@ -26,11 +26,11 @@ public class MenuSampahBagian extends javax.swing.JPanel {
     }
 
     public void loadTabel() {
-        // Model tabel dengan sel yang tidak bisa diedit
+       
         DefaultTableModel model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Semua sel tidak dapat diedit
+                return false; 
             }
         };
         model.addColumn("Kode Bagian Surat");
@@ -53,8 +53,8 @@ public class MenuSampahBagian extends javax.swing.JPanel {
         }
 
         tb_SampahBagian.setModel(model);
-        tb_SampahBagian.getTableHeader().setReorderingAllowed(false); // Tidak bisa geser header
-        tb_SampahBagian.getTableHeader().setResizingAllowed(false);   // Tidak bisa ubah ukuran kolom
+        tb_SampahBagian.getTableHeader().setReorderingAllowed(false); 
+        tb_SampahBagian.getTableHeader().setResizingAllowed(false);  
     }
 
     void reset() {

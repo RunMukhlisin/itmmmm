@@ -261,11 +261,11 @@ public class MenuKategori extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void loadTabel() {
-        // Model tabel dengan sel yang tidak bisa diedit
+     
         DefaultTableModel model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Semua sel tidak dapat diedit
+                return false; 
             }
         };
         model.addColumn("Kode Kategori Surat");
